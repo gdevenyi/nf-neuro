@@ -1,5 +1,4 @@
 process HARMONIZATION_CLINICALCOMBAT {
-    tag "$meta.id"
     label 'process_medium'
 
     container "scilus/clinical_combat:1.0.0"
@@ -9,12 +8,9 @@ process HARMONIZATION_CLINICALCOMBAT {
 
     output:
     path("*.model.csv")                , emit: model
-    path("*.csv.gz")                   , emit: harmonizedsite
-    path("*.raw.bhattacharrya.txt")    , emit: rawbd
-    path("*.bhattacharrya.txt")        , emit: harmbd
-    path("AgeCurve*raw*png")           , emit: rawcurve
-    path("AgeCurve*png")               , emit: harmcurve
-    path("DataModels*png")             , emit: modelcurve
+    path("*.harmonized.csv.gz")        , emit: harmonizedsite
+    path("qc_reports")                 , emit: bdqc
+    path("figures")                    , emit: figures
     path "versions.yml"                , emit: versions
 
     when:
@@ -22,7 +18,7 @@ process HARMONIZATION_CLINICALCOMBAT {
 
     script:
     def method = task.ext.method ? "--method " + task.ext.method : ""
-    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : "--bundles all"
+    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : ""
     def regul_ref = task.ext.regul_ref ? "--regul_ref " + task.ext.regul_ref : ""
     def regul_mov = task.ext.regul_mov ? "--regul_mov " + task.ext.regul_mov : ""
     def degree = task.ext.degree ? "--degree " + task.ext.degree : ""
@@ -36,11 +32,14 @@ process HARMONIZATION_CLINICALCOMBAT {
     def no_eb = task.ext.no_empiral_bayes ? "--no_empiral_bayes " : ""
 
     """
-    combat_quick_fit $ref_site $move_site $method $bundles_list \
+    combat_quick $ref_site $move_site $method $bundles_list \
         $limit_age $ignore_sex $ignore_handedness \
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
         $no_eb
 
+    mkdir -p qc_reports figures
+    mv *bhattacharrya.txt qc_reports
+    mv *.png figures
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -54,12 +53,12 @@ process HARMONIZATION_CLINICALCOMBAT {
     combat_quick_fit -h
 
     touch ref_mov.metric.${smethod}.model.csv
-    touch ref_mov.metric.${smethod}.csv.gz
-    touch ref_mov.metric.raw.bhattacharrya.txt
-    touch ref_mov.metric.${smethod}.bhattacharrya.txt
-    touch AgeCurve_ref-mov_raw_metric_bundle.png
-    touch AgeCurve_ref-mov_${smethod}_metric_bundle.png
-    touch DataModels_ref-mov_${smethod}_metric_bundle.png
+    touch ref_mov.metric.${smethod}.harmonized.csv.gz
+    touch qc_reports/ref_mov.metric.raw.bhattacharrya.txt
+    touch qc_reports/ref_mov.metric.${smethod}.harmonized.bhattacharrya.txt
+    touch figures/AgeCurve_ref-mov_raw_metric_bundle.png
+    touch figures/AgeCurve_ref-mov_${smethod}_harmonized_bundle.png
+    touch figures/DataModels_ref-mov_${smethod}_harmonized_bundle.png
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
