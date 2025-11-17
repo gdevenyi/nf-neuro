@@ -114,7 +114,9 @@ nextflow_workflow {
         }
     }
 
-    test("Template MNI152NLin2009aAsym - no brain mask") {
+    test("Template MNI152NLin2009bSym - no brain mask") {
+        config "./no_brain_mask.config"
+        tag "no_brain_mask"
         when {
             workflow {
                 """
