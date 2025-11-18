@@ -9,37 +9,30 @@ workflow RECONST_FW_NODDI {
     dwi_bval_bvec
     brain_mask
     fa_ad_rd_md
-    run_noddi
-    run_freewater
-    para_diff
-    iso_diff
-    perp_diff_min
-    perp_diff_max
-    average_diff_priors
 
     main:
 
     ch_versions = Channel.empty()
 
     // Make sure that at least one of the two reconstructions is requested
-    if (!run_noddi && !run_freewater) {
-        error "At least one of run_noddi or run_freewater must be true to run this subworkflow."
+    if (!params.run_noddi && !params.run_freewater) {
+        error "At least one of params.run_noddi or params.run_freewater must be true to run this subworkflow."
     }
 
     // Prepare NODDI inputs. This channel will be combined/joined in the
     // lines that follow with diffusivity priors w.r.t the following 3 scenarios:
-    // Option 1: The user specifies the diffusivity priors to use (via params.para_diff and params.iso_diff).
+    // Option 1: The user specifies the diffusivity priors to use (via params.params.para_diff and params.params.iso_diff).
     // Option 2: The user wants to compute the mean diffusivity priors across subjects. (Recommended)
     // Option 3: The user wants to compute diffusivity priors for each subject individually.
 
-    if (run_noddi && ([iso_diff, para_diff].any()
-        && ! [iso_diff, para_diff].every())) {
-        error "Please provide both iso_diff and para_diff parameters to use custom diffusivity priors for NODDI."
+    if (params.run_noddi && ([params.iso_diff, params.para_diff].any()
+        && ! [params.iso_diff, params.para_diff].every())) {
+        error "Please provide both params.iso_diff and params.para_diff parameters to use custom diffusivity priors for NODDI."
     }
-    else if (run_freewater
-        && [iso_diff, para_diff, perp_diff_min, perp_diff_max].any()
-        && ! [iso_diff, para_diff, perp_diff_min, perp_diff_max].every()) {
-        error "Please provide all iso_diff, para_diff, perp_diff_min and perp_diff_max parameters to use custom "
+    else if (params.run_freewater
+        && [params.iso_diff, params.para_diff, params.perp_diff_min, params.perp_diff_max].any()
+        && ! [params.iso_diff, params.para_diff, params.perp_diff_min, params.perp_diff_max].every()) {
+        error "Please provide all params.iso_diff, params.para_diff, params.perp_diff_min and params.perp_diff_max parameters to use custom "
             "diffusivity priors for Freewater Elimination. Otherwise, specify none and the priors will be "
             "automatically computed."
     }
@@ -49,21 +42,21 @@ workflow RECONST_FW_NODDI {
     ch_freewater_input = dwi_bval_bvec
         .join(brain_mask)
 
-    if (iso_diff != null && para_diff != null
-        && perp_diff_min != null && perp_diff_max != null) {
-        if (average_diff_priors) {
-            log.warn "Both custom diffusivity priors and average_diff_priors parameter were provided."
+    if (params.iso_diff != null && params.para_diff != null
+        && params.perp_diff_min != null && params.perp_diff_max != null) {
+        if (params.average_diff_priors) {
+            log.warn "Both custom diffusivity priors and params.average_diff_priors parameter were provided."
                 "The specified custom diffusivity priors will be used across subjects."
         }
 
         ch_noddi_input = ch_noddi_input
-            .combine(Channel.value(para_diff))
-            .combine(Channel.value(iso_diff))
+            .combine(Channel.value(params.para_diff))
+            .combine(Channel.value(params.iso_diff))
         ch_freewater_input = ch_freewater_input
-            .combine(Channel.value(para_diff))
-            .combine(Channel.value(iso_diff))
-            .combine(Channel.value(perp_diff_min))
-            .combine(Channel.value(perp_diff_max))
+            .combine(Channel.value(params.para_diff))
+            .combine(Channel.value(params.iso_diff))
+            .combine(Channel.value(params.perp_diff_min))
+            .combine(Channel.value(params.perp_diff_max))
     }
     else {
         // Compute diffusivity priors for each subject.
@@ -71,7 +64,7 @@ workflow RECONST_FW_NODDI {
         ch_versions = ch_versions.mix(RECONST_DIFFUSIVITYPRIORS.out.versions)
 
         // Then compute mean diffusivity priors across subjects.
-        if (average_diff_priors) {
+        if (params.average_diff_priors) {
             RECONST_MEANDIFFUSIVITYPRIORS(
                 RECONST_DIFFUSIVITYPRIORS.out.para_diff_file
                     .map{ _meta, path -> path }
@@ -106,7 +99,7 @@ workflow RECONST_FW_NODDI {
         }
     }
 
-    if (run_noddi) {
+    if (params.run_noddi) {
         ch_noddi_input = ch_noddi_input
             .map{ meta, dwi, bval, bvec, b0_mask, para, iso ->
                 [meta, dwi, bval, bvec, b0_mask, [], para, iso] }
@@ -115,7 +108,7 @@ workflow RECONST_FW_NODDI {
         ch_versions = ch_versions.mix(RECONST_NODDI.out.versions)
     }
 
-    if (run_freewater) {
+    if (params.run_freewater) {
         ch_freewater_input = ch_freewater_input
             .map{ meta, dwi, bval, bvec, b0_mask, para, iso, perp_min, perp_max ->
                 [meta, dwi, bval, bvec, b0_mask, [], para, iso, perp_min, perp_max] }
@@ -141,32 +134,32 @@ workflow RECONST_FW_NODDI {
 
     emit:
     // NODDI
-    noddi_dir           = run_noddi ? RECONST_NODDI.out.dir : Channel.empty()
-    noddi_fwf           = run_noddi ? RECONST_NODDI.out.fwf : Channel.empty()
-    noddi_ndi           = run_noddi ? RECONST_NODDI.out.ndi : Channel.empty()
-    noddi_ecvf          = run_noddi ? RECONST_NODDI.out.ecvf : Channel.empty()
-    noddi_odi           = run_noddi ? RECONST_NODDI.out.odi : Channel.empty()
+    noddi_dir           = params.run_noddi ? RECONST_NODDI.out.dir : Channel.empty()
+    noddi_fwf           = params.run_noddi ? RECONST_NODDI.out.fwf : Channel.empty()
+    noddi_ndi           = params.run_noddi ? RECONST_NODDI.out.ndi : Channel.empty()
+    noddi_ecvf          = params.run_noddi ? RECONST_NODDI.out.ecvf : Channel.empty()
+    noddi_odi           = params.run_noddi ? RECONST_NODDI.out.odi : Channel.empty()
 
     // Freewater Elimination
-    fw_dwi              = run_freewater ? RECONST_FREEWATER.out.dwi_fw_corrected : Channel.empty()
-    fw_dir              = run_freewater ? RECONST_FREEWATER.out.dir : Channel.empty()
-    fw_fibervolume      = run_freewater ? RECONST_FREEWATER.out.fibervolume : Channel.empty()
-    fw_fw               = run_freewater ? RECONST_FREEWATER.out.fw : Channel.empty()
-    fw_nrmse            = run_freewater ? RECONST_FREEWATER.out.nrmse : Channel.empty()
+    fw_dwi              = params.run_freewater ? RECONST_FREEWATER.out.dwi_fw_corrected : Channel.empty()
+    fw_dir              = params.run_freewater ? RECONST_FREEWATER.out.dir : Channel.empty()
+    fw_fibervolume      = params.run_freewater ? RECONST_FREEWATER.out.fibervolume : Channel.empty()
+    fw_fw               = params.run_freewater ? RECONST_FREEWATER.out.fw : Channel.empty()
+    fw_nrmse            = params.run_freewater ? RECONST_FREEWATER.out.nrmse : Channel.empty()
 
-    fw_dti_tensor       = run_freewater ? FW_CORRECTED_DTIMETRICS.out.tensor : Channel.empty()
-    fw_dti_md           = run_freewater ? FW_CORRECTED_DTIMETRICS.out.md : Channel.empty()
-    fw_dti_rd           = run_freewater ? FW_CORRECTED_DTIMETRICS.out.rd : Channel.empty()
-    fw_dti_ad           = run_freewater ? FW_CORRECTED_DTIMETRICS.out.ad : Channel.empty()
-    fw_dti_fa           = run_freewater ? FW_CORRECTED_DTIMETRICS.out.fa : Channel.empty()
-    fw_dti_rgb          = run_freewater ? FW_CORRECTED_DTIMETRICS.out.rgb : Channel.empty()
-    fw_dti_peaks        = run_freewater ? FW_CORRECTED_DTIMETRICS.out.evecs_v1 : Channel.empty()
-    fw_dti_evecs        = run_freewater ? FW_CORRECTED_DTIMETRICS.out.evecs : Channel.empty()
-    fw_dti_evals        = run_freewater ? FW_CORRECTED_DTIMETRICS.out.evals : Channel.empty()
-    fw_dti_residual     = run_freewater ? FW_CORRECTED_DTIMETRICS.out.residual : Channel.empty()
-    fw_dti_ga           = run_freewater ? FW_CORRECTED_DTIMETRICS.out.ga : Channel.empty()
-    fw_dti_mode         = run_freewater ? FW_CORRECTED_DTIMETRICS.out.mode : Channel.empty()
-    fw_dti_norm         = run_freewater ? FW_CORRECTED_DTIMETRICS.out.norm : Channel.empty()
+    fw_dti_tensor       = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.tensor : Channel.empty()
+    fw_dti_md           = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.md : Channel.empty()
+    fw_dti_rd           = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.rd : Channel.empty()
+    fw_dti_ad           = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.ad : Channel.empty()
+    fw_dti_fa           = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.fa : Channel.empty()
+    fw_dti_rgb          = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.rgb : Channel.empty()
+    fw_dti_peaks        = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.evecs_v1 : Channel.empty()
+    fw_dti_evecs        = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.evecs : Channel.empty()
+    fw_dti_evals        = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.evals : Channel.empty()
+    fw_dti_residual     = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.residual : Channel.empty()
+    fw_dti_ga           = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.ga : Channel.empty()
+    fw_dti_mode         = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.mode : Channel.empty()
+    fw_dti_norm         = params.run_freewater ? FW_CORRECTED_DTIMETRICS.out.norm : Channel.empty()
 
     versions = ch_versions
 }

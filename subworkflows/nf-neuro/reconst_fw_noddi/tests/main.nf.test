@@ -31,6 +31,8 @@ nextflow_workflow {
 
     test("reconst_fw_noddi - noddi") {
         when {
+            config "./noddi.config"
+
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -59,13 +61,6 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = true  // run_noddi
-                input[4] = false // run_freewater
-                input[5] = null  // para_diff
-                input[6] = null  // iso_diff
-                input[7] = null  // perp_diff_min
-                input[8] = null  // perp_diff_max
-                input[9] = false // average_diff_priors
                 """
             }
         }
@@ -96,6 +91,8 @@ nextflow_workflow {
 
     test("reconst_fw_noddi - freewater") {
         when {
+            config "./fw.config"
+
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -124,13 +121,6 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = false // run_noddi
-                input[4] = true  // run_freewater
-                input[5] = null  // para_diff
-                input[6] = null  // iso_diff
-                input[7] = null  // perp_diff_min
-                input[8] = null  // perp_diff_max
-                input[9] = false // average_diff_priors
                 """
             }
         }
@@ -161,6 +151,8 @@ nextflow_workflow {
 
     test("reconst_fw_noddi - noddi & freewater") {
         when {
+            config "./noddi_fw.config"
+
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -189,13 +181,6 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = true  // run_noddi
-                input[4] = true  // run_freewater
-                input[5] = null  // para_diff
-                input[6] = null  // iso_diff
-                input[7] = null  // perp_diff_min
-                input[8] = null  // perp_diff_max
-                input[9] = false // average_diff_priors
                 """
             }
         }
@@ -226,6 +211,8 @@ nextflow_workflow {
 
     test("reconst_fw_noddi - noddi & freewater - average priors") {
         when {
+            config "./noddi_fw_avg_priors.config"
+
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -254,13 +241,6 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = true  // run_noddi
-                input[4] = true  // run_freewater
-                input[5] = null  // para_diff
-                input[6] = null  // iso_diff
-                input[7] = null  // perp_diff_min
-                input[8] = null  // perp_diff_max
-                input[9] = true  // average_diff_priors
                 """
             }
         }
@@ -291,6 +271,7 @@ nextflow_workflow {
 
     test("reconst_fw_noddi - noddi & freewater - custom priors") {
         when {
+            config "./noddi_fw_custom_priors.config"
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -319,13 +300,6 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = true    // run_noddi
-                input[4] = true    // run_freewater
-                input[5] = 0.0015  // para_diff
-                input[6] = 0.003   // iso_diff
-                input[7] = 0.0001  // perp_diff_min
-                input[8] = 0.0007  // perp_diff_max
-                input[9] = true    // average_diff_priors
                 """
             }
         }
@@ -351,6 +325,47 @@ nextflow_workflow {
                             ? subject.every()
                             : subject } } }
             )
+        }
+    }
+
+    test("reconst_fw_noddi - no noddi & no freewater") {
+        when {
+            config "./expect_error.config"
+
+            workflow {
+                """
+                ch_split_test_data = LOAD_DATA.out.test_data_directory
+                    .branch{
+                        processing: it.simpleName == "processing"
+                        commit_amico: it.simpleName == "commit_amico"
+                    }
+
+                input[0] = ch_split_test_data.processing
+                    .map{ test_data_directory -> [
+                    [ id:'test', single_end:false ], // meta map
+                    file("\${test_data_directory}/dwi.nii.gz"),
+                    file("\${test_data_directory}/dwi.bval"),
+                    file("\${test_data_directory}/dwi.bvec")
+                    ]}
+                input[1] = ch_split_test_data.commit_amico
+                    .map{ test_data_directory -> [
+                    [ id:'test', single_end:false ], // meta map
+                    file("\${test_data_directory}/mask.nii.gz")
+                    ]}
+                input[2] = ch_split_test_data.processing
+                    .map{ test_data_directory -> [
+                        [ id:'test', single_end:false ], // meta map
+                        file("\${test_data_directory}/fa.nii.gz"),
+                        file("\${test_data_directory}/ad.nii.gz"),
+                        file("\${test_data_directory}/rd.nii.gz"),
+                        file("\${test_data_directory}/md.nii.gz")
+                    ]}
+                """
+            }
+        }
+
+        then {
+            assert(workflow.failed)
         }
     }
 }
