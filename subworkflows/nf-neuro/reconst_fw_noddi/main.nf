@@ -21,7 +21,7 @@ workflow RECONST_FW_NODDI {
 
     // Prepare NODDI inputs. This channel will be combined/joined in the
     // lines that follow with diffusivity priors w.r.t the following 3 scenarios:
-    // Option 1: The user specifies the diffusivity priors to use (via params.params.para_diff and params.params.iso_diff).
+    // Option 1: The user specifies the diffusivity priors to use (via params.para_diff and params.iso_diff).
     // Option 2: The user wants to compute the mean diffusivity priors across subjects. (Recommended)
     // Option 3: The user wants to compute diffusivity priors for each subject individually.
 
