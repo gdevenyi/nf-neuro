@@ -17,6 +17,7 @@ components:
   - reconst/freewater
   - reconst/diffusivitypriors
   - reconst/meandiffusivitypriors
+  - reconst/dtimetrics
 input:
   - dwi_bval_bvec:
       type: file

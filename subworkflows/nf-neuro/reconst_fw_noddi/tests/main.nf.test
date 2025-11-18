@@ -7,10 +7,12 @@ nextflow_workflow {
     tag "subworkflows_nfneuro"
     tag "subworkflows/reconst_fw_noddi"
 
+    tag "load_test_data"
     tag "reconst/noddi"
     tag "reconst/freewater"
     tag "reconst/diffusivitypriors"
     tag "reconst/meandiffusivitypriors"
+    tag "reconst/dtimetrics"
 
     tag "stub"
     options "-stub-run"
