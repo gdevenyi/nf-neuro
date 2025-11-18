@@ -71,7 +71,7 @@ workflow RECONST_FW_NODDI {
         ch_versions = ch_versions.mix(RECONST_DIFFUSIVITYPRIORS.out.versions)
 
         // Then compute mean diffusivity priors across subjects.
-        if (params.average_diff_priors) {
+        if (average_diff_priors) {
             RECONST_MEANDIFFUSIVITYPRIORS(
                 RECONST_DIFFUSIVITYPRIORS.out.para_diff_file
                     .map{ _meta, path -> path }
