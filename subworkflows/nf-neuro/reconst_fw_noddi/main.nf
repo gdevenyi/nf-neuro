@@ -42,8 +42,10 @@ workflow RECONST_FW_NODDI {
     ch_freewater_input = dwi_bval_bvec
         .join(brain_mask)
 
-    if (params.iso_diff != null && params.para_diff != null
-        && params.perp_diff_min != null && params.perp_diff_max != null) {
+    noddi_custom_priors = [params.para_diff, params.iso_diff].every()
+    fw_custom_priors = [params.para_diff, params.iso_diff, params.perp_diff_min, params.perp_diff_max].every()
+    if (((params.run_noddi && !params.run_freewater) && noddi_custom_priors) || (params.run_freewater && fw_custom_priors)) {
+        // Use user-specified diffusivity priors across subjects.
         if (params.average_diff_priors) {
             log.warn "Both custom diffusivity priors and params.average_diff_priors parameter were provided."
                 "The specified custom diffusivity priors will be used across subjects."

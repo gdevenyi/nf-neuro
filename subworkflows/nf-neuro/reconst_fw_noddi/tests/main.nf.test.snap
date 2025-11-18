@@ -1,4 +1,145 @@
 {
+    "reconst_fw_noddi - freewater - custom priors": {
+        "content": [
+            {
+                "fw_dti_ad": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__ad.nii.gz"
+                    ]
+                ],
+                "fw_dti_evals": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__evals.nii.gz"
+                    ]
+                ],
+                "fw_dti_evecs": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__evecs.nii.gz"
+                    ]
+                ],
+                "fw_dti_fa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fa.nii.gz"
+                    ]
+                ],
+                "fw_dti_ga": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__ga.nii.gz"
+                    ]
+                ],
+                "fw_dti_md": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__md.nii.gz"
+                    ]
+                ],
+                "fw_dti_mode": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__mode.nii.gz"
+                    ]
+                ],
+                "fw_dti_norm": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__norm.nii.gz"
+                    ]
+                ],
+                "fw_dti_peaks": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__evecs_v1.nii.gz"
+                    ]
+                ],
+                "fw_dti_rd": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__rd.nii.gz"
+                    ]
+                ],
+                "fw_dti_residual": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__residual.nii.gz"
+                    ]
+                ],
+                "fw_dti_rgb": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__rgb.nii.gz"
+                    ]
+                ],
+                "fw_dti_tensor": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__tensor.nii.gz"
+                    ]
+                ],
+                "fw_dwi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__dwi_fw_corrected.nii.gz"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,689b2c4f00690ac95de93f6175661a17",
+                    "versions.yml:md5,a223178747e3c47275c80317e23f35a6"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-18T20:20:00.984758304"
+    },
     "reconst_fw_noddi - noddi & freewater - custom priors": {
         "content": [
             {
@@ -764,5 +905,64 @@
             "nextflow": "25.10.0"
         },
         "timestamp": "2025-11-18T14:34:28.28827541"
+    },
+    "reconst_fw_noddi - noddi - custom priors": {
+        "content": [
+            {
+                "noddi_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fit_dir.nii.gz"
+                    ]
+                ],
+                "noddi_ecvf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fit_ECVF.nii.gz"
+                    ]
+                ],
+                "noddi_fwf": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fit_FWF.nii.gz"
+                    ]
+                ],
+                "noddi_ndi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fit_NDI.nii.gz"
+                    ]
+                ],
+                "noddi_odi": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__fit_ODI.nii.gz"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0576c1fdab3c59610cd67015e8146f95"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-18T20:19:48.139774026"
     }
 }
