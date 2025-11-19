@@ -16,11 +16,11 @@ description: |
   182x218x182 matrix size. The Atlas is in the MNI152NLin6Asym template space
   (1mm resolution).
 keywords:
-- atlas
-- iit
-- neuroimaging
-- bundles
-- template
+  - atlas
+  - iit
+  - neuroimaging
+  - bundles
+  - template
 tools:
   - scilpy:
       description: The Sherbrooke Connectivity Imaging Lab (SCIL) Python dMRI processing
@@ -67,6 +67,6 @@ output:
         ontologies:
           - edam: http://edamontology.org/format_3750 # YAML
 authors:
-- "@levje"
+  - "@levje"
 maintainers:
-- "@levje"
+  - "@levje"
