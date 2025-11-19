@@ -1,0 +1,78 @@
+{
+    "atlas - iit - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,a3a72b010c1b3067aa0a8b6c02cc807d"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-19T09:57:02.57933878"
+    },
+    "atlas - iit": {
+        "content": [
+            [
+                [
+                    "AC_mask.nii.gz:md5,59f532a13f4a72e5a689ab8b4a139423",
+                    "AF_L_mask.nii.gz:md5,5b91d26852f3979f84a190142eea570e",
+                    "AF_R_mask.nii.gz:md5,ebad6073d5eae67ef34bd34849fff186",
+                    "AST_L_mask.nii.gz:md5,3f59caa32a95046c20514cc625564dbc",
+                    "AST_R_mask.nii.gz:md5,dcb63b6c908601a4e49e577930235ed9",
+                    "CCMid_mask.nii.gz:md5,10efad0f052125a13282f3caad43947c",
+                    "CC_ForcepsMajor_mask.nii.gz:md5,01edfc9a4f26177cdba5761e1581147e",
+                    "CC_ForcepsMinor_mask.nii.gz:md5,10cf5f306e3d0a0e5decdfa7d3199d0c",
+                    "CC_mask.nii.gz:md5,499ddf38376f614bd98c8eb62b33cdcf",
+                    "CST_L_mask.nii.gz:md5,06a97118ac912127fe4f624f1b8f5b55",
+                    "CST_R_mask.nii.gz:md5,559f20ec50d35ea1c7e877c3b1c14620",
+                    "C_L_mask.nii.gz:md5,660c25bd1e39706daffb757961387511",
+                    "C_R_mask.nii.gz:md5,b1e3736613e27e4cac32fbe087b6e0eb",
+                    "FPT_L_mask.nii.gz:md5,d6ce75ea97813979e97101d3d668dbe8",
+                    "FPT_R_mask.nii.gz:md5,a2249a4093b8a11c4c8846fc4d47bde5",
+                    "F_L_R_mask.nii.gz:md5,ab0b86f7671611a04a1f76415eddaca3",
+                    "ICP_L_mask.nii.gz:md5,30a68f4cb0b4d8e5c7101893561080b5",
+                    "ICP_R_mask.nii.gz:md5,94363b658a826a991be964dfb78fdade",
+                    "IFOF_L_mask.nii.gz:md5,1ad752752bbff8513a286bc19b89cb6d",
+                    "IFOF_R_mask.nii.gz:md5,80205ae5e13b631e386009075c26d8b5",
+                    "ILF_L_mask.nii.gz:md5,b09726e246e8d6e3aab5dd9feee8099a",
+                    "ILF_R_mask.nii.gz:md5,cecb598c5f719c1a96363adc9b505a51",
+                    "MCP_mask.nii.gz:md5,ab6c811b62c8501f8da346c46c02a97a",
+                    "ML_L_mask.nii.gz:md5,0fa54b174de7efc2b6998cbc33da2a50",
+                    "ML_R_mask.nii.gz:md5,2fabb5f4a7489890ca5126ae1e5b48ca",
+                    "MdLF_L_mask.nii.gz:md5,20444e38b4389a6c7245fc99f25276f4",
+                    "MdLF_R_mask.nii.gz:md5,f055ae466937a61e15128bb48eb65da4",
+                    "OPT_L_mask.nii.gz:md5,b7acd9d4b35ed39572d1b31d96a5db5e",
+                    "OPT_R_mask.nii.gz:md5,efeb5c19eb9c74cb5665e2be40bb4c11",
+                    "OR_L_mask.nii.gz:md5,a3e5f90bee50ae11e9afbc768322dc2c",
+                    "OR_R_mask.nii.gz:md5,681afdf5dddb654d4cbb38e8b0af5251",
+                    "PPT_L_mask.nii.gz:md5,1aaed3eb2e9f9e5b86b31fa80d88bb83",
+                    "PPT_R_mask.nii.gz:md5,3ba57609533e149f96bb1945f6e83d1e",
+                    "SCP_mask.nii.gz:md5,6835eb1e07795639a438353c39bd7c00",
+                    "SLF_L_mask.nii.gz:md5,f7b79e9225ad5b01c0be99ad64ebbe66",
+                    "SLF_R_mask.nii.gz:md5,fced75361f9571e4ac10ffc25518fc1d",
+                    "STT_L_mask.nii.gz:md5,ffe56af927c3f27df93241aca1ecb987",
+                    "STT_R_mask.nii.gz:md5,17b66d13998940ac0d980c5e7e8732f8",
+                    "UF_L_mask.nii.gz:md5,c66f74857f9a1c85a9cf3baef71a5286",
+                    "UF_R_mask.nii.gz:md5,d8e34986a9b031c6cee27603419ad057",
+                    "VOF_L_mask.nii.gz:md5,53fc2b57a735316060b3615f1d2ef9eb",
+                    "VOF_R_mask.nii.gz:md5,db58a633fdbc06804cd237f8b9208ff8"
+                ]
+            ],
+            [
+                "IITmean_b0.nii.gz:md5,356a0b18edcecbf7b3c684f4717f5ee9"
+            ],
+            [
+                "IITmean_fa.nii.gz:md5,356a0b18edcecbf7b3c684f4717f5ee9"
+            ],
+            [
+                "versions.yml:md5,635898adb2f8cc7b722488cba99a254f"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-11-19T06:17:26.039115255"
+    }
+}
