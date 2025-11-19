@@ -43,7 +43,7 @@ process ATLAS_IIT {
     # If the iit_bundles is not null and not empty, copy it locally
 
     if [ "${iit_bundles}" != "null" ] && [ -s "${iit_bundles}" ]; then
-        echo "» Using provided IIT bundle masks from ${iit_bundles} -> ${output_dir}/"
+        echo "=> Using provided IIT bundle masks from ${iit_bundles} -> ${output_dir}/"
         mv "${iit_bundles}" "${output_dir}"
     else
         mkdir -p "${intermediate_dir}"
@@ -55,6 +55,12 @@ process ATLAS_IIT {
         unzip -n "IIT_bundles.zip"
         mv "IIT_bundles"/* "${intermediate_dir}/"
         rm "IIT_bundles.zip" "__MACOSX" "IIT_bundles" -r
+
+        echo "==================================="
+        echo "Files in intermediate directory:"
+        ls -lh "${intermediate_dir}/"
+        echo "==================================="
+
 
         # These thresholds are recommended by the IIT authors to create binary masks
         # from the bundle density maps.
@@ -106,13 +112,13 @@ END_THR
         # Create binary masks using the thresholds
         # and adjust the stride for MNI compatibility.
         while read -r name thr; do
-            echo "» Processing \${name} with threshold \${thr}"
+            echo "=> Processing \${name} with threshold \${thr}"
             scil_volume_math lower_threshold "${intermediate_dir}/\${name}.nii.gz" "\${thr}" "${output_dir}/\${name}_mask.nii.gz" -f
             mrconvert -stride 1,2,3 "${output_dir}/\${name}_mask.nii.gz" "${output_dir}/\${name}_mask.nii.gz" -force
         done < ${thresholds_txt_file}
     fi
 
-    echo "» All done! (masks created in ${output_dir})"
+    echo "=> All done! (masks created in ${output_dir})"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
