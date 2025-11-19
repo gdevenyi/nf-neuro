@@ -36,12 +36,6 @@ input:
         If not provided, the module will download it.
       mandatory: false
       ontologies: []
-  - iit_fa:
-      type: file
-      description: |
-        Path to the Mean FA map of the IIT Human Brain Atlas.
-        If not provided, the module will download it.
-      mandatory: false
   - iit_bundles:
       type: file
       description: |
@@ -63,13 +57,6 @@ output:
         type: file
         description: Mean B0 map of the IIT Human Brain Atlas.
         pattern: "*_b0.nii.gz"
-        ontologies:
-          - edam: http://edamontology.org/format_4001 # NIFTI format
-  fa:
-    - "*_fa.nii.gz":
-        type: file
-        description: Mean FA map of the IIT Human Brain Atlas.
-        pattern: "*_fa.nii.gz"
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
   versions:

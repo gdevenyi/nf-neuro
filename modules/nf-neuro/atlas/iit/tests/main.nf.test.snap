@@ -7,9 +7,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-19T09:57:02.57933878"
+        "timestamp": "2025-11-19T07:38:59.903168417"
     },
     "atlas - iit": {
         "content": [
@@ -63,9 +63,6 @@
                 "IITmean_b0.nii.gz:md5,356a0b18edcecbf7b3c684f4717f5ee9"
             ],
             [
-                "IITmean_fa.nii.gz:md5,356a0b18edcecbf7b3c684f4717f5ee9"
-            ],
-            [
                 "versions.yml:md5,635898adb2f8cc7b722488cba99a254f"
             ]
         ],
@@ -73,6 +70,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-19T06:17:26.039115255"
+        "timestamp": "2025-11-19T07:38:53.150103789"
     }
 }

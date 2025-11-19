@@ -16,13 +16,11 @@ process ATLAS_IIT {
 
     input:
     path iit_b0
-    path iit_fa
     path iit_bundles
 
     output:
     path "iit_bundles/*.nii.gz"      , emit: bundles
     path "*_b0.nii.gz"               , emit: b0
-    path "*_fa.nii.gz"               , emit: fa
     path "versions.yml"              , emit: versions
 
     when:
@@ -43,9 +41,6 @@ process ATLAS_IIT {
 
     # Download the B0
     ${file_exists_and_not_empty(iit_b0) ? "cp ${iit_b0} IITmean_b0.nii.gz" : "wget https://www.nitrc.org/frs/download.php/11266/IITmean_b0.nii.gz -O IITmean_b0.nii.gz" }
-
-    # Download the FA
-    ${file_exists_and_not_empty(iit_fa) ? "cp ${iit_fa} IITmean_fa.nii.gz" : "wget https://www.nitrc.org/frs/download.php/11266/IITmean_fa.nii.gz -O IITmean_fa.nii.gz" }
 
     # If the iit_bundles is not null and not empty, copy it locally
 
@@ -133,7 +128,6 @@ END_THR
     mkdir -p ${output_dir}
 
     touch "IITmean_b0.nii.gz"
-    touch "IITmean_fa.nii.gz"
 
     for f in AC AF_L AF_R AST_L AST_R C_L C_R \
         CC_ForcepsMajor CC_ForcepsMinor CC CCMid \

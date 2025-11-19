@@ -15,7 +15,6 @@ nextflow_process {
                 """
                 input[0]=Channel.of([])
                 input[1]=Channel.of([])
-                input[2]=Channel.of([])
                 """
             }
         }
@@ -25,7 +24,6 @@ nextflow_process {
                 { assert snapshot(
                     process.out.bundles,
                     process.out.b0,
-                    process.out.fa,
                     process.out.versions
                 ).match() }
             )
@@ -40,7 +38,6 @@ nextflow_process {
                 """
                 input[0]=Channel.of([])
                 input[1]=Channel.of([])
-                input[2]=Channel.of([])
                 """
             }
         }
