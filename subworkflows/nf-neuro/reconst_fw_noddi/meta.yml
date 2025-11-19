@@ -31,6 +31,51 @@ input:
         The input channel containing the brain mask file (e.g. b0_mask).
         Structure: [ val(meta), path(brain_mask) ]
       pattern: "*.nii.gz"
+  - fa_ad_rd_md:
+      type: file
+      description: |
+        The input channel containing DTI metrics (FA, AD, RD, MD).
+        Structure: [ val(meta), path(fa), path(ad), path(rd), path(md) ]
+      pattern: "*.nii.gz"
+args:
+  - run_noddi:
+      type: boolean
+      default: false
+      description: |
+        Whether to run the NODDI reconstruction.
+  - run_freewater:
+      type: boolean
+      default: false
+      description: |
+        Whether to run the FreeWater correction.
+  - para_diff:
+      type: float
+      default: null
+      description: |
+        Custom parallel diffusivity prior to use for NODDI and FreeWater models.
+  - iso_diff:
+      type: float
+      default: null
+      description: |
+        Custom isotropic diffusivity prior to use for NODDI and FreeWater models.
+  - perp_diff_min:
+      type: float
+      default: null
+      description: |
+        Minimum perpendicular diffusivity prior to use for NODDI and FreeWater
+        models when computing diffusivity priors automatically.
+  - perp_diff_max:
+      type: float
+      default: null
+      description: |
+        Maximum perpendicular diffusivity prior to use for NODDI and FreeWater
+        models when computing diffusivity priors automatically.
+  - average_diff_priors:
+      type: boolean
+      default: false
+      description: |
+        Whether to average the diffusivity priors computed from the
+        RECONST/DIFFUSIVITYPRIORS module across all subjects. (Recommended)
 output:
   - noddi_dir:
       type: file
