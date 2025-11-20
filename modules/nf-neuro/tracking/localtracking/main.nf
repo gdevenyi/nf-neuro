@@ -49,7 +49,7 @@ process TRACKING_LOCALTRACKING {
     def run_qc = task.ext.run_qc ? task.ext.run_qc : false
 
     if (local_step && local_step_pct) {
-        log.warn "Both local_step and local_step_pct are set for ${meta.id}. local_step_pct will take priority and local_step will be ignored."
+        log.warn "Both local_step and local_step_pct are set for ${meta.id}. local_step will take priority and local_step_pct will be ignored."
     }
 
     """
@@ -58,7 +58,7 @@ process TRACKING_LOCALTRACKING {
     export OPENBLAS_NUM_THREADS=1
 
     local_step="$local_step"
-    if [[ -n "$local_step_pct" ]]; then
+    if [[ -z "$local_step" ]] && [[ -n "$local_step_pct" ]]; then
         pixdim=\$(scil_header_print_info $wm --keys pixdim | awk '{for(i=2;i<=4;i++) if(\$i<min || min=="") min=\$i} END {print min}')
         local_step=\$(awk -v pixdim="\$pixdim" -v pct="$local_step_pct" 'BEGIN {printf "--step %.6f", pixdim * pct / 100}')
     fi

@@ -48,7 +48,7 @@ process TRACKING_PFTTRACKING {
     def run_qc = task.ext.run_qc ? task.ext.run_qc : false
 
     if (pft_step && pft_step_pct) {
-        log.warn "Both pft_step and pft_step_pct are set for ${meta.id}. pft_step_pct will take priority and pft_step will be ignored."
+        log.warn "Both pft_step and pft_step_pct are set for ${meta.id}. pft_step will take priority and pft_step_pct will be ignored."
     }
 
     """
@@ -79,7 +79,7 @@ process TRACKING_PFTTRACKING {
     fi
 
     pft_step="$pft_step"
-    if [[ -n "$pft_step_pct" ]]; then
+    if [[ -z "$pft_step" ]] && [[ -n "$pft_step_pct" ]]; then
         pixdim=\$(scil_header_print_info $wm --keys pixdim | awk '{for(i=2;i<=4;i++) if(\$i<min || min=="") min=\$i} END {print min}')
         pft_step=\$(awk -v pixdim="\$pixdim" -v pct="$pft_step_pct" 'BEGIN {printf "--step %.6f", pixdim * pct / 100}')
     fi
