@@ -63,8 +63,6 @@ process TRACKING_LOCALTRACKING {
         local_step=\$(awk -v pixdim="\$pixdim" -v pct="$local_step_pct" 'BEGIN {printf "--step %.6f", pixdim * pct / 100}')
     fi
 
-    echo \${local_step}
-
     if [ "${local_tracking_mask}" == "wm" ]; then
         scil_volume_math lower_threshold $wm \
             $local_wm_tracking_mask_threshold \
