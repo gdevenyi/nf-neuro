@@ -105,10 +105,6 @@ boolean allBundleFilesExist(Map thresholds, File dir) {
     }
 }
 
-workflow {
-    ATLAS_IIT()
-}
-
 workflow ATLAS_IIT {
     main:
 
