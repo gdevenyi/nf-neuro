@@ -83,35 +83,35 @@ output:
         Nifti file main direction.
         Structure: [ val(meta), path(dir) ]
       pattern: "*__fit_dir.nii.gz"
-      optional: true
+      mandatory: false
   - noddi_fwf:
       type: file
       description: |
         Nifti file for Free Water Fraction.
         Structure: [ val(meta), path(fwf) ]
       pattern: "*__fit_FWF.nii.gz"
-      optional: true
+      mandatory: false
   - noddi_ndi:
       type: file
       description: |
         Nifti file for Neurite Density Index.
         Structure: [ val(meta), path(ndi) ]
       pattern: "*__fit_NDI.nii.gz"
-      optional: true
+      mandatory: false
   - noddi_ecvf:
       type: file
       description: |
         Nifti file for Extra-Cellular Volume Fraction.
         Structure: [ val(meta), path(ecvf) ]
       pattern: "*__fit_ECVF.nii.gz"
-      optional: true
+      mandatory: false
   - noddi_odi:
       type: file
       description: |
         Nifti file for Orientation Dispersion Index.
         Structure: [ val(meta), path(odi) ]
       pattern: "*__fit_ODI.nii.gz"
-      optional: true
+      mandatory: false
   - versions:
       type: file
       description: |
