@@ -4,7 +4,7 @@ nextflow_process {
     process "IMAGE_MATH"
 
     tag "modules"
-    tag "modules_nfcore"
+    tag "modules_nfneuro"
     tag "image"
     tag "image/math"
 
