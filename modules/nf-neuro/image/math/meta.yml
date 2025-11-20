@@ -108,6 +108,7 @@ input:
           Value to use for the mathematical operation. This value
           will be used if ext.value is not provided.
           (e.g., threshold below 0.5, clip over 10, etc.).
+        mandatory: false
 args:
   - operation:
       type: string
