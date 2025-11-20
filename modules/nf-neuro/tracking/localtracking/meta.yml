@@ -50,6 +50,10 @@ args:
       type: float
       default: 0.5
       description: Tracking Step size.
+  - local_step_pct:
+      type: float
+      default: 50
+      description: Tracking Step percentage size based on the min voxel dimension.
   - local_random_seed:
       type: int
       default: 0

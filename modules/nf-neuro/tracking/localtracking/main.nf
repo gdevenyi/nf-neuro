@@ -31,6 +31,7 @@ process TRACKING_LOCALTRACKING {
     def local_seeding_mask = task.ext.local_seeding_mask_type ?: "wm"
 
     def local_step = task.ext.local_step ? "--step " + task.ext.local_step : ""
+    def local_step_pct = task.ext.local_step_pct ? task.ext.local_step_pct : ""
     def local_random_seed = task.ext.local_random_seed ? "--seed " + task.ext.local_random_seed : ""
     def local_seeding = task.ext.local_seeding ? "--" + task.ext.local_seeding : ""
     def local_nbr_seeds = task.ext.local_nbr_seeds ? "" + task.ext.local_nbr_seeds : ""
@@ -47,10 +48,22 @@ process TRACKING_LOCALTRACKING {
 
     def run_qc = task.ext.run_qc ? task.ext.run_qc : false
 
+    if (local_step && local_step_pct) {
+        log.warn "Both local_step and local_step_pct are set for ${meta.id}. local_step_pct will take priority and local_step will be ignored."
+    }
+
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
     export OMP_NUM_THREADS=1
     export OPENBLAS_NUM_THREADS=1
+
+    local_step="$local_step"
+    if [[ -n "$local_step_pct" ]]; then
+        pixdim=\$(scil_header_print_info $wm --keys pixdim | awk '{for(i=2;i<=4;i++) if(\$i<min || min=="") min=\$i} END {print min}')
+        local_step=\$(awk -v pixdim="\$pixdim" -v pct="$local_step_pct" 'BEGIN {printf "--step %.6f", pixdim * pct / 100}')
+    fi
+
+    echo \${local_step}
 
     if [ "${local_tracking_mask}" == "wm" ]; then
         scil_volume_math lower_threshold $wm \
