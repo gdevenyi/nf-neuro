@@ -113,7 +113,7 @@ process TRACKING_LOCALTRACKING {
     "random_seed": $task.ext.local_random_seed,
     "is_compress": "${task.ext.local_compress_streamlines}",
     "compress_value": $task.ext.local_compress_value,
-    "step": $task.ext.local_step,
+    "step": \${local_step/--step /},
     "theta": $task.ext.local_theta,
     "sfthres": $task.ext.local_sfthres,
     "min_len": $task.ext.local_min_len,

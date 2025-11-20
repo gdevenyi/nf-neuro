@@ -60,7 +60,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test__local_tracking_config.json:md5,83fbdcb6272f59927a8e68f26b600cf8"
+                    "test__local_tracking_config.json:md5,acb8e52e10d9e84bc5815dbb873daeb9"
                 ]
             ],
             [
@@ -89,6 +89,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-19T22:16:07.64139455"
+        "timestamp": "2025-11-20T00:17:19.528038135"
     }
 }

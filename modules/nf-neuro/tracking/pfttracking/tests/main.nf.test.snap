@@ -2,14 +2,14 @@
     "tracking - pfttracking - stub-run": {
         "content": [
             [
-                "versions.yml:md5,226960a499286abbacecad765eda5455"
+                "versions.yml:md5,b10e335ab91cd0445c0d73a8a229b846"
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-09-22T22:44:03.727136167"
+        "timestamp": "2025-11-20T00:40:46.654470357"
     },
     "tracking - pfttracking - fa": {
         "content": [
@@ -20,7 +20,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test__pft_tracking_config.json:md5,d8a7d811f0c9bec571e8e583b0aecb94"
+                    "test__pft_tracking_config.json:md5,2c0155bc60a213f811a6e4d6d607845e"
                 ]
             ],
             [
@@ -51,14 +51,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,226960a499286abbacecad765eda5455"
+                "versions.yml:md5,b10e335ab91cd0445c0d73a8a229b846"
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-09-22T22:43:08.144242921"
+        "timestamp": "2025-11-20T00:40:03.348575756"
     },
     "tracking - pfttracking - interface": {
         "content": [
@@ -91,7 +91,7 @@
                 ]
             ],
             [
-                "versions.yml:md5,226960a499286abbacecad765eda5455"
+                "versions.yml:md5,b10e335ab91cd0445c0d73a8a229b846"
             ],
             [
                 [
@@ -104,10 +104,10 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-09-22T22:43:37.195808079"
+        "timestamp": "2025-11-20T00:40:24.805340702"
     },
     "tracking - pfttracking - wm": {
         "content": [
@@ -149,13 +149,13 @@
                 ]
             ],
             [
-                "versions.yml:md5,226960a499286abbacecad765eda5455"
+                "versions.yml:md5,b10e335ab91cd0445c0d73a8a229b846"
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-09-22T22:42:31.874797843"
+        "timestamp": "2025-11-20T00:39:34.673786608"
     }
 }
