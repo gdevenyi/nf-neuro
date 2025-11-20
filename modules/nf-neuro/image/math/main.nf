@@ -5,7 +5,7 @@ process IMAGE_MATH {
     container "scilus/scilpy:2.2.1_cpu"
 
     input:
-        tuple val(meta), path(images)
+        tuple val(meta), path(images), val(value) /* optional = null */
 
     output:
         tuple val(meta), path("*.nii.gz")        , emit: image
@@ -17,7 +17,7 @@ process IMAGE_MATH {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def suffix = task.ext.suffix ?: "output"
-    def value = task.ext.value ?: ""
+    def used_value = task.ext.value != null ? task.ext.value : value != null ? value : ""
     def data_type = task.ext.data_type ?: "float32"
     def exclude_background = task.ext.exclude_background ? "--exclude_background" : ""
 
@@ -62,12 +62,12 @@ process IMAGE_MATH {
         "Must be one of ${operations}"
 
     """
-    scil_volume_math ${task.ext.operation} $images $value \
-        ${prefix}__${suffix}.nii.gz --data_type $data_type $exclude_background
+    scil_volume_math ${task.ext.operation} $images $used_value \
+        ${prefix}_${suffix}.nii.gz --data_type $data_type $exclude_background -f
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        scilpy: \$(pip list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
+        scilpy: \$(uv pip -q -n list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
     END_VERSIONS
     """
 
@@ -80,7 +80,7 @@ process IMAGE_MATH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        scilpy: \$(pip list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
+        scilpy: \$(uv pip -q -n list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
     END_VERSIONS
     """
 }
