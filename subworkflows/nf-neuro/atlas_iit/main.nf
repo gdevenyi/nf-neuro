@@ -110,8 +110,8 @@ workflow ATLAS_IIT {
 
     ch_versions = channel.empty()
 
-    def input_b0 = params.atlas_iit ? params.atlas_iit.b0 : null
-    def input_bundle_masks_dir = params.atlas_iit ? params.atlas_iit.bundle_masks_dir : null
+    def input_b0 = params.containsKey('atlas_iit') ? params.atlas_iit.b0 : null
+    def input_bundle_masks_dir = params.containsKey('atlas_iit') ? params.atlas_iit.bundle_masks_dir : null
 
     // Fetch Mean B0
     if (input_b0) {
@@ -128,7 +128,12 @@ workflow ATLAS_IIT {
 
     // Fetch and Process Bundle Masks
     if (input_bundle_masks_dir) {
-        ch_bundle_masks = channel.fromPath(input_bundle_masks_dir + "/*.nii.gz", checkIfExists: true).collect()
+        ch_bundle_masks = channel.fromPath(input_bundle_masks_dir + "/*.nii.gz", checkIfExists: true)
+            .collect(sort: { path_a, path_b ->
+                def name_a = path_a.getName()
+                def name_b = path_b.getName()
+                name_a <=> name_b
+            })
     }
     else {
         def thresholds = get_tdi_thresholds()
@@ -150,11 +155,15 @@ workflow ATLAS_IIT {
         }
 
         THR_BUNDLE_MASK(ch_bundle_maps_with_thresholds)
-        ch_versions = ch_versions.mix(THR_BUNDLE_MASK.out.versions)
+        ch_versions = ch_versions.mix(THR_BUNDLE_MASK.out.versions).first()
 
         ch_bundle_masks = THR_BUNDLE_MASK.out.image
             .map { _meta, mask -> mask }
-            .collect()
+            .collect(sort: { path_a, path_b ->
+                def name_a = path_a.getName()
+                def name_b = path_b.getName()
+                name_a <=> name_b
+            })
     }
 
     emit:
