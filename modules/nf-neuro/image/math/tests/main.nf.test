@@ -49,8 +49,8 @@ nextflow_process {
         }
     }
 
-    // Operation with only a single image with a value
-    test("image - lower_threshold") {
+    // Operation with only a single image with a value as ext.value
+    test("image - lower_threshold - arg value") {
         config "./lower_threshold.config"
 
         when {
@@ -60,6 +60,33 @@ nextflow_process {
                     test_data_directory -> [
                         [ id:'test', single_end:false ],
                         file("\${test_data_directory}/fa.nii.gz")
+                    ]
+                }
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.image,
+                    process.out.versions).match() }
+            )
+        }
+    }
+
+    // Operation with only a single image with a value as input
+    test("image - lower_threshold - input value") {
+        config "./lower_threshold.config"
+
+        when {
+            process {
+                """
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory -> [
+                        [ id:'test', single_end:false ],
+                        file("\${test_data_directory}/fa.nii.gz"),
+                        0.002
                     ]
                 }
                 """

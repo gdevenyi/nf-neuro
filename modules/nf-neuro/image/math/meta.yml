@@ -102,6 +102,12 @@ input:
         description: List of nifti image file involved in the mathematical operation.
         pattern: "*.{nii,nii.gz}"
         mandatory: true
+    - value:
+        type: float
+        description: |
+          Value to use for the mathematical operation. This value
+          will be used if ext.value is not provided.
+          (e.g., threshold below 0.5, clip over 10, etc.).
 args:
   - operation:
       type: string
@@ -152,7 +158,8 @@ args:
   - value:
       type: float
       description: |
-        Value to use for the mathematical operation
+        Value to use for the mathematical operation. This value
+        will override any value provided in the input meta map.
         (e.g., threshold below 0.5, clip over 10, etc.).
   - data_type:
       type: string
