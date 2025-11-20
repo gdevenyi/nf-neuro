@@ -1,0 +1,65 @@
+name: Merge Queue checks
+on:
+  merge_group:
+    types:
+      - checks_requested
+    branches:
+      - main
+
+jobs:
+  check-conditions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    outputs:
+      should_run_checks: ${{ steps.status.outputs.should-run-checks }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check if checks should run
+        id: status
+        uses: ./.github/actions/merge-queue-status
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-group-event: ${{ toJSON(github.event.merge_group) }}
+
+  checks:
+    needs: check-conditions
+    if: needs.check-conditions.outputs.should_run_checks == 'true'
+    permissions:
+      contents: read
+    uses: ./.github/workflows/run_checks_suite.yml
+    secrets: inherit
+
+  update-main:
+    needs: [check-conditions, checks]
+    if: ${{ ! failure() && ! cancelled() }}
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/update_main.yml
+    secrets: inherit
+
+  checkmark:
+    runs-on: ubuntu-latest
+    needs: [checks, update-main]
+    if: ${{ !cancelled() }}
+    permissions: {}
+    steps:
+      - name: All jobs ok
+        if: ${{ success() || !contains(needs.*.result, 'failure') }}
+        run: exit 0
+      - name: One or more jobs failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+
+      - name: debug-print
+        if: ${{ !cancelled() }}
+        run: |
+          echo "toJSON(needs) = ${{ toJSON(needs) }}"
+          echo "toJSON(needs.*.result) = ${{ toJSON(needs.*.result) }}"

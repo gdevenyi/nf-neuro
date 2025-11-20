@@ -1,6 +1,7 @@
-name: Merge to main checks
+name: Merge to main
 on:
   workflow_dispatch:
+  workflow_call:
 
 # Cancel if a newer run is started
 concurrency:
@@ -8,17 +9,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  checks:
-    uses: ./.github/workflows/run_checks_suite.yml
-    secrets: inherit
-
   publish-documentation:
-    if: github.repository == 'scilus/nf-neuro'
-    uses: scilus/nf-neuro-documentation/.github/workflows/deploy.yml@main
-    secrets: inherit
+    if: github.repository == 'nf-neuro/modules'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - name: dispatch documentation deployment
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          token: ${{ secrets.DOCUMENTATION_PUBLISHING }}
+          repository: nf-neuro/nf-neuro.github.io
+          event-type: publish-documentation
 
   publish-extension-package:
-    if: github.repository == 'scilus/nf-neuro'
+    if: github.repository == 'nf-neuro/modules'
+    permissions:
+      contents: read
     uses: ./.github/workflows/publish_extension.yml
     with:
       name: "extension-package"

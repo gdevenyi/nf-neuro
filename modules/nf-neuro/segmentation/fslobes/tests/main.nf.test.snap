@@ -1,0 +1,67 @@
+{
+    "segmentation - fs_lobes": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__atlas_lobes.nii.gz:md5,8fa99f47b9889f173b552afc889409c6"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__atlas_lobes_dilate.nii.gz:md5,bca87675be74667711b050c35c72172e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,71209eedfae127a2f17227ac15f4f95e"
+                ],
+                "labels": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__atlas_lobes.nii.gz:md5,8fa99f47b9889f173b552afc889409c6"
+                    ]
+                ],
+                "labels_dilate": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__atlas_lobes_dilate.nii.gz:md5,bca87675be74667711b050c35c72172e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,71209eedfae127a2f17227ac15f4f95e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.7"
+        },
+        "timestamp": "2025-09-30T16:28:30.654697"
+    },
+    "segmentation - fs_lobes - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,71209eedfae127a2f17227ac15f4f95e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.7"
+        },
+        "timestamp": "2025-09-30T16:33:51.129213"
+    }
+}

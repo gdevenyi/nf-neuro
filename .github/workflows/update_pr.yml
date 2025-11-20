@@ -3,11 +3,6 @@ on:
   pull_request:
     branches:
       - main
-  merge_group:
-    types:
-      - checks_requested
-    branches:
-      - main
 
 # Cancel if a newer run is started
 concurrency:
@@ -16,5 +11,25 @@ concurrency:
 
 jobs:
   checks:
+    permissions:
+      contents: read
     uses: ./.github/workflows/run_checks_suite.yml
     secrets: inherit
+  checkmark:
+    runs-on: ubuntu-latest
+    needs: [checks]
+    if: ${{ !cancelled() }}
+    permissions: {}
+    steps:
+      - name: All jobs ok
+        if: ${{ success() || !contains(needs.*.result, 'failure') }}
+        run: exit 0
+      - name: One or more jobs failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+
+      - name: debug-print
+        if: ${{ !cancelled() }}
+        run: |
+          echo "toJSON(needs) = ${{ toJSON(needs) }}"
+          echo "toJSON(needs.*.result) = ${{ toJSON(needs.*.result) }}"

@@ -1,44 +1,58 @@
----
-name: "tractogram_densitymap"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: tractogram_densitymap
 description: Compute density maps from tractograms
 keywords:
   - Diffusion MRI
   - Tractogram
   - Density Map
 tools:
-  - "scilpy":
-      description: "The Sherbrooke Connectivity Imaging Lab (SCIL) Python dMRI processing toolbox."
-      homepage: "https://github.com/scilus/scilpy.git"
-
+  - scilpy:
+      description: The Sherbrooke Connectivity Imaging Lab (SCIL) Python dMRI processing
+        toolbox.
+      homepage: https://github.com/scilus/scilpy.git
+      identifier: ""
+args:
+  - binary:
+      type: integer
+      description: |
+        If set, will store the same value for all intersected voxels, creating a binary map.
+        When set without a value, 1 is used (and dtype uint8). If a value is given, will be used as the stored value.
+      default: 1
+  - endpoints_only:
+      type: boolean
+      description: If set, will only use the endpoints. To get a head and a tail maps, see scil_bundle_compute_endpoints_map.
+      default: false
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`
-
-  - tractogram:
-      type: file
-      description: Tractogram file for density map computation
-      pattern: "*.trk"
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test', single_end:false ]`
+    - tractogram:
+        type: file
+        description: Tractogram file for density map computation
+        pattern: "*.trk"
+        ontologies: []
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`
-
-  - density_map:
-      type: file
-      description: Computed density map
-      pattern: "*.nii.gz"
-
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-
+  density_map:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*__*.nii.gz":
+          type: file
+          description: Computed density map
+          pattern: "*__*.nii.gz"
+          ontologies:
+            - edam: http://edamontology.org/format_3989 # GZIP format
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: versions.yml
+        ontologies:
+          - edam: http://edamontology.org/format_3750 # YAML
 authors:
   - "@GuillaumeTh"
 maintainers:
