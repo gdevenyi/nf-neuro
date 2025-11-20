@@ -20,7 +20,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test__pft_tracking_config.json:md5,2c0155bc60a213f811a6e4d6d607845e"
+                    "test__pft_tracking_config.json:md5,b9db4c782b6fcbda1055c2b05e7bc9dc"
                 ]
             ],
             [
@@ -58,7 +58,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-20T03:04:05.100230068"
+        "timestamp": "2025-11-20T12:41:43.14805497"
     },
     "tracking - pfttracking - interface": {
         "content": [

@@ -80,7 +80,7 @@ process TRACKING_PFTTRACKING {
 
     pft_step="$pft_step"
     if [[ -z "$pft_step" ]] && [[ -n "$pft_step_pct" ]]; then
-        pixdim=\$(scil_header_print_info $wm --keys pixdim | awk '{for(i=2;i<=4;i++) if(\$i<min || min=="") min=\$i} END {print min}')
+        pixdim=\$(scil_header_print_info $wm --keys pixdim | tr -d '[]' | awk '{for(i=2;i<=4;i++) if(\$i>0 && (\$i<min || min=="")) min=\$i} END {print min}')
         pft_step=\$(awk -v pixdim="\$pixdim" -v pct="$pft_step_pct" 'BEGIN {printf "--step %.6f", pixdim * pct / 100}')
     fi
 
