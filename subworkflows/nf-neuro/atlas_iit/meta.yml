@@ -30,7 +30,7 @@ args:
       Path to a Mean B0 map of the IIT Human Brain Atlas.
       If provided, this input will be used instead of downloading the Mean B0 map.
       Structure: path(img)
-    required: false
+    mandatory: false
     default: null
   atlas_iit.bundle_masks_dir:
     type: string
@@ -38,7 +38,7 @@ args:
       Path to a directory containing IIT bundle masks.
       If provided, these inputs will be used instead of downloading and processing the bundle masks.
       Structure: path(dir)
-    required: false
+    mandatory: false
     default: null
 output:
   - bundle_masks:
