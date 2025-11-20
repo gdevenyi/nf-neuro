@@ -40,12 +40,12 @@ head:
 
 ### Outputs
 
-| | Type | Description | Optional | Pattern |
+| | Type | Description | Mandatory | Pattern |
 |-|-|-|-|-|
 
 {%- for channel in output %}
 {% for name, content in channel.items() -%}
-| {{ name }} | {{ content.type }} | {{ content.description | channel_descr }} | {{ content.optional | default(False) }} | {% if content.pattern %} `{{ content.pattern }}` {% endif %} |
+| {{ name }} | {{ content.type }} | {{ content.description | channel_descr }} | {{ content.mandatory | default(True) }} | {% if content.pattern %} `{{ content.pattern }}` {% endif %} |
 {%- endfor %}
 {%- endfor -%}
 {% endif %}
