@@ -1,44 +1,45 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "atlas_iit"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+description: |
+  This subworkflow fetches and processes the IIT Human Brain Atlas including the mean B0 image and bundle masks.
+  The authors of the IIT WM atlas only provide track density images (TDI) for the bundle masks.
+  Therefore, in this subworkflow, we apply a lower threshold to the TDI images to create binary bundle masks.
+  The threshold values are based on recommendations from the IIT authors. For more information
+  about the atlas and the recommended thresholds, please refer to
+  [this link](https://www.nitrc.org/frs/download.php/12417/IIT_Atlas_v.5.0_MANUAL.pdf)
+
+  The user can also provide their own Mean B0 map and/or bundle masks directory, using the parameters
+  `params.atlas_iit.b0` and `params.atlas_iit.bundle_masks_dir`, respectively.
+  If provided, the subworkflow will use these inputs instead of downloading and processing them,
+  which is particularily useful for processing on HPC.
+
+  The Mean B0 maps as well as the bundle density maps used are in 182x218x182 matrix size.
+  The Atlas is in the MNI152NLin6Asym template space (1mm resolution).
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - atlas
+  - iit
+  - neuroimaging
+  - bundles
+  - template
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
-input:
-  - ch_bam:
-      type: file
-      description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+  - image/math
 output:
-  - bam:
+  - bundle_masks:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
+        List of IIT binary bundle masks.
+        Structure: [ path(img), path(img), ... ]
+      pattern: "*.nii.gz"
+      ontologies:
+        - edam: http://edamontology.org/format_4001 # NIFTI format
+  - b0:
       type: file
       description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
-      type: file
-      description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+        Mean B0 map of the IIT Human Brain Atlas.
+        Structure: [ path(img) ]
+      pattern: "*_b0.nii.gz"
+      ontologies:
+        - edam: http://edamontology.org/format_4001 # NIFTI format
   - versions:
       type: file
       description: |

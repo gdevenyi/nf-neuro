@@ -1,5 +1,6 @@
-include { ATLAS_IIT as IIT_BUNDLE_MASKS } from '../../../modules/nf-neuro/atlas/iit/main'
+include { IMAGE_MATH as THR_BUNDLE_MASK } from '../../../modules/nf-neuro/image/math/main'
 
+// Fetch IIT Atlas Mean B0
 def fetch_iit_atlas_b0(b0Url, dest) {
     def b0 = new File("$dest/IITmean_b0.nii.gz").withOutputStream{ out ->
         new URL(b0Url).withInputStream { from -> out << from; }
@@ -35,14 +36,20 @@ def fetch_iit_atlas_tdi(bundleMapsUrl, dest, thresholds) {
             if (!java.nio.file.Files.exists(parentDir)) {
                 java.nio.file.Files.createDirectories(parentDir)
             }
-            java.nio.file.Files.copy(bundleMapsFile.getInputStream(it), path)
+            java.nio.file.Files.copy(
+                bundleMapsFile.getInputStream(it),
+                path,
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING)
         }
     }
 
     return output_dir + "bundle_maps/IIT_bundles"
 }
 
-def get_thresholds() {
+def get_tdi_thresholds() {
+    // Those thresholds were recommended by the authors of the IIT atlas
+    // to generate the bundle masks from the track density images.
+    // See this guide: https://www.nitrc.org/frs/download.php/12417/IIT_Atlas_v.5.0_MANUAL.pdf
     return [
         "AC": 3,
         "AF_L": 2,
@@ -89,8 +96,11 @@ def get_thresholds() {
     ]
 }
 
+// Make sure there's a bundle file for each threshold.
+// This is to avoid re-downloading if files ALL the
+// files are already there.
 boolean allBundleFilesExist(Map thresholds, File dir) {
-    thresholds.every { key, value ->
+    thresholds.every { key, _value ->
         new File(dir, "${key}.nii.gz").exists()
     }
 }
@@ -104,11 +114,14 @@ workflow ATLAS_IIT {
 
     ch_versions = channel.empty()
 
-    if (params.atlas_iit.b0) {
-        ch_b0 = channel.fromPath(params.atlas_iit.b0, checkIfExists: true)
+    def input_b0 = params.atlas_iit ? params.atlas_iit.b0 : null
+    def input_bundle_masks_dir = params.atlas_iit ? params.atlas_iit.bundle_masks_dir : null
+
+    // Fetch Mean B0
+    if (input_b0) {
+        ch_b0 = channel.fromPath(input_b0, checkIfExists: true)
     }
     else {
-        // Create atlas_iit directory if it doesn't exist
         new File("${workflow.workDir}/atlas_iit/").mkdirs()
         fetch_iit_atlas_b0(
             "https://www.nitrc.org/frs/download.php/11266/IITmean_b0.nii.gz",
@@ -117,11 +130,12 @@ workflow ATLAS_IIT {
         ch_b0 = channel.fromPath("${workflow.workDir}/atlas_iit/IITmean_b0.nii.gz", checkIfExists: true)
     }
 
-    if (params.atlas_iit.bundle_masks_dir) {
-        ch_bundle_masks = channel.fromPath(params.atlas_iit.bundle_masks_dir + "/*.nii.gz", checkIfExists: true).collect()
+    // Fetch and Process Bundle Masks
+    if (input_bundle_masks_dir) {
+        ch_bundle_masks = channel.fromPath(input_bundle_masks_dir + "/*.nii.gz", checkIfExists: true).collect()
     }
     else {
-        def thresholds = get_thresholds()
+        def thresholds = get_tdi_thresholds()
         def atlas_tdi = fetch_iit_atlas_tdi(
             "https://www.nitrc.org/frs/download.php/11472/IIT_bundles.zip",
             "${workflow.workDir}/atlas_iit/bundles/tdi",
@@ -129,6 +143,7 @@ workflow ATLAS_IIT {
         )
 
         bundle_maps = channel.fromPath(atlas_tdi + "/*.nii.gz", checkIfExists: true)
+
         // Pair all bundle maps with their respective thresholds
         ch_bundle_maps_with_thresholds = bundle_maps.map { file ->
             def file_base_name = file.baseName.replace(".nii.gz", "").replace(".nii", "")
@@ -138,9 +153,10 @@ workflow ATLAS_IIT {
             return [meta, file, thr]
         }
 
-        IMAGE_MATH(ch_bundle_maps_with_thresholds)
+        THR_BUNDLE_MASK(ch_bundle_maps_with_thresholds)
+        ch_versions = ch_versions.mix(THR_BUNDLE_MASK.out.versions)
 
-        ch_bundle_masks = IMAGE_MATH.out.image
+        ch_bundle_masks = THR_BUNDLE_MASK.out.image
             .map { _meta, mask -> mask }
             .collect()
     }
@@ -150,92 +166,3 @@ workflow ATLAS_IIT {
     bundle_masks = ch_bundle_masks
     versions = ch_versions
 }
-
-// TODO: THIS WILL BE REPLACED BY THE OFFICIAL MODULE ONCE ITS MERGED
-process IMAGE_MATH {
-    tag "$meta.id"
-    label 'process_single'
-
-    container "scilus/scilpy:2.2.1_cpu"
-
-    input:
-        tuple val(meta), path(images), val(value) /* optional = null */
-
-    output:
-        tuple val(meta), path("*.nii.gz")        , emit: image
-        path "versions.yml"                      , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
-
-    script:
-    def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ?: "output"
-    def value_ = task.ext.value != null ? task.ext.value : value != null ? value : ""
-    def data_type = task.ext.data_type ?: "float32"
-    def exclude_background = task.ext.exclude_background ? "--exclude_background" : ""
-
-    def operations = [
-        'absolute_value',
-        'addition',
-        'blur',
-        'ceil',
-        'closing',
-        'concatenate',
-        'convert',
-        'correlation',
-        'difference',
-        'dilation',
-        'division',
-        'erosion',
-        'floor',
-        'intersection',
-        'invert',
-        'log_10',
-        'log_e',
-        'lower_clip',
-        'lower_threshold',
-        'lower_threshold_eq',
-        'lower_threshold_otsu',
-        'mean',
-        'multiplication',
-        'normalize_sum',
-        'normalize_max',
-        'opening',
-        'round',
-        'std',
-        'subtraction',
-        'union',
-        'upper_clip',
-        'upper_threshold',
-        'upper_threshold_eq',
-        'upper_threshold_otsu',
-    ]
-
-    assert task.ext.operation in operations : "Invalid operation: ${task.ext.operation}. " +
-        "Must be one of ${operations}"
-
-    """
-    scil_volume_math ${task.ext.operation} $images $value_ \
-        ${prefix}${suffix}.nii.gz --data_type $data_type $exclude_background -f
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        scilpy: \$(pip list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
-    END_VERSIONS
-    """
-
-    stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ?: "output"
-    """
-    scil_volume_math -h
-    touch ${prefix}__${suffix}.nii.gz
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        scilpy: \$(pip list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
-    END_VERSIONS
-    """
-}
-
