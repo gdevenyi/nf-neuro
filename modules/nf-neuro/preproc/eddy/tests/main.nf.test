@@ -57,7 +57,7 @@ nextflow_process {
                     process.out.b0_mask,
                     file(process.out.dwi_eddy_mqc.get(0).get(1)).name,
                     file(process.out.rev_dwi_eddy_mqc.get(0).get(1)).name,
-                    process.out.eddy_fd_mqc,
+                    file(process.out.eddy_fd_mqc.get(0).get(1)).name,
                     process.out.versions
                 ).match() }
             )
@@ -92,7 +92,7 @@ nextflow_process {
                     file(process.out.bvec_corrected.get(0).get(1)).name,
                     process.out.b0_mask,
                     file(process.out.dwi_eddy_mqc.get(0).get(1)).name,
-                    process.out.eddy_fd_mqc,
+                    file(process.out.eddy_fd_mqc.get(0).get(1)).name,
                     process.out.versions
                 ).match() }
             )

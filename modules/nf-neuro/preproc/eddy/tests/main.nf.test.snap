@@ -23,15 +23,7 @@
             ],
             "test_ses-01__dwi_eddy_mqc.gif",
             "test_ses-01__rev_dwi_eddy_mqc.gif",
-            [
-                [
-                    {
-                        "id": "test",
-                        "ses": "ses-01"
-                    },
-                    "test_ses-01__dwi_eddy_restricted_movement_rms.txt:md5,722ee83633ecde2db3681a0969d246a3"
-                ]
-            ],
+            "test_ses-01__dwi_eddy_restricted_movement_rms.txt",
             [
                 "versions.yml:md5,4157cb171ff54c81c093562e757288a5"
             ]
@@ -40,7 +32,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-11-20T19:23:42.721108"
+        "timestamp": "2025-11-20T20:25:40.142528"
     },
     "eddy_light": {
         "content": [
@@ -63,14 +55,7 @@
                 ]
             ],
             "test__dwi_eddy_mqc.gif",
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test__dwi_eddy_restricted_movement_rms.txt:md5,757f2fccd810bce0a5fa86605dc9d6b2"
-                ]
-            ],
+            "test__dwi_eddy_restricted_movement_rms.txt",
             [
                 "versions.yml:md5,4157cb171ff54c81c093562e757288a5"
             ]
@@ -79,7 +64,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-11-20T19:27:12.885857"
+        "timestamp": "2025-11-20T20:28:06.2333"
     },
     "eddy - stub-run": {
         "content": [
@@ -91,6 +76,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-11-20T17:41:38.330044"
+        "timestamp": "2025-11-20T20:28:40.763803"
     }
 }
