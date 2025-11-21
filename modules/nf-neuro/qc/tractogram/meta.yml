@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-neuro/modules/main/modules/meta-schema.json
 name: qc_tractogram
-description: Extract a couple of QC metric based on a tractogram
+description: Extract a couple of QC metric based on a tractogram.
+  - Compute DICE score between the tractogram density mask and WM mask.
+  - Calculate the total number of streamlines from a tractogram.
+  - Produce a QC figure showing the tractogram density image and GM mask.
 keywords:
   - tractogram
   - qc
