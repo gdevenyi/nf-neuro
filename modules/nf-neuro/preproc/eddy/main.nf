@@ -22,7 +22,8 @@ process PREPROC_EDDY {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    prefix = meta[1] ? "${meta.id}_${meta[1]}" : prefix
+    def values = meta.values() as List
+    prefix = values.size() > 1 ? "${meta.id}_${values[1]}" : meta.id
     def slice_drop_flag = task.ext.slice_drop_correction ? "--slice_drop_correction " : ""
     def bet_topup_before_eddy_f = task.ext.bet_topup_before_eddy_f ?: ""
     def prefix_topup = task.ext.prefix_topup ? task.ext.prefix_topup : ""
@@ -180,7 +181,8 @@ process PREPROC_EDDY {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    prefix = meta[1] ? "${meta.id}_${meta[1]}" : prefix
+    def values = meta.values() as List
+    prefix = values.size() > 1 ? "${meta.id}_${values[1]}" : meta.id
 
     """
     set +e
