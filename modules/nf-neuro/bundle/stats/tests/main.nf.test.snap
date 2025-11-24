@@ -187,6 +187,12 @@
                     
                 ],
                 "15": [
+                    
+                ],
+                "16": [
+                    
+                ],
+                "17": [
                     [
                         {
                             "id": "test",
@@ -195,7 +201,7 @@
                         "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
                     ]
                 ],
-                "16": [
+                "18": [
                     [
                         {
                             "id": "test",
@@ -204,7 +210,7 @@
                         "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
                     ]
                 ],
-                "17": [
+                "19": [
                     "versions.yml:md5,f785e17ff1d0f296e3ce7a6008e7b843"
                 ],
                 "2": [
@@ -294,6 +300,12 @@
                 "lesion_stats": [
                     
                 ],
+                "mean_lesions_tsv": [
+                    
+                ],
+                "mean_per_point_lesions_tsv": [
+                    
+                ],
                 "mean_per_point_tsv": [
                     [
                         {
@@ -351,7 +363,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-24T04:54:26.944022714"
+        "timestamp": "2025-11-24T16:25:11.920536402"
     },
     "bundle - stats - light": {
         "content": [
@@ -384,6 +396,12 @@
                     
                 ],
                 "17": [
+                    
+                ],
+                "18": [
+                    
+                ],
+                "19": [
                     "versions.yml:md5,f785e17ff1d0f296e3ce7a6008e7b843"
                 ],
                 "2": [
@@ -437,6 +455,12 @@
                 "lesion_stats": [
                     
                 ],
+                "mean_lesions_tsv": [
+                    
+                ],
+                "mean_per_point_lesions_tsv": [
+                    
+                ],
                 "mean_per_point_tsv": [
                     
                 ],
@@ -482,6 +506,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-24T04:54:40.011022255"
+        "timestamp": "2025-11-24T16:25:26.069003692"
     }
 }

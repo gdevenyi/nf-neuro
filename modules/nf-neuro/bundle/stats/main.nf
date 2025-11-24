@@ -23,6 +23,8 @@ process BUNDLE_STATS {
     tuple val(meta), path("*_endpoints_map_head.nii.gz")        , emit: endpoints_head, optional: true
     tuple val(meta), path("*_endpoints_map_tail.nii.gz")        , emit: endpoints_tail, optional: true
     tuple val(meta), path("*_lesion_map.nii.gz")                , emit: lesion_map, optional: true
+    tuple val(meta), path("*_desc-mean_param-lesions_stats.tsv") , emit: mean_lesions_tsv, optional: true
+    tuple val(meta), path("*_desc-point_param-lesions_stats.tsv"), emit: mean_per_point_lesions_tsv, optional: true
     tuple val(meta), path("*_desc-mean_stats.tsv")              , emit: mean_tsv, optional: true
     tuple val(meta), path("*_desc-point_stats.tsv")             , emit: mean_per_point_tsv, optional: true
     path "versions.yml"                                         , emit: versions
@@ -484,6 +486,106 @@ process BUNDLE_STATS {
         ' "\$f" > "\$out"
     fi
 
+    # ------------------------------------
+    # Streamline Count Lesions Stats TSV
+    # ------------------------------------
+    # Extract streamline count metrics per lesion for each bundle
+    if [[ "$lesions_stats" ]];
+    then
+        f="${prefix}__streamline_count_lesions.json"
+        out="${prefix}__streamline_count_lesions.tsv"
+        jq -r --arg sid "${prefix}" '
+            # Get sample data
+            .[\$sid] as \$s
+
+            # Collect bundles that are objects
+            | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
+
+            # Get union of all metric keys across bundles
+            | (\$bundles | map(.value | keys) | add // [] | unique | sort) as \$metrics
+
+            # Create header row with "lesion" column
+            | (["sample", "bundle", "lesion"] + \$metrics) | @tsv,
+
+            # Create data rows for each bundle and lesion
+            (\$bundles[]
+                | . as \$b
+                | (\$b.value) as \$vals
+                # For each metric that has nested lesion data
+                | (\$metrics[] as \$metric
+                    | if (\$vals[\$metric] | type) == "object" then
+                        # Extract lesion IDs for this metric
+                        (\$vals[\$metric] | keys) as \$lesion_ids
+                        | \$lesion_ids[] as \$lesion_id
+                        | [\$sid,
+                            (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
+                                | gsub("(_streamline_count_lesions_stat|_volume_stat|_labels_uniformized)\$"; "")),
+                            \$lesion_id,
+                            \$vals[\$metric][\$lesion_id]]
+                    else
+                        empty
+                    end
+                )
+                | @tsv
+            )
+        ' "\$f" > "\$out"
+    fi
+
+    # ----------------------------------------
+    # Volume Per Label Lesions Stats TSV
+    # ----------------------------------------
+    # Extract volume metrics per lesion for bundles
+    if [[ "$lesions_stats" ]];
+    then
+        f="${prefix}__volume_per_label_lesions.json"
+        out="${prefix}__volume_per_label_lesions.tsv"
+        jq -r --arg sid "${prefix}" '
+            # Get sample data
+            .[\$sid] as \$s
+
+            # Collect bundles that are objects
+            | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
+
+            # Get union of metric keys, excluding lesion_volume
+            | (\$bundles
+                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys", "lesion_volume"])
+                | add // []
+                | unique | sort) as \$metrics
+
+            # Create header row without "lesion" column
+            | (["sample", "bundle", "points"] + \$metrics) | @tsv,
+
+            # Create data rows for each bundle and point
+            (\$bundles[]
+                | . as \$b
+                | (\$b.value) as \$vals
+
+                # Get all point labels (lesion IDs) for this bundle
+                | ([
+                    \$vals | to_entries[]
+                    | select(.value | type == "object")
+                    | .value | keys
+                  ] | add // [] | unique | sort) as \$point_ids
+
+                # For each point (lesion ID)
+                | \$point_ids[] as \$pt
+                | [\$sid,
+                    (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned|_labels_map"; "")
+                        | gsub("(_volume_per_label_lesions_stat|_volume_stat|_labels_uniformized|_length)\$"; "")),
+                    \$pt]
+                + (\$metrics | map(
+                    if (\$vals[.] | type) == "object" then
+                        # Object format: metric -> point_id -> value
+                        (\$vals[.][\$pt] // "")
+                    else
+                        (\$vals[.] // "")
+                    end
+                ))
+                | @tsv
+            )
+        ' "\$f" > "\$out"
+    fi
+
     # Clean up intermediate JSON files
     # rm *.json
 
@@ -544,6 +646,14 @@ process BUNDLE_STATS {
     elif [[ -f "${prefix}__volume_per_label.tsv" ]]; then
         # Only volume_per_label exists
         cp ${prefix}__volume_per_label.tsv ${prefix}_desc-point_stats.tsv
+    fi
+
+    if [[ -f "${prefix}__volume_per_label_lesions.tsv" ]]; then
+        cp ${prefix}__volume_per_label_lesions.tsv ${prefix}_desc-mean_param-lesions_stats.tsv
+    fi
+
+    if [[ -f "${prefix}__streamline_count_lesions.tsv" ]]; then
+        cp ${prefix}__streamline_count_lesions.tsv ${prefix}_desc-point_param-lesions_stats.tsv
     fi
 
     cat <<-END_VERSIONS > versions.yml
