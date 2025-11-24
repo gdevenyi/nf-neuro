@@ -61,8 +61,33 @@ args:
       description: If set, rois image will be considered as a label image with multiple
         indices.
       default: false
+  - key_substrs_to_remove:
+      type: string
+      description: |
+        Groovy list of strings to remove from the metric keys in the JSON.
+        This is useful to clean or shorten the bundle names that will appear
+        in the output JSON/CSV.
+        e.g. "['_mask', '_warped'] will turn 'CST_mask_warped' into 'CST'"
+      default: null
+  - value_substrs_to_remove:
+      type: string
+      description: |
+        Groovy list of strings to remove from the metric values in the JSON.
+        This is useful to clean or shorten the metric names that will appear
+        in the output JSON/CSV.
+        e.g. "['sub-01', '_metric'] will turn 'sub-01_fa_metric' into 'fa'"
+      default: null
+  - output_format:
+      type: string
+      description: |
+        Output format for the tabular stats file.
+      choices:
+        - "csv"
+        - "tsv"
+      default: "tsv"
+
 output:
-  mqc:
+  stats_json:
     - - meta:
           type: map
           description: |
@@ -74,6 +99,21 @@ output:
           pattern: "*_stats.json"
           ontologies:
             - edam: http://edamontology.org/format_3464 # JSON
+  stats_tab:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*_stats.{csv,tsv}":
+          type: file
+          description: Tabular file containing rows of (sid, bundle, metric, mean, std). Can be
+            either TSV or CSV depending on the output_format argument.
+          pattern: "*_stats.{csv,tsv}"
+          ontologies:
+            - edam: http://edamontology.org/format_3752 # CSV
+            - edam: http://edamontology.org/format_3475 # TSV
+            
   versions:
     - versions.yml:
         type: file
