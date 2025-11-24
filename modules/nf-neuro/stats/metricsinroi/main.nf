@@ -2,14 +2,14 @@ process STATS_METRICSINROI {
     tag "$meta.id"
     label 'process_single'
 
-    container "mrzarfir/scilpy:2.2.1.1"
+    container "scilus/scilpy:dev"
 
     input:
     tuple val(meta), path(metrics), path(rois), path(rois_lut)  /* optional, input = [] */
 
     output:
     tuple val(meta), path("*_stats.json")       , emit: stats_json
-    tuple val(meta), path("*_stats.csv")        , emit: stats_csv
+    tuple val(meta), path("*_stats.{csv,tsv}")  , emit: stats_tab
     path "versions.yml"                         , emit: versions
 
     when:
@@ -23,6 +23,11 @@ process STATS_METRICSINROI {
     def use_label = task.ext.use_label ? true : false
     def key_substrs_to_remove = task.ext.key_substrs_to_remove ?: []
     def value_substrs_to_remove = task.ext.value_substrs_to_remove ?: []
+    def output_format = task.ext.output_format ?: 'tsv'  // 'csv' or 'tsv'
+
+    assert output_format in ['csv', 'tsv'] : "output_format must be either 'csv' or 'tsv'"
+
+    def sep = output_format == 'tsv' ? '\t' : ','
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
     export OMP_NUM_THREADS=1
@@ -83,7 +88,8 @@ process STATS_METRICSINROI {
     metrics=\$(FIRST_BUNDLE="\$first_bundle" jq -r ".\\"\$first_bundle\\" | keys[]" ${prefix}_${suffix}.json)
 
     # Create the CSV header
-    echo "sid,bundle,metric,mean,std" > ${prefix}_${suffix}.csv
+    # (SID, bundle, metric, mean, std)
+    echo "sid${sep}bundle${sep}metric${sep}mean${sep}std" > ${prefix}_${suffix}.${output_format}
 
     for bundle in \$bundles;
     do
@@ -94,10 +100,10 @@ process STATS_METRICSINROI {
             mean=\$(jq -r --arg BUNDLE "\$bundle" --arg METRIC "\$metric" '.[\$BUNDLE].[\$METRIC].mean' ${prefix}_${suffix}.json)
             std=\$(jq -r --arg BUNDLE "\$bundle" --arg METRIC "\$metric" '.[\$BUNDLE].[\$METRIC].std' ${prefix}_${suffix}.json)
 
-            # Simply append the line to the CSV
-            # with the mean and std values.
-            line="${prefix},\${bundle},\${metric},\${mean},\${std}"
-            echo \$line >> ${prefix}_${suffix}.csv
+            # Build the following line and append it to the CSV/TSV file
+            # (SID, bundle, metric, mean, std)
+            line="${prefix}${sep}\${bundle}${sep}\${metric}${sep}\${mean}${sep}\${std}"
+            echo \$line >> ${prefix}_${suffix}.${output_format}
         done
     done
 
