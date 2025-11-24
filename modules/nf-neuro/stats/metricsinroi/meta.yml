@@ -113,7 +113,7 @@ output:
           ontologies:
             - edam: http://edamontology.org/format_3752 # CSV
             - edam: http://edamontology.org/format_3475 # TSV
-            
+
   versions:
     - versions.yml:
         type: file
