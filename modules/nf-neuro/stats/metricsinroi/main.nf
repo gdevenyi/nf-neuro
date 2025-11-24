@@ -2,7 +2,7 @@ process STATS_METRICSINROI {
     tag "$meta.id"
     label 'process_single'
 
-    container "scilus/scilpy:2.2.0_cpu"
+    container "mrzarfir/scilpy:2.2.1.1"
 
     input:
     tuple val(meta), path(metrics), path(rois), path(rois_lut)  /* optional, input = [] */
@@ -44,6 +44,7 @@ process STATS_METRICSINROI {
         scil_volume_stats_in_ROI $rois \
             --metrics $metrics \
             --sort_keys \
+            --keep_unique_roi_name \
             $bin $normalize_weights >| ${prefix}_${suffix}.json
     fi
 

@@ -2,35 +2,59 @@
     "stats - metrics in roi -stub-run": {
         "content": [
             [
-                "versions.yml:md5,03667d993a76f6643a67225c1099ea77"
+                "versions.yml:md5,903a806d8c872a153063993ca284e6e4"
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-22T21:11:44.526236431"
+        "timestamp": "2025-11-24T07:51:29.286410283"
     },
     "stats - metrics in ROI": {
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_stats.json:md5,a23c9a699e8ba09880e2fc1a175b06f5"
+                    ]
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_stats.csv:md5,a40cc8d1912548d4ac41166f2b08b49a"
+                    ]
                 ],
                 "2": [
-                    
+                    "versions.yml:md5,903a806d8c872a153063993ca284e6e4"
                 ],
                 "stats_csv": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_stats.csv:md5,a40cc8d1912548d4ac41166f2b08b49a"
+                    ]
                 ],
                 "stats_json": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_stats.json:md5,a23c9a699e8ba09880e2fc1a175b06f5"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,903a806d8c872a153063993ca284e6e4"
                 ]
             }
         ],
@@ -38,7 +62,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-24T06:37:11.479777955"
+        "timestamp": "2025-11-24T07:51:16.451261501"
     },
     "stats - metrics in Label": {
         "content": [
@@ -62,7 +86,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,03667d993a76f6643a67225c1099ea77"
+                    "versions.yml:md5,903a806d8c872a153063993ca284e6e4"
                 ],
                 "stats_csv": [
                     [
@@ -83,7 +107,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,03667d993a76f6643a67225c1099ea77"
+                    "versions.yml:md5,903a806d8c872a153063993ca284e6e4"
                 ]
             }
         ],
@@ -91,6 +115,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-24T06:37:17.606499844"
+        "timestamp": "2025-11-24T07:51:22.836557885"
     }
 }
