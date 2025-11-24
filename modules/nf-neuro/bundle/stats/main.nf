@@ -565,7 +565,7 @@ process BUNDLE_STATS {
                     \$vals | to_entries[]
                     | select(.value | type == "object")
                     | .value | keys
-                  ] | add // [] | unique | sort) as \$point_ids
+                    ] | add // [] | unique | sort) as \$point_ids
 
                 # For each point (lesion ID)
                 | \$point_ids[] as \$pt
