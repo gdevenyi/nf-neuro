@@ -377,7 +377,6 @@ output:
         description: File containing software versions
         pattern: versions.yml
         ontologies:
-          - edam: http://edamontology.org/format_3475 # TSV
           - edam: http://edamontology.org/format_3750 # YAML
 authors:
   - "@ThoumyreStanislas"
