@@ -77,6 +77,15 @@ args:
         in the output JSON/CSV.
         e.g. "['sub-01', '_metric'] will turn 'sub-01_fa_metric' into 'fa'"
       default: null
+  - output_format:
+      type: string
+      description: |
+        Output format for the tabular stats file.
+      choices:
+        - "csv"
+        - "tsv"
+      default: "tsv"
+
 output:
   stats_json:
     - - meta:
@@ -90,16 +99,17 @@ output:
           pattern: "*_stats.json"
           ontologies:
             - edam: http://edamontology.org/format_3464 # JSON
-  stats_csv:
+  stats_tab:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'test', single_end:false ]`
-      - "*_stats.csv":
+      - "*_stats.{csv,tsv}":
           type: file
-          description: CSV file containing rows of (sid, bundle, metric, mean, std).
-          pattern: "*_stats.csv"
+          description: Tabular file containing rows of (sid, bundle, metric, mean, std). Can be
+            either TSV or CSV depending on the output_format argument.
+          pattern: "*_stats.{csv,tsv}"
           ontologies:
             - edam: http://edamontology.org/format_3752 # CSV
   versions:
