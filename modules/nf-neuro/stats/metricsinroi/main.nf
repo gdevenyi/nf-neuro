@@ -33,8 +33,6 @@ process STATS_METRICSINROI {
     export OMP_NUM_THREADS=1
     export OPENBLAS_NUM_THREADS=1
 
-    prefix="${prefix}"
-
     if $use_label;
     then
         if [[ ! -f "$rois_lut" ]];
