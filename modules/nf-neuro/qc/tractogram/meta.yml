@@ -37,8 +37,7 @@ args:
       default: false
   - asymmetric:
       type: boolean
-      description: If set, compute asymmetric TODI. Cannot be used with
-        --smooth_todi.Total readout time from the DICOM metadata.
+      description: If set, compute asymmetric TODI. Cannot be used with --smooth_todi.
       default: false
   - n_steps:
       type: integer
@@ -80,7 +79,7 @@ output:
           description: Nifti volume - Tractogram mask.
           pattern: "*__tractogram_mask.nii.gz"
           ontologies:
-            - edam: http://edamontology.org/format_3989 # GZIP format
+            - edam: http://edamontology.org/format_4001 # NIFTI
   TDI:
     - - meta:
           type: map
@@ -92,7 +91,7 @@ output:
           description: Track Density Image (TDI) volume.
           pattern: "*__TDI.nii.gz"
           ontologies:
-            - edam: http://edamontology.org/format_3989 # GZIP format
+            - edam: http://edamontology.org/format_4001 # NIFTI
   dice:
     - - meta:
           type: map
@@ -103,7 +102,8 @@ output:
           type: file
           description: Dice score between tractogram mask and white matter mask.
           pattern: "*__dice.txt"
-          ontologies: []
+          ontologies:
+            - edam: http://edamontology.org/format_2330 # Plain text format
   sc:
     - - meta:
           type: map
@@ -114,7 +114,8 @@ output:
           type: file
           description: Streamline count.
           pattern: "*__sc.txt"
-          ontologies: []
+          ontologies:
+            - edam: http://edamontology.org/format_2330 # Plain text format
   mqc:
     - - meta:
           type: map
@@ -128,7 +129,7 @@ output:
             overlay. Made for use in MultiQC report.
           pattern: "*__coverage_overlay_mqc.png"
           ontologies:
-            - edam: http://edamontology.org/format_3989 # GZIP format
+            - edam: http://edamontology.org/format_3603 # PNG format
   versions:
     - versions.yml:
         type: file

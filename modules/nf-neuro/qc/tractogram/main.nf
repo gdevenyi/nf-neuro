@@ -45,6 +45,7 @@ process QC_TRACTOGRAM {
     scil_volume_pairwise_comparison $wm ${prefix}__tractogram_mask.nii.gz \
         ${prefix}__stats.json
 
+    # Extract DICE value from stats.
     awk '
     in_block && /\\[/ { getline; gsub(/[[:space:]]/, "", \$0); print \$0; exit }
     /"dice_voxels"/ { in_block=1 }
