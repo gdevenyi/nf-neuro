@@ -85,7 +85,7 @@ process STATS_METRICSINROI {
     # Extract the metrics names from this first bundle
     metrics=\$(FIRST_BUNDLE="\$first_bundle" jq -r ".\\"\$first_bundle\\" | keys[]" ${prefix}_${suffix}.json)
 
-    # Create the CSV header
+    # Create the CSV/TSV header
     # (SID, bundle, metric, mean, std)
     echo "sid${sep}bundle${sep}metric${sep}mean${sep}std" > ${prefix}_${suffix}.${output_format}
 
