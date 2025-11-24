@@ -210,12 +210,12 @@ process BUNDLE_STATS {
                     | map(select(.value | type == "object" and has("mean"))
                         | (.key
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
-                              elif test("_afd_fixel_metric\$") then "afd_fixel"
-                              else . end
-                          )
-                      )
-                  )
-                ] ) as \$ms
+                            elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            else . end
+                        )
+                    )
+                )
+            ] ) as \$ms
 
             # Get unique sorted list of metrics
             | (\$ms | add // [] | unique | sort) as \$metrics
@@ -232,15 +232,15 @@ process BUNDLE_STATS {
                     | map(select(.value | type == "object" and has("mean"))
                         | {((.key
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
-                              elif test("_afd_fixel_metric\$") then "afd_fixel"
-                              else . end
-                          )): .value.mean}
-                      )
+                            elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            else . end
+                        )): .value.mean}
+                    )
                     | add // {}
-                  ) as \$mm
+                ) as \$mm
                 # Build row: sample, cleaned bundle name, then metric values
                 | [\$sid, (\$b.key | sub("^" + \$sid + "__"; "") | sub("_labels_uniformized\$"; "") | gsub("_cleaned"; ""))]
-                  + (\$metrics | map(\$mm[.] // ""))
+                + (\$metrics | map(\$mm[.] // ""))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -266,17 +266,17 @@ process BUNDLE_STATS {
                         if .value | has("mean") then
                             # Simple metric with direct mean
                             (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                                   elif test("_afd_fixel_metric\$") then "afd_fixel"
-                                   else . end)
+                                elif test("_afd_fixel_metric\$") then "afd_fixel"
+                                else . end)
                         elif (.value | type == "object") then
                             # Per-point metric
                             (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                                   elif test("_afd_fixel_metric\$") then "afd_fixel"
-                                   else . end)
+                                elif test("_afd_fixel_metric\$") then "afd_fixel"
+                                else . end)
                         else empty end
-                      )
-                  )
-                ] ) as \$metric_lists
+                    )
+                )
+            ] ) as \$metric_lists
 
             # Get unique sorted list of metrics
             | (\$metric_lists | add // [] | unique | sort) as \$metrics
@@ -298,24 +298,24 @@ process BUNDLE_STATS {
                             # Generate point labels (001, 002, ..., 100, 101, ...)
                             [ range(1; (.value | length) + 1)
                                 | (if . < 10 then ("00" + tostring)
-                                   elif . < 100 then ("0" + tostring)
-                                   else tostring end)
+                                elif . < 100 then ("0" + tostring)
+                                else tostring end)
                             ]
                         else [] end
-                      )
+                    )
                     | add // []
                     | unique | sort
-                  ) as \$points
+                ) as \$points
 
                 # Normalize metric names
                 | (\$me
                     | map({
                         key: (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                                    elif test("_afd_fixel_metric\$") then "afd_fixel"
-                                    else . end),
+                            elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            else . end),
                         value: .value
-                      })
-                  ) as \$mes
+                    })
+                ) as \$mes
 
                 # Create one row per point (or single row if no points)
                 | (\$points[]? // [""]) as \$pt
@@ -329,18 +329,18 @@ process BUNDLE_STATS {
                         else
                             # Per-point mean value
                             {(.key): ((.value[\$pt] // (if (.value | type == "array")
-                                                         then (.value[((\$pt | tonumber) - 1)] // null)
-                                                         else null end)) // {} | .mean // "")}
+                                then (.value[((\$pt | tonumber) - 1)] // null)
+                                else null end)) // {} | .mean // "")}
                         end
-                      )
+                    )
                     | add
-                  ) as \$rowmap
+                ) as \$rowmap
 
                 # Build row: sample, cleaned bundle name, point, then metric values
                 | [\$sid,
-                   (\$b.key | sub("^" + \$sid + "__"; "") | sub("_labels_uniformized\$"; "") | gsub("_cleaned"; "")),
-                   (\$pt // "")]
-                  + (\$metrics | map(\$rowmap[.] // ""))
+                    (\$b.key | sub("^" + \$sid + "__"; "") | sub("_labels_uniformized\$"; "") | gsub("_cleaned"; "")),
+                    (\$pt // "")]
+                + (\$metrics | map(\$rowmap[.] // ""))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -373,9 +373,9 @@ process BUNDLE_STATS {
                 | (\$b.value) as \$vals
                 # Build row: sample, cleaned bundle name, then metric values
                 | ([\$sid,
-                   (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
-                            | gsub("(_volume_stat|_labels_uniformized)\$"; ""))]
-                   + (\$metrics | map((\$vals[.] // ""))))
+                    (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
+                        | gsub("(_volume_stat|_labels_uniformized)\$"; ""))]
+                    + (\$metrics | map((\$vals[.] // ""))))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -411,9 +411,9 @@ process BUNDLE_STATS {
                 | (\$b.value) as \$vals
                 # Build row: sample, cleaned bundle name, then metric values
                 | ([\$sid,
-                   (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
-                            | gsub("(_volume_stat|_labels_uniformized|_length)\$"; ""))]
-                   + (\$metrics | map((\$vals[.] // ""))))
+                    (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
+                        | gsub("(_volume_stat|_labels_uniformized|_length)\$"; ""))]
+                    + (\$metrics | map((\$vals[.] // ""))))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -459,26 +459,26 @@ process BUNDLE_STATS {
                     | if \$n == 0 then
                         # No points - single row with all values
                         ([\$sid,
-                          (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
-                                   | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
-                          ""]
-                         + (\$metrics | map((\$vals[.] // ""))))
+                            (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
+                                | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
+                            ""]
+                            + (\$metrics | map((\$vals[.] // ""))))
                     else
                         # Multiple points - one row per point
                         (\$bpoints[]
                             | . as \$pt
                             | ([\$sid,
-                               (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
-                                        | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
-                               \$pt]
-                               + (\$metrics | map(
-                                   if (\$vals[.] | type) == "object"
-                                   then (\$vals[.][\$pt] // "")
-                                   else (\$vals[.] // "") end
-                                 )))
+                                (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
+                                    | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
+                                \$pt]
+                                + (\$metrics | map(
+                                    if (\$vals[.] | type) == "object"
+                                    then (\$vals[.][\$pt] // "")
+                                    else (\$vals[.] // "") end
+                                )))
                         )
                     end
-                  )
+                )
                 | @tsv
             )
         ' "\$f" > "\$out"
