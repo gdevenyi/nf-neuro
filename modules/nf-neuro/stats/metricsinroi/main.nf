@@ -8,7 +8,8 @@ process STATS_METRICSINROI {
     tuple val(meta), path(metrics), path(rois), path(rois_lut)  /* optional, input = [] */
 
     output:
-    tuple val(meta), path("*_stats.json")       , emit: mqc
+    tuple val(meta), path("*_stats.json")       , emit: stats_json
+    tuple val(meta), path("*_stats.csv")        , emit: stats_csv
     path "versions.yml"                         , emit: versions
 
     when:
@@ -20,10 +21,14 @@ process STATS_METRICSINROI {
     def bin = task.ext.bin ? "--bin " : ""
     def normalize_weights = task.ext.normalize_weights ? "--normalize_weights " : ""
     def use_label = task.ext.use_label ? true : false
+    def key_substrs_to_remove = task.ext.key_substrs_to_remove ?: []
+    def value_substrs_to_remove = task.ext.value_substrs_to_remove ?: []
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
     export OMP_NUM_THREADS=1
     export OPENBLAS_NUM_THREADS=1
+
+    prefix="${prefix}"
 
     if $use_label;
     then
@@ -34,13 +39,66 @@ process STATS_METRICSINROI {
 
         scil_volume_stats_in_labels $rois $rois_lut \
             --metrics $metrics \
-            --sort_keys > ${prefix}__${suffix}.json
+            --sort_keys >| ${prefix}_${suffix}.json
     else
         scil_volume_stats_in_ROI $rois \
             --metrics $metrics \
             --sort_keys \
-            $bin $normalize_weights > ${prefix}__${suffix}.json
+            $bin $normalize_weights >| ${prefix}_${suffix}.json
     fi
+
+    # Remove all substrings from the keys as specified
+    # in the configuration via 'task.ext.key_substrs_to_remove'
+    for substr in ${key_substrs_to_remove.join(' ')};
+    do
+        SUBSTR="\$substr" jq -r '
+            with_entries(.key |= sub(env.SUBSTR; ""))
+        ' ${prefix}_${suffix}.json > ${prefix}_${suffix}_tmp.json
+        mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
+    done
+
+    # Remove all substrings from the values as specified
+    # in the configuration via 'task.ext.value_substrs_to_remove'
+    for substr in ${value_substrs_to_remove.join(' ')};
+    do
+        SUBSTR="\$substr" jq -r '
+            with_entries(
+                .value |= with_entries(
+                    .key |= sub(env.SUBSTR; "")
+                )
+            )
+        ' ${prefix}_${suffix}.json > ${prefix}_${suffix}_tmp.json
+        mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
+    done
+
+    # Get all bundles names from the JSON
+    bundles=\$(jq -r "keys[]" ${prefix}_${suffix}.json)
+
+    # All bundles have the same metrics. To get the metrics names from
+    # the JSON, we can just fetch them from the first bundle.
+    first_bundle=\$(printf '%s\\n' \$bundles | head -n 1)
+
+    # Extract the metrics names from this first bundle
+    metrics=\$(FIRST_BUNDLE="\$first_bundle" jq -r ".\\"\$first_bundle\\" | keys[]" ${prefix}_${suffix}.json)
+
+    # Create the CSV header
+    echo "sid,bundle,metric,mean,std" > ${prefix}_${suffix}.csv
+
+    for bundle in \$bundles;
+    do
+        for metric in \$metrics;
+        do
+            # Fetch the "mean" and "std" values from each bundle/metric
+            # pair from the JSON
+            mean=\$(jq -r --arg BUNDLE "\$bundle" --arg METRIC "\$metric" '.[\$BUNDLE].[\$METRIC].mean' ${prefix}_${suffix}.json)
+            std=\$(jq -r --arg BUNDLE "\$bundle" --arg METRIC "\$metric" '.[\$BUNDLE].[\$METRIC].std' ${prefix}_${suffix}.json)
+
+            # Simply append the line to the CSV
+            # with the mean and std values.
+            line="${prefix},\${bundle},\${metric},\${mean},\${std}"
+            echo \$line >> ${prefix}_${suffix}.csv
+        done
+    done
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -55,7 +113,8 @@ process STATS_METRICSINROI {
     scil_volume_stats_in_ROI -h
     scil_volume_stats_in_labels -h
 
-    touch ${prefix}__${suffix}.json
+    touch ${prefix}_${suffix}.json
+    touch ${prefix}_${suffix}.csv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

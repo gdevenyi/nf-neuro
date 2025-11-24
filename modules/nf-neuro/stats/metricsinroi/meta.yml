@@ -61,8 +61,24 @@ args:
       description: If set, rois image will be considered as a label image with multiple
         indices.
       default: false
+  - key_substrs_to_remove:
+      type: string
+      description: |
+        Groovy list of strings to remove from the metric keys in the JSON.
+        This is useful to clean or shorten the bundle names that will appear
+        in the output JSON/CSV.
+        e.g. "['_mask', '_warped'] will turn 'CST_mask_warped' into 'CST'"
+      default: null
+  - value_substrs_to_remove:
+      type: string
+      description: |
+        Groovy list of strings to remove from the metric values in the JSON.
+        This is useful to clean or shorten the metric names that will appear
+        in the output JSON/CSV.
+        e.g. "['sub-01', '_metric'] will turn 'sub-01_fa_metric' into 'fa'"
+      default: null
 output:
-  mqc:
+  stats_json:
     - - meta:
           type: map
           description: |
@@ -74,6 +90,18 @@ output:
           pattern: "*_stats.json"
           ontologies:
             - edam: http://edamontology.org/format_3464 # JSON
+  stats_csv:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*_stats.csv":
+          type: file
+          description: CSV file containing rows of (sid, bundle, metric, mean, std).
+          pattern: "*_stats.csv"
+          ontologies:
+            - edam: http://edamontology.org/format_3752 # CSV
   versions:
     - versions.yml:
         type: file
