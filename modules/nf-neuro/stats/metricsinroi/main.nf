@@ -108,6 +108,7 @@ process STATS_METRICSINROI {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         scilpy: \$(uv pip -q -n list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
+        jq: \$(jq --version |& sed '1!d ; s/jq-//')
     END_VERSIONS
     """
 
@@ -124,6 +125,7 @@ process STATS_METRICSINROI {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         scilpy: \$(uv pip -q -n list | grep scilpy | tr -s ' ' | cut -d' ' -f2)
+        jq: \$(jq --version |& sed '1!d ; s/jq-//')
     END_VERSIONS
     """
 }
