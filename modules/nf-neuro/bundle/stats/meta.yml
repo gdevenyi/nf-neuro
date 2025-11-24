@@ -322,6 +322,31 @@ output:
           pattern: "*__lesion_map.nii.gz"
           ontologies:
             - edam: http://edamontology.org/format_3989 # GZIP format
+  mean_lesions_tsv:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*_desc-mean_param-lesions_stats.tsv":
+          type: file
+          description: TSV file regrouping all bundle stats in lesions
+          pattern: "*__desc-mean_param-lesions_stats.tsv"
+          ontologies:
+            - edam: http://edamontology.org/format_3475 # TSV
+  mean_per_point_lesions_tsv:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*_desc-point_param-lesions_stats.tsv":
+          type: file
+          description: TSV file regrouping all bundle per points stats with
+            lesions
+          pattern: "*__desc-point_param-lesions_stats.tsv"
+          ontologies:
+            - edam: http://edamontology.org/format_3475 # TSV
   mean_tsv:
     - - meta:
           type: map
@@ -333,7 +358,7 @@ output:
           description: TSV file regrouping all bundle stats
           pattern: "*__desc-mean_stats.tsv"
           ontologies:
-            - edam: http://edamontology.org/format_3989 # GZIP format
+            - edam: http://edamontology.org/format_3475 # TSV
   mean_per_point_tsv:
     - - meta:
           type: map
@@ -353,6 +378,7 @@ output:
         pattern: versions.yml
         ontologies:
           - edam: http://edamontology.org/format_3475 # TSV
+          - edam: http://edamontology.org/format_3750 # YAML
 authors:
   - "@ThoumyreStanislas"
   - "@gagnonanthony"
