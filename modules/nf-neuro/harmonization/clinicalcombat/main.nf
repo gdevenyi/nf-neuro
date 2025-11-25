@@ -1,21 +1,17 @@
 process HARMONIZATION_CLINICALCOMBAT {
-    tag "$meta.id"
     label 'process_medium'
 
-    container "scilus/clinical_combat:1.0.0"
+    container "scilus/clinical_combat:1.0.1"
 
     input:
     tuple path(ref_site), path(move_site)
 
     output:
-    path("*.model.csv")                , emit: model
-    path("*.csv.gz")                   , emit: harmonizedsite
-    path("*.raw.bhattacharrya.txt")    , emit: rawbd
-    path("*.bhattacharrya.txt")        , emit: harmbd
-    path("AgeCurve*raw*png")           , emit: rawcurve
-    path("AgeCurve*png")               , emit: harmcurve
-    path("DataModels*png")             , emit: modelcurve
-    path "versions.yml"                , emit: versions
+    path("*.model.csv")          , emit: model
+    path("*.harmonized.csv.gz")  , emit: harmonizedsite
+    path("Figures")              , emit: figures
+    path("QC_reports")           , emit: qcreports
+    path "versions.yml"          , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -41,6 +37,9 @@ process HARMONIZATION_CLINICALCOMBAT {
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
         $no_eb
 
+    mkdir -p Figures QC_reports
+    mv *.png Figures/
+    mv *bhattacharrya.txt QC_reports/
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -49,17 +48,13 @@ process HARMONIZATION_CLINICALCOMBAT {
     """
 
     stub:
-    def smethod = task.ext.method ?: "${task.ext.method}"
+    def method = task.ext.method ?: "${task.ext.method}"
     """
     combat_quick_fit -h
 
-    touch ref_mov.metric.${smethod}.model.csv
-    touch ref_mov.metric.${smethod}.csv.gz
-    touch ref_mov.metric.raw.bhattacharrya.txt
-    touch ref_mov.metric.${smethod}.bhattacharrya.txt
-    touch AgeCurve_ref-mov_raw_metric_bundle.png
-    touch AgeCurve_ref-mov_${smethod}_metric_bundle.png
-    touch DataModels_ref-mov_${smethod}_metric_bundle.png
+    mkdir -p Figures QC_reports
+    touch ref_mov.metric.${method}.model.csv
+    touch ref_mov.metric.${method}.harmonized.csv.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
