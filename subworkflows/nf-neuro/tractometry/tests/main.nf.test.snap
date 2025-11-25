@@ -53,7 +53,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
+                        "test_desc-point_stats.tsv"
                     ]
                 ],
                 "mean_tsv": [
@@ -62,7 +62,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
+                        "test_desc-mean_stats.tsv"
                     ]
                 ],
                 "stat_endpoints_metric": [
@@ -242,7 +242,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
+                        "test_desc-point_stats.tsv"
                     ]
                 ],
                 "mean_tsv": [
@@ -251,7 +251,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
+                        "test_desc-mean_stats.tsv"
                     ]
                 ],
                 "stat_endpoints_metric": [
