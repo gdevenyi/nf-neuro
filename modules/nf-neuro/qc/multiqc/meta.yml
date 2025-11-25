@@ -20,6 +20,7 @@ tools:
         Neuroimaging is a python MultiQC plugin containing various tools for generating QC reports for neuroimaging data.
       homepage: https://github.com/nf-neuro/MultiQC_neuroimaging
       licence: ["MIT"]
+      identifier: ""
 
 args:
   - single_subject:
@@ -38,7 +39,8 @@ input:
           e.g. `[ id:'sample1' ]`
     - qc_images:
         type: file
-        description: Subject-specific files that will be used in the MultiQC report.
+        description: Subject-specific files that will be used in the MultiQC
+          report.
         pattern: "*.{nii.gz,trk}"
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
@@ -59,8 +61,8 @@ input:
         - edam: http://edamontology.org/format_3750 # YAML
   - extra_multiqc_config:
       type: file
-      description: Second optional config yml for MultiQC. Will override common sections
-        in multiqc_config.
+      description: Second optional config yml for MultiQC. Will override common
+        sections in multiqc_config.
       pattern: "*.{yml,yaml}"
       ontologies:
         - edam: http://edamontology.org/format_3750 # YAML
@@ -88,6 +90,12 @@ input:
         - edam: http://edamontology.org/format_3475 # TSV
 
 output:
+  id:
+    - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information, kept for linting purposes.
+          e.g. `[ id:'sample1' ]`
   report:
     - "*.html":
         type: file

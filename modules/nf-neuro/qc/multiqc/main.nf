@@ -16,6 +16,7 @@ process QC_MULTIQC {
     path(sample_names)
 
     output:
+    val (meta)                 , emit: meta // meta field required for linting.
     path "*.html"              , emit: report
     path "*_data"              , emit: data
     path "*_plots"             , optional:true, emit: plots
