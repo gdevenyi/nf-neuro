@@ -21,6 +21,15 @@ tools:
       homepage: https://github.com/nf-neuro/MultiQC_neuroimaging
       licence: ["MIT"]
 
+args:
+  - single_subject:
+      type: boolean
+      default: false
+      description: |
+        If true, generates a subject-specific MultiQC report. If false, generates a global report.
+        This will change which module are run within MultiQC.
+      mandatory: false
+
 input:
   - - meta:
         type: map
