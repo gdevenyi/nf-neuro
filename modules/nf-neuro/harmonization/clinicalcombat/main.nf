@@ -7,18 +7,18 @@ process HARMONIZATION_CLINICALCOMBAT {
     tuple path(ref_site), path(move_site)
 
     output:
-    path("*.model.csv")          , emit: model
-    path("*.harmonized.csv.gz")  , emit: harmonizedsite
-    path("Figures")              , emit: figures
-    path("QC_reports")           , emit: qcreports
-    path "versions.yml"          , emit: versions
+    path("*.model.csv")                , emit: model
+    path("*.harmonized.csv.gz")        , emit: harmonizedsite
+    path("qc_reports")                 , emit: bdqc
+    path("figures")                    , emit: figures
+    path "versions.yml"                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def method = task.ext.method ? "--method " + task.ext.method : ""
-    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : "--bundles all"
+    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : ""
     def regul_ref = task.ext.regul_ref ? "--regul_ref " + task.ext.regul_ref : ""
     def regul_mov = task.ext.regul_mov ? "--regul_mov " + task.ext.regul_mov : ""
     def degree = task.ext.degree ? "--degree " + task.ext.degree : ""
@@ -37,9 +37,9 @@ process HARMONIZATION_CLINICALCOMBAT {
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
         $no_eb
 
-    mkdir -p Figures QC_reports
-    mv *.png Figures/
-    mv *bhattacharrya.txt QC_reports/
+    mkdir -p qc_reports figures
+    mv *bhattacharrya.txt qc_reports
+    mv *.png figures
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
