@@ -1,5 +1,9 @@
 name: "harmonization_clinicalcombat"
-description: write your description here
+description: ComBAT harmonization of clinical MRI data. It's a ComBAT
+  implementations for adapting sites to a reference site
+  along with ready-to-run scripts to prepare datasets,
+  fit a model, apply the harmonization and analyze the outputs.
+  Two harmonization methods are available pairwise (linear) and clinic (non-linear).
 keywords:
 - Harmonization
 - Pairwise
@@ -89,7 +93,6 @@ input:
           Must include sid,site,bundle,metric,mean,age,sex,handedness,disease.
           The Disease column must include at least the label HC.
         pattern: "*.{csv,csv.gz}"
-        ontologies: http://edamontology.org/format_3752
     - mov_site:
         type: file
         description: |
@@ -99,7 +102,6 @@ input:
           assign the same value to all subjects (1 or 0).
           The Disease column must include at least the label HC.
         pattern:  "*.{csv,csv.gz}"
-        ontologies: http://edamontology.org/format_3752
 output:
   model:
     - "*.model.csv":
@@ -113,41 +115,19 @@ output:
         type: file
         description: Moving site harmonized data.
         pattern: "*.csv.gz"
-        ontologies:
-          - edam: http://edamontology.org/format_3752
-  rawbd:
-    - "*.raw.bhattacharrya.txt":
-        type: file
-        description: Moving site Bhattacharrya distance (QC) data before harmonization.
-        pattern: "*.raw.bhattacharrya.txt"
-        ontologies:
-          - edam: http://edamontology.org/format_2330
-  harmbd:
+        ontologies:""
+  bdqc:
     - "*.bhattacharrya.txt":
         type: file
-        description: Moving site Bhattacharrya distance (QC) data after harmonization.
-        pattern: "**.bhattacharrya.txt"
+        description: Bhattacharrya distance (QC) data before and after harmonization.
+        pattern: "*.bhattacharrya.txt"
         ontologies:
           - edam: http://edamontology.org/format_2330
-  rawcurve:
-    - "AgeCurve*raw*png":
+  figures:
+    - "*png":
         type: file
-        description: Figure plotting reference and moving site data before harmonization.
-        pattern: "AgeCurve*raw*png"
-        ontologies:
-          - edam: http://edamontology.org/format_3603
-  harmcurve:
-    - "AgeCurve*png":
-        type: file
-        description: Figure plotting reference and moving site data after harmonization.
-        pattern: "AgeCurve*png"
-        ontologies:
-          - edam: http://edamontology.org/format_3603
-  modelcurve:
-    - "DataModels*png":
-        type: file
-        description: Figure plotting the estimated fit of the harmonisation model.
-        pattern: "DataModels*png"
+        description: Figure plotting reference and moving site data before and after harmonization as well as the harmonization model.
+        pattern: "*png"
         ontologies:
           - edam: http://edamontology.org/format_3603
   versions:
