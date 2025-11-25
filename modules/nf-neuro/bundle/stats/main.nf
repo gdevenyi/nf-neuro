@@ -691,6 +691,10 @@ process BUNDLE_STATS {
     touch ${prefix}_endpoints_map_tail.nii.gz
     touch ${prefix}__lesion_stats.json
     touch ${prefix}_lesion_map.nii.gz
+    touch ${prefix}_desc-mean_param-lesions_stats.tsv
+    touch ${prefix}_desc-point_param-lesions_stats.tsv
+    touch ${prefix}_desc-mean_stats.tsv
+    touch ${prefix}_desc-point_stats.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

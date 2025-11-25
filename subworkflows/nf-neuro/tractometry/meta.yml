@@ -197,6 +197,36 @@ output:
         Nifti files of labelized lesion(s) map for each bundles.
         Structure: [ val(meta), path(lesion_map) ]
       pattern: "*.nii.gz"
+
+  - mean_lesions_tsv:
+      type: file
+      description: TSV file regrouping all bundle stats in lesions
+      pattern: "*__desc-mean_param-lesions_stats.tsv"
+      ontologies:
+        - edam: http://edamontology.org/format_3475 # TSV
+
+  - mean_per_point_lesions_tsv:
+      type: file
+      description: TSV file regrouping all bundle per points stats with
+        lesions
+      pattern: "*__desc-point_param-lesions_stats.tsv"
+      ontologies:
+            - edam: http://edamontology.org/format_3475 # TSV
+
+  - mean_tsv:
+      type: file
+      description: TSV file regrouping all bundle stats
+      pattern: "*__desc-mean_stats.tsv"
+      ontologies:
+        - edam: http://edamontology.org/format_3475 # TSV
+
+  - mean_per_point_tsv:
+      type: file
+      description: TSV file regrouping all bundle per points stats
+      pattern: "*__desc-point_stats.tsv"
+      ontologies:
+        - edam: http://edamontology.org/format_3475 # TSV
+
 authors:
   - "@ThoumyreStanislas"
 maintainers:

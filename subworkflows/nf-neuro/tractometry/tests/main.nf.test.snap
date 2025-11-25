@@ -29,6 +29,42 @@
                         "test_lesion_map.nii.gz"
                     ]
                 ],
+                "mean_std_lesions_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-mean_param-lesions_stats.tsv"
+                    ]
+                ],
+                "mean_std_per_point_lesions_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-point_param-lesions_stats.tsv"
+                    ]
+                ],
+                "mean_std_per_point_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
+                    ]
+                ],
+                "mean_std_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
+                    ]
+                ],
                 "stat_endpoints_metric": [
                     [
                         {
@@ -150,7 +186,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-24T03:55:51.34563446"
+        "timestamp": "2025-11-25T02:54:11.224168634"
     },
     "tractometry_without_centroids": {
         "content": [
@@ -180,6 +216,42 @@
                             "single_end": false
                         },
                         "test_lesion_map.nii.gz"
+                    ]
+                ],
+                "mean_std_lesions_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-mean_param-lesions_stats.tsv"
+                    ]
+                ],
+                "mean_std_per_point_lesions_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-point_param-lesions_stats.tsv"
+                    ]
+                ],
+                "mean_std_per_point_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
+                    ]
+                ],
+                "mean_std_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
                     ]
                 ],
                 "stat_endpoints_metric": [
@@ -304,6 +376,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-24T03:57:07.183572368"
+        "timestamp": "2025-11-25T03:31:26.798045756"
     }
 }
