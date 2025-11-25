@@ -1,0 +1,376 @@
+{
+    "harmonization - clinicalcombat_pairwise": {
+        "content": [
+            {
+                "0": [
+                    "ShamCamCAN-CamCAN.md.clinic.model.csv:md5,462a131a982f42a1e1179125d80e4625"
+                ],
+                "1": [
+                    "ShamCamCAN.md.clinic.harmonized.csv.gz:md5,0698c8b5f77d21c3eea93d6976ba13de"
+                ],
+                "2": [
+                    [
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAC.png:md5,97cae803b849cd440eb80a8953097a19",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,a50358a03f40eb0018882a60640961cb",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFR.png:md5,40dbf6c7a094c5e2076bca3ce1bfe5a3",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTL.png:md5,cf0dc3ed82ae3addeff1bbc4be28ef17",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTR.png:md5,157a9f4e9d7b4f8ecaf781235d3c2caa",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCC.png:md5,ce1c018e56991460700a9621f5bb0843",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMajor.png:md5,b6ea569827368529bde6a500ec75732a",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMinor.png:md5,23dca8a1569a05137a77d9cb8cbea296",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCMid.png:md5,41bc0fce3ca61ec89cbe0084d95c17c7",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCL.png:md5,9a7eb755269444c61f25e80a896c4ed8",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCR.png:md5,a8f60cde1824e12c44cfd1ad79e90a89",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTL.png:md5,c3c2e18968ffd9aba723c33e1a973950",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTR.png:md5,ee4aa559423f685fb6397b98f2de1247",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFLR.png:md5,f3ce0307356f0cd70376392d05e1745b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTL.png:md5,ee7ef2351305ef33c7bd4f833e8b7355",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTR.png:md5,6d9d260edf4afa775bfe30b9718b6429",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPL.png:md5,a349a8fde2eeb2416dffe360a1193e11",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPR.png:md5,a5248f6d389520aaf46026d0dda1a4a5",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFL.png:md5,5c1af217e53cbedcc726766719a388d0",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFR.png:md5,a5f0cee071bc8c38ad59c23bbea78b51",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIITmaskskeletonFA.png:md5,701e4b10f0f24125d8b1a60c5930d47d",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFL.png:md5,3dd4f382a45e824d9c116d8a0a2ada21",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFR.png:md5,849239efdeb9da449cdd9264a25ee5a8",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMCP.png:md5,c0d5ffc40f25ea44f04affe729df1f92",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLL.png:md5,4873626554f684f271d8b58669b47a79",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLR.png:md5,0fb1269f75dd8bd0c8c3ffa5fc9bfab0",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFL.png:md5,023f2dad2e8063dc9b3bb4be5f29647b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFR.png:md5,028837688ab8c729ee5fc517590e026e",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTL.png:md5,74c02bc2a232d2c2858718be907f80a1",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTR.png:md5,7b788a78095e465101fa9929a1b6b83b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORL.png:md5,ff304ca8478b0f7875ef75ba04ce2bf5",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORR.png:md5,b7362177b5fbddb5affcc183f4293e28",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTL.png:md5,f3c769abd9c67cbe2a1834b24f5d2478",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTR.png:md5,28008626b6d23cc8d0cd286e21c07731",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSCP.png:md5,52c5280e452e8a232f01512d41acce34",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFL.png:md5,7e82afc63eebd5527ec8cb5d49a89cbd",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFR.png:md5,4b00efba10fe90203dde01007dcacbad",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTL.png:md5,1c729fd6393ec0146e7506359c22d04a",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTR.png:md5,e333a922f165c0cfaa18030d4e749aa7",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFL.png:md5,f42db1dbbd34820772daa0f543dad5ed",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFR.png:md5,1210b4a8bfa7cc1460bb384f3594b5fa",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFL.png:md5,7825ac6e5b20f42a6b7b8d349615e9ec",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFR.png:md5,c187bfb7ffe8e954ea823b8bda730fcf",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_leftventricle.png:md5,672617fbf8436af426b224e5006fde47",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAC.png:md5,958b2dfc65e57c50885d6a0ea1eb57c0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFR.png:md5,3c35062fc9a55b51e4838beee8040dc0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniASTL.png:md5,078b0a2a86c3f77cd053ba828c2cd39a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniASTR.png:md5,2752d9f9af680588e18bc0edcae2d307",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCC.png:md5,5c064671315defe4ec5c1d874596743a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCForcepsMajor.png:md5,1940178156ba275a817910c1515487fc",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCForcepsMinor.png:md5,32b21823945cf4dbc534f5653004c10b",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCMid.png:md5,a5acf14749e86131aa1422eb7af3afe5",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCL.png:md5,060574b44aceadb8620a707d04a47427",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCR.png:md5,12abe5b269d7ceb96fd21dc58a17b59d",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCSTL.png:md5,37deadceea60cc173abd8239f0e6d667",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCSTR.png:md5,23d924be678dfd0f4e34b8d5e6f7fb07",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFLR.png:md5,d015522637db661ca9389e9a2afe8c9d",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFPTL.png:md5,45fcd1862a54150c9b320cc6107e7d6a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFPTR.png:md5,202809992b0d44c64965a648cb437e2e",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniICPL.png:md5,5024d82a3ece1df1f90c33ab7b2d0cca",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniICPR.png:md5,2ff02b7e77305dde84712e93137f3bf1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIFOFL.png:md5,49fda1f5d424cd38bb877bcc7614c8f0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIFOFR.png:md5,6d161ad76c9f305869fc3b5f4eb94ef5",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIITmaskskeletonFA.png:md5,7e0497786ab6e5ef693bb3d11a6c03b9",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniILFL.png:md5,a8bc5560ee2dc9fbc87c056584fe06de",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniILFR.png:md5,b71cc5360edb432220ee679457fe0214",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMCP.png:md5,a357cf8073b1fa483cff7c7816f06522",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMLL.png:md5,0b34397cc9ee7496a3b952a85ceeafc9",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMLR.png:md5,b5d2493e66436b27b68b15e2836fb060",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMdLFL.png:md5,30a0d56982914810b9380fe9017f1590",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMdLFR.png:md5,d2c133702828cd337b05f0dd3d66f256",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniOPTL.png:md5,7140c38aa7249e3da630f5c48b64e163",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniOPTR.png:md5,6f1946ce0437eb91b103f5c6e1a12123",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniORL.png:md5,5a07afc1c9d07b0dc737d571bc600053",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniORR.png:md5,1e36d7e63e2a76dd81a0a7143db4c4e3",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniPPTL.png:md5,e9757789523d929e52a44b7c2902d52e",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniPPTR.png:md5,d33b985f6f465c2f7bbdc30198e6a089",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSCP.png:md5,2ee247cd850282ac46760661fbac80a8",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSLFL.png:md5,7c38781708b462ccfbb2a91d612b8ea1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSLFR.png:md5,7c7849001550dcb5c2ec8c956e647fdb",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSTTL.png:md5,f0a1bd3beb96ecd28bf1406d69decfe7",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSTTR.png:md5,14d3d864cee083e7e5c1261a25fd7c49",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniUFL.png:md5,253b0fd587d5a158310b0d5c5269e157",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniUFR.png:md5,34de3cf2619d958cd812a21b50faf3a1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniVOFL.png:md5,2c367ce1e758111f4b48e755bee1de44",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniVOFR.png:md5,2b631eccdcbbaec7d3e6d213d859bb39",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_rightventricle.png:md5,296dc6daf91968b712c2acf8c1eb4244",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAC.png:md5,ae93c25a2267ce3d5781e82c05dda7ff",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,d2c561757bb10e64cd05cf618e794d6c",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFR.png:md5,bf62b3dbc17878036ab8790fff07ece1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTL.png:md5,4a5d75dd36db18701d29e789f86fbb10",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTR.png:md5,a5509b9293b71ea035dde7a555454239",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCC.png:md5,976799c731a97a7ef303c302611f823e",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMajor.png:md5,4f576553b46d93a4fe9d7da555497305",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMinor.png:md5,a06bd50a5af3e4d9de3a5f7c152a4c66",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCMid.png:md5,ac3dcee5061c00fd17fe13f62bbe2750",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCL.png:md5,de65878b8a16d85189c59a4ca7e17fb8",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCR.png:md5,0b733dfa2aa333780eb594a75984e0a1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTL.png:md5,be123bb4fd8d5847aca32688e532900b",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTR.png:md5,fbb7ab302978c0f90913129f7eb9bc24",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFLR.png:md5,d5d8c626be042c54341b8e7e24abd289",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTL.png:md5,0be0702e0ab279c2176d9b3fbac35f37",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTR.png:md5,4e9773b341ecc72c8670feba9cc09c45",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPL.png:md5,0b01feb070eb7de8eb22feea33459209",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPR.png:md5,b321d22e1a0f477b82052ba669d017db",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFL.png:md5,a07a50711fb1c7fa7905fea5f01dca52",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFR.png:md5,ddc800882e3234b56591ba9d28d8ee9e",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIITmaskskeletonFA.png:md5,0c335c4259092a903286cf5bb5aa0eb3",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFL.png:md5,ce55d80d713e08bebf967774919a84e0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFR.png:md5,e02d04e9c4b6e16dd1a283636b25888f",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMCP.png:md5,7464c409628a5c0242a6edc301725c96",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLL.png:md5,e452797f7ace94ef9ffad945d21f2d3d",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLR.png:md5,acacd67400434b749a217331a01974d0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFL.png:md5,810d62570e32a7551c47704ce9f3bec1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFR.png:md5,88f1f04e8c3d4b9104072231a40b148f",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTL.png:md5,66c4ff6d6b65719e15b3833e00599746",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTR.png:md5,1d984291fead15a01b59623445d2c923",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORL.png:md5,1b773906d21875f34cbb0d407360d4c0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORR.png:md5,8447befc9f334f69766ecb48d1457dc6",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTL.png:md5,a657d388e6d0f9f8bd2c6b39e210e584",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTR.png:md5,1b3967f23d12dd95fc471200f3141590",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSCP.png:md5,083f85c96ca24a11c4c5513dc7db4df1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFL.png:md5,a3ee4507256b9219abdc2fc2eeb0b769",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFR.png:md5,b279d40ee1c5c5047f2c9f2a72aee626",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTL.png:md5,9daa588b0cac783914b522e30928ae31",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTR.png:md5,9fb195847a6f339237a7649ebfdf4561",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFL.png:md5,4254ddb75a96ac2aeb394fe7a9cc5826",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFR.png:md5,1804aa6d9205f871f8e4ff000670fc23",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFL.png:md5,7cf11098554abb57a5b8d2bd06c59361",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFR.png:md5,63b1c451a6c12eacdf81eb59911b2cfa"
+                    ]
+                ],
+                "3": [
+                    [
+                        "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt:md5,dfb13dd48fd83432089b6e42fbc6bb12",
+                        "ShamCamCAN.md.raw.bhattacharrya.txt:md5,bd9831bc828c6c78ffa6c46c7194e305"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+                ],
+                "figures": [
+                    [
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAC.png:md5,97cae803b849cd440eb80a8953097a19",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,a50358a03f40eb0018882a60640961cb",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFR.png:md5,40dbf6c7a094c5e2076bca3ce1bfe5a3",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTL.png:md5,cf0dc3ed82ae3addeff1bbc4be28ef17",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTR.png:md5,157a9f4e9d7b4f8ecaf781235d3c2caa",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCC.png:md5,ce1c018e56991460700a9621f5bb0843",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMajor.png:md5,b6ea569827368529bde6a500ec75732a",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMinor.png:md5,23dca8a1569a05137a77d9cb8cbea296",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCMid.png:md5,41bc0fce3ca61ec89cbe0084d95c17c7",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCL.png:md5,9a7eb755269444c61f25e80a896c4ed8",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCR.png:md5,a8f60cde1824e12c44cfd1ad79e90a89",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTL.png:md5,c3c2e18968ffd9aba723c33e1a973950",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTR.png:md5,ee4aa559423f685fb6397b98f2de1247",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFLR.png:md5,f3ce0307356f0cd70376392d05e1745b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTL.png:md5,ee7ef2351305ef33c7bd4f833e8b7355",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTR.png:md5,6d9d260edf4afa775bfe30b9718b6429",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPL.png:md5,a349a8fde2eeb2416dffe360a1193e11",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPR.png:md5,a5248f6d389520aaf46026d0dda1a4a5",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFL.png:md5,5c1af217e53cbedcc726766719a388d0",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFR.png:md5,a5f0cee071bc8c38ad59c23bbea78b51",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIITmaskskeletonFA.png:md5,701e4b10f0f24125d8b1a60c5930d47d",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFL.png:md5,3dd4f382a45e824d9c116d8a0a2ada21",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFR.png:md5,849239efdeb9da449cdd9264a25ee5a8",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMCP.png:md5,c0d5ffc40f25ea44f04affe729df1f92",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLL.png:md5,4873626554f684f271d8b58669b47a79",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLR.png:md5,0fb1269f75dd8bd0c8c3ffa5fc9bfab0",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFL.png:md5,023f2dad2e8063dc9b3bb4be5f29647b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFR.png:md5,028837688ab8c729ee5fc517590e026e",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTL.png:md5,74c02bc2a232d2c2858718be907f80a1",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTR.png:md5,7b788a78095e465101fa9929a1b6b83b",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORL.png:md5,ff304ca8478b0f7875ef75ba04ce2bf5",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORR.png:md5,b7362177b5fbddb5affcc183f4293e28",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTL.png:md5,f3c769abd9c67cbe2a1834b24f5d2478",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTR.png:md5,28008626b6d23cc8d0cd286e21c07731",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSCP.png:md5,52c5280e452e8a232f01512d41acce34",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFL.png:md5,7e82afc63eebd5527ec8cb5d49a89cbd",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFR.png:md5,4b00efba10fe90203dde01007dcacbad",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTL.png:md5,1c729fd6393ec0146e7506359c22d04a",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTR.png:md5,e333a922f165c0cfaa18030d4e749aa7",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFL.png:md5,f42db1dbbd34820772daa0f543dad5ed",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFR.png:md5,1210b4a8bfa7cc1460bb384f3594b5fa",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFL.png:md5,7825ac6e5b20f42a6b7b8d349615e9ec",
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFR.png:md5,c187bfb7ffe8e954ea823b8bda730fcf",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_leftventricle.png:md5,672617fbf8436af426b224e5006fde47",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAC.png:md5,958b2dfc65e57c50885d6a0ea1eb57c0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFR.png:md5,3c35062fc9a55b51e4838beee8040dc0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniASTL.png:md5,078b0a2a86c3f77cd053ba828c2cd39a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniASTR.png:md5,2752d9f9af680588e18bc0edcae2d307",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCC.png:md5,5c064671315defe4ec5c1d874596743a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCForcepsMajor.png:md5,1940178156ba275a817910c1515487fc",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCForcepsMinor.png:md5,32b21823945cf4dbc534f5653004c10b",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCCMid.png:md5,a5acf14749e86131aa1422eb7af3afe5",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCL.png:md5,060574b44aceadb8620a707d04a47427",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCR.png:md5,12abe5b269d7ceb96fd21dc58a17b59d",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCSTL.png:md5,37deadceea60cc173abd8239f0e6d667",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniCSTR.png:md5,23d924be678dfd0f4e34b8d5e6f7fb07",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFLR.png:md5,d015522637db661ca9389e9a2afe8c9d",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFPTL.png:md5,45fcd1862a54150c9b320cc6107e7d6a",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniFPTR.png:md5,202809992b0d44c64965a648cb437e2e",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniICPL.png:md5,5024d82a3ece1df1f90c33ab7b2d0cca",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniICPR.png:md5,2ff02b7e77305dde84712e93137f3bf1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIFOFL.png:md5,49fda1f5d424cd38bb877bcc7614c8f0",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIFOFR.png:md5,6d161ad76c9f305869fc3b5f4eb94ef5",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniIITmaskskeletonFA.png:md5,7e0497786ab6e5ef693bb3d11a6c03b9",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniILFL.png:md5,a8bc5560ee2dc9fbc87c056584fe06de",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniILFR.png:md5,b71cc5360edb432220ee679457fe0214",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMCP.png:md5,a357cf8073b1fa483cff7c7816f06522",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMLL.png:md5,0b34397cc9ee7496a3b952a85ceeafc9",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMLR.png:md5,b5d2493e66436b27b68b15e2836fb060",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMdLFL.png:md5,30a0d56982914810b9380fe9017f1590",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniMdLFR.png:md5,d2c133702828cd337b05f0dd3d66f256",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniOPTL.png:md5,7140c38aa7249e3da630f5c48b64e163",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniOPTR.png:md5,6f1946ce0437eb91b103f5c6e1a12123",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniORL.png:md5,5a07afc1c9d07b0dc737d571bc600053",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniORR.png:md5,1e36d7e63e2a76dd81a0a7143db4c4e3",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniPPTL.png:md5,e9757789523d929e52a44b7c2902d52e",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniPPTR.png:md5,d33b985f6f465c2f7bbdc30198e6a089",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSCP.png:md5,2ee247cd850282ac46760661fbac80a8",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSLFL.png:md5,7c38781708b462ccfbb2a91d612b8ea1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSLFR.png:md5,7c7849001550dcb5c2ec8c956e647fdb",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSTTL.png:md5,f0a1bd3beb96ecd28bf1406d69decfe7",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniSTTR.png:md5,14d3d864cee083e7e5c1261a25fd7c49",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniUFL.png:md5,253b0fd587d5a158310b0d5c5269e157",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniUFR.png:md5,34de3cf2619d958cd812a21b50faf3a1",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniVOFL.png:md5,2c367ce1e758111f4b48e755bee1de44",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniVOFR.png:md5,2b631eccdcbbaec7d3e6d213d859bb39",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_rightventricle.png:md5,296dc6daf91968b712c2acf8c1eb4244",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAC.png:md5,ae93c25a2267ce3d5781e82c05dda7ff",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,d2c561757bb10e64cd05cf618e794d6c",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFR.png:md5,bf62b3dbc17878036ab8790fff07ece1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTL.png:md5,4a5d75dd36db18701d29e789f86fbb10",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniASTR.png:md5,a5509b9293b71ea035dde7a555454239",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCC.png:md5,976799c731a97a7ef303c302611f823e",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMajor.png:md5,4f576553b46d93a4fe9d7da555497305",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCForcepsMinor.png:md5,a06bd50a5af3e4d9de3a5f7c152a4c66",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCCMid.png:md5,ac3dcee5061c00fd17fe13f62bbe2750",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCL.png:md5,de65878b8a16d85189c59a4ca7e17fb8",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCR.png:md5,0b733dfa2aa333780eb594a75984e0a1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTL.png:md5,be123bb4fd8d5847aca32688e532900b",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniCSTR.png:md5,fbb7ab302978c0f90913129f7eb9bc24",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFLR.png:md5,d5d8c626be042c54341b8e7e24abd289",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTL.png:md5,0be0702e0ab279c2176d9b3fbac35f37",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniFPTR.png:md5,4e9773b341ecc72c8670feba9cc09c45",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPL.png:md5,0b01feb070eb7de8eb22feea33459209",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniICPR.png:md5,b321d22e1a0f477b82052ba669d017db",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFL.png:md5,a07a50711fb1c7fa7905fea5f01dca52",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIFOFR.png:md5,ddc800882e3234b56591ba9d28d8ee9e",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniIITmaskskeletonFA.png:md5,0c335c4259092a903286cf5bb5aa0eb3",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFL.png:md5,ce55d80d713e08bebf967774919a84e0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniILFR.png:md5,e02d04e9c4b6e16dd1a283636b25888f",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMCP.png:md5,7464c409628a5c0242a6edc301725c96",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLL.png:md5,e452797f7ace94ef9ffad945d21f2d3d",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMLR.png:md5,acacd67400434b749a217331a01974d0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFL.png:md5,810d62570e32a7551c47704ce9f3bec1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniMdLFR.png:md5,88f1f04e8c3d4b9104072231a40b148f",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTL.png:md5,66c4ff6d6b65719e15b3833e00599746",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniOPTR.png:md5,1d984291fead15a01b59623445d2c923",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORL.png:md5,1b773906d21875f34cbb0d407360d4c0",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniORR.png:md5,8447befc9f334f69766ecb48d1457dc6",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTL.png:md5,a657d388e6d0f9f8bd2c6b39e210e584",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniPPTR.png:md5,1b3967f23d12dd95fc471200f3141590",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSCP.png:md5,083f85c96ca24a11c4c5513dc7db4df1",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFL.png:md5,a3ee4507256b9219abdc2fc2eeb0b769",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSLFR.png:md5,b279d40ee1c5c5047f2c9f2a72aee626",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTL.png:md5,9daa588b0cac783914b522e30928ae31",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniSTTR.png:md5,9fb195847a6f339237a7649ebfdf4561",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFL.png:md5,4254ddb75a96ac2aeb394fe7a9cc5826",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniUFR.png:md5,1804aa6d9205f871f8e4ff000670fc23",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFL.png:md5,7cf11098554abb57a5b8d2bd06c59361",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniVOFR.png:md5,63b1c451a6c12eacdf81eb59911b2cfa"
+                    ]
+                ],
+                "harmonizedsite": [
+                    "ShamCamCAN.md.clinic.harmonized.csv.gz:md5,0698c8b5f77d21c3eea93d6976ba13de"
+                ],
+                "model": [
+                    "ShamCamCAN-CamCAN.md.clinic.model.csv:md5,462a131a982f42a1e1179125d80e4625"
+                ],
+                "qcreports": [
+                    [
+                        "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt:md5,dfb13dd48fd83432089b6e42fbc6bb12",
+                        "ShamCamCAN.md.raw.bhattacharrya.txt:md5,bd9831bc828c6c78ffa6c46c7194e305"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-25T20:05:40.861847056"
+    },
+    "harmonization - stub-un clinicalcombat": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-25T14:04:23.531459594"
+    },
+    "harmonization - clinicalcombat_clinic": {
+        "content": [
+            {
+                "0": [
+                    "ShamCamCAN-CamCAN.md.clinic.model.csv:md5,3fc2648056caf76ea9201aa16e918232"
+                ],
+                "1": [
+                    "ShamCamCAN.md.clinic.harmonized.csv.gz:md5,739b1b8b25265d2245fe5c9419a41ce2"
+                ],
+                "2": [
+                    [
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,1fb8548942950fed5b590be74a0c8195",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,a57f04cf228003c18a960f475fa37cbc"
+                    ]
+                ],
+                "3": [
+                    [
+                        "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt:md5,fc107f08f85c158d919fe1444f3db6a4",
+                        "ShamCamCAN.md.raw.bhattacharrya.txt:md5,c1ad725d12aa6cd0f3f4e1f358d7b5b4"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+                ],
+                "figures": [
+                    [
+                        "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,1fb8548942950fed5b590be74a0c8195",
+                        "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                        "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,a57f04cf228003c18a960f475fa37cbc"
+                    ]
+                ],
+                "harmonizedsite": [
+                    "ShamCamCAN.md.clinic.harmonized.csv.gz:md5,739b1b8b25265d2245fe5c9419a41ce2"
+                ],
+                "model": [
+                    "ShamCamCAN-CamCAN.md.clinic.model.csv:md5,3fc2648056caf76ea9201aa16e918232"
+                ],
+                "qcreports": [
+                    [
+                        "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt:md5,fc107f08f85c158d919fe1444f3db6a4",
+                        "ShamCamCAN.md.raw.bhattacharrya.txt:md5,c1ad725d12aa6cd0f3f4e1f358d7b5b4"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-25T20:06:29.368552672"
+    }
+}

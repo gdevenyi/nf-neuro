@@ -3,6 +3,7 @@ nextflow_process {
     name "Test Process HARMONIZATION_CLINICALCOMBAT"
     script "../main.nf"
     process "HARMONIZATION_CLINICALCOMBAT"
+    config "./nextflow.config"
 
     tag "modules"
     tag "modules_nfneuro"
@@ -35,10 +36,10 @@ nextflow_process {
                     }
                 input[0] = ch_split_test_data.data.map{
                     test_data_directory -> [
-                        [ id:'test' ],
                         file("\${test_data_directory}/CamCAN.md.raw.csv.gz"),
                         file("\${test_data_directory}/ShamCamCAN.md.raw.csv.gz")
                     ]
+                }
                 """
             }
         }
@@ -61,10 +62,10 @@ nextflow_process {
                     }
                 input[0] = ch_split_test_data.data.map{
                     test_data_directory -> [
-                        [ id:'test' ],
                         file("\${test_data_directory}/CamCAN.md.raw.csv.gz"),
                         file("\${test_data_directory}/ShamCamCAN.md.raw.csv.gz")
                     ]
+                }
                 """
             }
         }
@@ -88,10 +89,10 @@ nextflow_process {
                     }
                 input[0] = ch_split_test_data.data.map{
                     test_data_directory -> [
-                        [ id:'test' ],
                         file("\${test_data_directory}/CamCAN.md.raw.csv.gz"),
                         file("\${test_data_directory}/ShamCamCAN.md.raw.csv.gz")
                     ]
+                }
                 """
             }
         }
