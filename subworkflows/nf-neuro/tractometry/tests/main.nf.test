@@ -86,7 +86,7 @@ nextflow_workflow {
             )
         }
     }
-        test("tractometry_without_centroids") {
+    test("tractometry_without_centroids") {
         config "./nextflow.config"
         when {
             workflow {
