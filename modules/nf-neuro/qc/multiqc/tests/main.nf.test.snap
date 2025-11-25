@@ -1,0 +1,14 @@
+{
+    "multiqc-neuroimaging - stub": {
+        "content": [
+            [
+                "versions.yml:md5,aa55bf84daa12fdc3ed6d3e04fabed5c"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.8"
+        },
+        "timestamp": "2025-11-25T11:31:47.247861"
+    }
+}
