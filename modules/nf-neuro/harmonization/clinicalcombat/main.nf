@@ -32,7 +32,7 @@ process HARMONIZATION_CLINICALCOMBAT {
     def no_eb = task.ext.no_empiral_bayes ? "--no_empiral_bayes " : ""
 
     """
-    combat_quick_fit $ref_site $move_site $method $bundles_list \
+    combat_quick $ref_site $move_site $method $bundles_list \
         $limit_age $ignore_sex $ignore_handedness \
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
         $no_eb
@@ -50,7 +50,7 @@ process HARMONIZATION_CLINICALCOMBAT {
     stub:
     def method = task.ext.method ?: "${task.ext.method}"
     """
-    combat_quick_fit -h
+    combat_quick -h
 
     mkdir -p Figures QC_reports
     touch ref_mov.metric.${method}.model.csv
