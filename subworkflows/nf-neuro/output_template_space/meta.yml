@@ -11,8 +11,8 @@ description: |
     - params.templateflow_home: the path to the templateflow home directory.
       will be used to store the templateflow templates or to fetch them if
       they were already downloaded.
-    - params.template_res: the resolution of the template (e.g., 1)
-    - params.template_cohort: the cohort of the template (e.g., 1)
+    - params.templateflow_res: the resolution of the template (e.g., 1)
+    - params.templateflow_cohort: the cohort of the template (e.g., 1)
 
   An example of how to set the module's ext.args can be find in the
   `test/nextflow.config` file. Additional configuration for local templates
@@ -42,10 +42,10 @@ args:
   - templateflow_home:
       type: string
       description: Path to the templateflow local home directory where files are located and/or downloaded.
-  - template_res:
+  - templateflow_res:
       type: int
       description: Template resolution to use or download.
-  - template_cohort:
+  - templateflow_cohort:
       type: string
       description: Name/type of the cohort to use.
   - run_easyreg:
@@ -125,35 +125,35 @@ output:
         Channel containing the NIfTI files registered into the template space.
         Structure: [ val(meta), [path(nifti1), path(nifti2), path(nifti3), ...] ]
       pattern: "*.{nii,nii.gz}"
-      optional: true
+      mandatory: false
   - ch_registered_mask_files:
       type: file
       description: |
         Channel containing the mask files registered into the template space.
         Structure: [ val(meta), [path(mask1), path(mask2), path(mask3), ...] ]
       pattern: "*.{nii,nii.gz}"
-      optional: true
+      mandatory: false
   - ch_registered_labels_files:
       type: file
       description: |
         Channel containing the label files registered into the template space.
         Structure: [ val(meta), [path(label1), path(label2), path(label3), ...] ]
       pattern: "*.{nii,nii.gz}"
-      optional: true
+      mandatory: false
   - ch_registered_trk_files:
       type: file
       description: |
         Channel containing the TRK files registered into the template space.
         Structure: [ val(meta), [path(trk1), path(trk2), path(trk3), ...] ]
       pattern: "*.trk"
-      optional: true
+      mandatory: false
   - mqc:
       type: file
       description: |
         Channel containing the MultiQC report of the registration.
         Structure: [ path(mqc) ]
       pattern: "*mqc.*"
-      optional: true
+      mandatory: false
   - versions:
       type: file
       description: |

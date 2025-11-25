@@ -82,7 +82,7 @@ output:
         Channel containing QC data for MultiQC reports.
         Structure: [ *mqc.* ]
       pattern: "*mqc.*"
-      optional: true
+      mandatory: false
   - versions:
       type: file
       description: |

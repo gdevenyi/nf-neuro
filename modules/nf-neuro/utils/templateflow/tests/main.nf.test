@@ -69,7 +69,27 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match() }
+                { assert snapshot(process.out.versions).match() },
+                { assert process.out.brain_mask }
+            )
+        }
+    }
+    test("templateflow - stub - no brain mask") {
+        tag "stub"
+        options "-stub"
+        config "./no_brain_mask.config"
+        when {
+            process {
+                """
+                input[0] = ['test']
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.versions).match() },
+                { assert !process.out.brain_mask }
             )
         }
     }
