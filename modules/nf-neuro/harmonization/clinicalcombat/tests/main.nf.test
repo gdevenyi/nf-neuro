@@ -57,7 +57,7 @@ nextflow_process {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
                     .branch{
-                        data: it.simpleName == "harmonizationdata"
+                        data: it.simpleName == "harmonization"
                     }
                 input[0] = ch_split_test_data.data.map{
                     test_data_directory -> [
@@ -84,7 +84,7 @@ nextflow_process {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
                     .branch{
-                        data: it.simpleName == "harmonizationdata"
+                        data: it.simpleName == "harmonization"
                     }
                 input[0] = ch_split_test_data.data.map{
                     test_data_directory -> [
