@@ -52,7 +52,7 @@ process HARMONIZATION_CLINICALCOMBAT {
     """
     combat_quick -h
 
-    mkdir -p Figures QC_reports
+    mkdir -p figures qc_reports
     touch ref_mov.metric.${method}.model.csv
     touch ref_mov.metric.${method}.harmonized.csv.gz
 
