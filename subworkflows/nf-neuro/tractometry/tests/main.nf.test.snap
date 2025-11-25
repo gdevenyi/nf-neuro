@@ -53,7 +53,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-point_stats.tsv"
+                        "test_desc-point_stats.tsv:md5,a0ed4a4079d0d92c2143755e3a4b6887"
                     ]
                 ],
                 "mean_tsv": [
@@ -62,7 +62,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv"
+                        "test_desc-mean_stats.tsv:md5,e6a92bba6cebb698d66903ae3a9e5ca0"
                     ]
                 ],
                 "stat_endpoints_metric": [
@@ -186,7 +186,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.4"
         },
-        "timestamp": "2025-11-25T09:41:53.177439947"
+        "timestamp": "2025-11-25T09:24:03.974057324"
     },
     "tractometry_without_centroids": {
         "content": [
@@ -376,6 +376,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.4"
         },
-        "timestamp": "2025-11-25T09:43:28.549730703"
+        "timestamp": "2025-11-25T09:25:32.002452439"
     }
 }
