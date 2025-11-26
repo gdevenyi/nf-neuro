@@ -42,7 +42,7 @@ args:
       default: ""
       description: |
         Use an alternative atlas to the default BundleSeg one available on Zenodo (https://zenodo.org/records/10103446).
-        The folder MUST follow the same organisation as the default one.
+        The folder MUST follow the same organisation as archive `atlas.zip` hosted on Zenodo at the link above.
 input:
   - ch_fa:
       type: file
