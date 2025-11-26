@@ -9,6 +9,17 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 DOC_URL_BASE="https://nf-neuro.github.io"
 
 
+def li(text):
+    return f"- {str(text)}"
+
+
+def format_choices(choices):
+    if isinstance(choices, str):
+        choices = [c.strip() for c in choices.split(",")]
+
+    return "<br />".join([li(c) for c in choices]) if choices else ""
+
+
 def channel_description_format(description):
     _descr = description.split("\n")
     try:
@@ -55,7 +66,8 @@ def main():
     env.filters.update({
         'component_format': component_format,
         'link_tool': link,
-        'channel_descr': channel_description_format
+        'channel_descr': channel_description_format,
+        'format_choices': format_choices
     })
 
     with open(f"{args.subworkflow_path}/meta.yml", "r") as f:
