@@ -22,6 +22,7 @@ head:
 **Components :** {{ components | map('component_format') | join(', ') }}
 {%- endif %}
 
+{% if input %}
 ---
 
 ### Inputs
@@ -34,6 +35,7 @@ head:
 | {{ name }} | {{ content.type }} | {{ content.description | channel_descr }} | {{ content.mandatory | default(True) }} | {% if content.pattern %} `{{ content.pattern }}` {% endif %} |
 {%- endfor %}
 {%- endfor -%}
+{% endif %}
 
 {% if output %}
 ---
@@ -49,6 +51,23 @@ head:
 {%- endfor %}
 {%- endfor -%}
 {% endif %}
+
+{%- if args is iterable and args | length > 0 -%}
+
+---
+
+## Parameters (see [configuration](https://www.nextflow.io/docs/latest/config.html#parameters))
+
+| | Type | Description | Default | Choices |
+|-|-|-|-|-|
+
+{%- for arg in args %}
+{% for name, content in arg.items() -%}
+| {{ name }} | {{ content.type }} | {{ content.description | replace("\n", " ") }} | {{ content.default }} | {{ content.choices | format_choices }} |
+{%- endfor %}
+{%- endfor %}
+
+{%- endif %}
 
 ---
 
