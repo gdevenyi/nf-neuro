@@ -53,11 +53,12 @@ process BUNDLE_STATS {
     for index in \${!bundles[@]};
     do\
         bname=\$(basename \${bundles[index]} .trk);
+        bname=\${bname/${prefix}__/}
         b_metrics="$metrics";
 
         if [[ "$length_stats" ]];
         then
-            scil_tractogram_print_info \${bundles[index]} > \${bname}_length.json
+            scil_tractogram_print_info \${bundles[index]} > ${prefix}__\${bname}_length.json
         fi
 
         if [[ "$endpoints" ]];
@@ -68,20 +69,20 @@ process BUNDLE_STATS {
                 ${prefix}__\${bname}_endpoints_raw.json;
 
             scil_volume_stats_in_ROI ${prefix}__\${bname}_endpoints_map_head.nii.gz $normalize_weights\
-                --metrics \${b_metrics} > \${bname}_head.json
+                --metrics \${b_metrics} > ${prefix}__\${bname}_head.json
             scil_volume_stats_in_ROI ${prefix}__\${bname}_endpoints_map_tail.nii.gz $normalize_weights\
-                --metrics \${b_metrics} > \${bname}_tail.json;
+                --metrics \${b_metrics} > ${prefix}__\${bname}_tail.json;
             fi
 
         if [[ "$mean_std" ]];
         then
             scil_bundle_mean_std $density_weighting \${bundles[index]} \${b_metrics} >\
-                \${bname}__std.json
+                ${prefix}__\${bname}__std.json
         fi
 
         if [[ "$volume" ]];
         then
-            scil_bundle_shape_measures \${bundles[index]} > \${bname}_volume_stat.json
+            scil_bundle_shape_measures \${bundles[index]} > ${prefix}__\${bname}_volume_stat.json
 
             if [[ "$lesions_stats" ]];
             then
@@ -94,17 +95,17 @@ process BUNDLE_STATS {
 
         if [[ "$streamline_count" ]];
         then
-            scil_tractogram_count_streamlines \${bundles[index]} > \${bname}_streamlines.json
+            scil_tractogram_count_streamlines \${bundles[index]} > ${prefix}__\${bname}_streamlines.json
         fi
 
         if [[ "$volume_per_labels" ]];
         then
             scil_bundle_volume_per_label \${label_map[index]} \$bname --sort_keys >\
-                \${bname}_volume_label.json
+                ${prefix}__\${bname}_volume_label.json
 
             if [[ "$lesions_stats" ]];
             then
-                scil_lesions_info $lesions \${bname}_volume_per_label_lesions_stat.json \
+                scil_lesions_info $lesions ${prefix}__\${bname}_volume_per_label_lesions_stat.json \
                     --bundle_labels_map \${label_map[index]} \
                     --out_lesion_atlas "${prefix}__\${bname}_lesion_map.nii.gz" \
                     --min_lesion_vol $min_lesion_vol
@@ -114,7 +115,7 @@ process BUNDLE_STATS {
         if [[ "$mean_std_per_point" ]];
         then
             scil_bundle_mean_std \${bundles[index]} \${b_metrics}\
-                --per_point \${label_map[index]} --sort_keys $density_weighting > \${bname}_std_per_point.json
+                --per_point \${label_map[index]} --sort_keys $density_weighting > ${prefix}__\${bname}_std_per_point.json
         fi
     done
 
@@ -205,14 +206,16 @@ process BUNDLE_STATS {
             # Get sample data
             .[\$sid] as \$s
 
-            # Extract all metric names from nested objects
+            # Extract all metric names from nested objects, removing prefix
             | ( [ \$s | to_entries[]
                 | select(.value | type == "object")
                 | (.value | to_entries
                     | map(select(.value | type == "object" and has("mean"))
                         | (.key
+                            | sub("^" + \$sid + "__"; "")
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
                             elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
                             else . end
                         )
                     )
@@ -229,12 +232,14 @@ process BUNDLE_STATS {
             (\$s | to_entries[]
                 | select(.value | type == "object")
                 | . as \$b
-                # Extract mean values for each metric
+                # Extract mean values for each metric, removing prefix from keys
                 | (\$b.value | to_entries
                     | map(select(.value | type == "object" and has("mean"))
                         | {((.key
+                            | sub("^" + \$sid + "__"; "")
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
                             elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
                             else . end
                         )): .value.mean}
                     )
@@ -309,11 +314,14 @@ process BUNDLE_STATS {
                     | unique | sort
                 ) as \$points
 
-                # Normalize metric names
+                # Normalize metric names, removing prefix
                 | (\$me
                     | map({
-                        key: (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
+                        key: (.key
+                            | sub("^" + \$sid + "__"; "")
+                            | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
                             elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
                             else . end),
                         value: .value
                     })
@@ -363,8 +371,8 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of all metric keys across bundles
-            | (\$bundles | map(.value | keys) | add // [] | unique | sort) as \$metrics
+            # Get union of all metric keys across bundles, removing prefix
+            | (\$bundles | map(.value | keys | map(sub("^" + \$sid + "__"; ""))) | add // [] | unique | sort) as \$metrics
 
             # Create header row
             | (["sample", "bundle"] + \$metrics) | @tsv,
@@ -373,11 +381,13 @@ process BUNDLE_STATS {
             (\$bundles[]
                 | . as \$b
                 | (\$b.value) as \$vals
+                # Build metric map with cleaned keys
+                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
                 # Build row: sample, cleaned bundle name, then metric values
                 | ([\$sid,
                     (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
                         | gsub("(_volume_stat|_labels_uniformized)\$"; ""))]
-                    + (\$metrics | map((\$vals[.] // ""))))
+                    + (\$metrics | map((\$cleaned_vals[.] // ""))))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -398,9 +408,9 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of metric keys (excluding internal data keys)
+            # Get union of metric keys (excluding internal data keys), removing prefix
             | (\$bundles
-                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys"])
+                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys"] | map(sub("^" + \$sid + "__"; "")))
                 | add // []
                 | unique | sort) as \$metrics
 
@@ -411,11 +421,13 @@ process BUNDLE_STATS {
             (\$bundles[]
                 | . as \$b
                 | (\$b.value) as \$vals
+                # Build metric map with cleaned keys
+                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
                 # Build row: sample, cleaned bundle name, then metric values
                 | ([\$sid,
                     (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
                         | gsub("(_volume_stat|_labels_uniformized|_length)\$"; ""))]
-                    + (\$metrics | map((\$vals[.] // ""))))
+                    + (\$metrics | map((\$cleaned_vals[.] // ""))))
                 | @tsv
             )
         ' "\$f" > "\$out"
@@ -436,9 +448,9 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of metric keys (excluding internal data keys)
+            # Get union of metric keys (excluding internal data keys), removing prefix
             | (\$bundles
-                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys"])
+                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys"] | map(sub("^" + \$sid + "__"; "")))
                 | add // []
                 | unique | sort) as \$metrics
 
@@ -456,6 +468,9 @@ process BUNDLE_STATS {
                     | add // []
                     | unique | sort) as \$bpoints
 
+                # Build metric map with cleaned keys
+                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
+
                 # If no points, create single row; otherwise one row per point
                 | ((\$bpoints | length) as \$n
                     | if \$n == 0 then
@@ -464,7 +479,7 @@ process BUNDLE_STATS {
                             (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
                                 | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
                             ""]
-                            + (\$metrics | map((\$vals[.] // ""))))
+                            + (\$metrics | map((\$cleaned_vals[.] // ""))))
                     else
                         # Multiple points - one row per point
                         (\$bpoints[]
@@ -474,9 +489,9 @@ process BUNDLE_STATS {
                                     | gsub("(_volume_stat|_labels_uniformized|_length)\$"; "")),
                                 \$pt]
                                 + (\$metrics | map(
-                                    if (\$vals[.] | type) == "object"
-                                    then (\$vals[.][\$pt] // "")
-                                    else (\$vals[.] // "") end
+                                    if (\$cleaned_vals[.] | type) == "object"
+                                    then (\$cleaned_vals[.][\$pt] // "")
+                                    else (\$cleaned_vals[.] // "") end
                                 )))
                         )
                     end
@@ -501,8 +516,8 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of all metric keys across bundles
-            | (\$bundles | map(.value | keys) | add // [] | unique | sort) as \$metrics
+            # Get union of all metric keys across bundles, removing prefix
+            | (\$bundles | map(.value | keys | map(sub("^" + \$sid + "__"; ""))) | add // [] | unique | sort) as \$metrics
 
             # Create header row with "lesion" column
             | (["sample", "bundle", "lesion"] + \$metrics) | @tsv,
@@ -511,17 +526,19 @@ process BUNDLE_STATS {
             (\$bundles[]
                 | . as \$b
                 | (\$b.value) as \$vals
+                # Build metric map with cleaned keys
+                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
                 # For each metric that has nested lesion data
                 | (\$metrics[] as \$metric
-                    | if (\$vals[\$metric] | type) == "object" then
+                    | if (\$cleaned_vals[\$metric] | type) == "object" then
                         # Extract lesion IDs for this metric
-                        (\$vals[\$metric] | keys) as \$lesion_ids
+                        (\$cleaned_vals[\$metric] | keys) as \$lesion_ids
                         | \$lesion_ids[] as \$lesion_id
                         | [\$sid,
                             (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
                                 | gsub("(_streamline_count_lesions_stat|_volume_stat|_labels_uniformized)\$"; "")),
                             \$lesion_id,
-                            \$vals[\$metric][\$lesion_id]]
+                            \$cleaned_vals[\$metric][\$lesion_id]]
                     else
                         empty
                     end
@@ -546,9 +563,9 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of metric keys, excluding lesion_volume
+            # Get union of metric keys, excluding lesion_volume, removing prefix
             | (\$bundles
-                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys", "lesion_volume"])
+                | map(.value | keys - ["data_per_point_keys", "data_per_streamline_keys", "lesion_volume"] | map(sub("^" + \$sid + "__"; "")))
                 | add // []
                 | unique | sort) as \$metrics
 
@@ -560,9 +577,12 @@ process BUNDLE_STATS {
                 | . as \$b
                 | (\$b.value) as \$vals
 
+                # Build metric map with cleaned keys
+                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
+
                 # Get all point labels (lesion IDs) for this bundle
                 | ([
-                    \$vals | to_entries[]
+                    \$cleaned_vals | to_entries[]
                     | select(.value | type == "object")
                     | .value | keys
                     ] | add // [] | unique | sort) as \$point_ids
@@ -574,11 +594,11 @@ process BUNDLE_STATS {
                         | gsub("(_volume_per_label_lesions_stat|_volume_stat|_labels_uniformized|_length)\$"; "")),
                     \$pt]
                 + (\$metrics | map(
-                    if (\$vals[.] | type) == "object" then
+                    if (\$cleaned_vals[.] | type) == "object" then
                         # Object format: metric -> point_id -> value
-                        (\$vals[.][\$pt] // "")
+                        (\$cleaned_vals[.][\$pt] // "")
                     else
-                        (\$vals[.] // "")
+                        (\$cleaned_vals[.] // "")
                     end
                 ))
                 | @tsv
