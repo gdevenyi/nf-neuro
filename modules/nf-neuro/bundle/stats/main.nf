@@ -49,12 +49,25 @@ process BUNDLE_STATS {
     """
     bundles=( ${bundles.join(" ")} )
     label_map=( ${labels_map.join(" ")} )
+    metrics=( ${metrics.join(" ")} )
 
     for index in \${!bundles[@]};
     do\
         bname=\$(basename \${bundles[index]} .trk);
         bname=\${bname/${prefix}__/}
-        b_metrics="$metrics";
+        bname=\${bname%%_labels_*}
+
+        echo "Bundle name: \${bname}"
+
+        # Initialize array for all relevant metrics
+        b_metrics=()
+
+        for m in \${!metrics[@]}; do
+            # Include if: matches bname OR is not an afd_metric file
+            if [[ "\${metrics[\$m]}" == *"\${bname}"* ]] || [[ "\${metrics[\$m]}" != *"afd_metric"* ]]; then
+                b_metrics+=("\${metrics[\$m]}")
+            fi
+        done
 
         if [[ "$length_stats" ]];
         then
@@ -69,14 +82,14 @@ process BUNDLE_STATS {
                 ${prefix}__\${bname}_endpoints_raw.json;
 
             scil_volume_stats_in_ROI ${prefix}__\${bname}_endpoints_map_head.nii.gz $normalize_weights\
-                --metrics \${b_metrics} > ${prefix}__\${bname}_head.json
+                --metrics \${b_metrics[@]} > ${prefix}__\${bname}_head.json
             scil_volume_stats_in_ROI ${prefix}__\${bname}_endpoints_map_tail.nii.gz $normalize_weights\
-                --metrics \${b_metrics} > ${prefix}__\${bname}_tail.json;
+                --metrics \${b_metrics[@]} > ${prefix}__\${bname}_tail.json;
             fi
 
         if [[ "$mean_std" ]];
         then
-            scil_bundle_mean_std $density_weighting \${bundles[index]} \${b_metrics} >\
+            scil_bundle_mean_std $density_weighting \${bundles[index]} \${b_metrics[@]} >\
                 ${prefix}__\${bname}__std.json
         fi
 
@@ -114,7 +127,7 @@ process BUNDLE_STATS {
 
         if [[ "$mean_std_per_point" ]];
         then
-            scil_bundle_mean_std \${bundles[index]} \${b_metrics}\
+            scil_bundle_mean_std \${bundles[index]} \${b_metrics[@]}\
                 --per_point \${label_map[index]} --sort_keys $density_weighting > ${prefix}__\${bname}_std_per_point.json
         fi
     done
@@ -150,7 +163,7 @@ process BUNDLE_STATS {
     if [[ "$volume" ]];
     then
         echo "Merging Bundle_Volume"
-        scil_json_merge_entries *_volume_stat.json ${prefix}__volume.json --no_list --add_parent_key ${prefix}
+        scil_json_merge_entries *_volume_stat.json ${prefix}__volume.json --no_list --add_parent_key ${prefix} --keep_separate
 
         if [[ "$lesions_stats" ]];
         then
@@ -214,8 +227,7 @@ process BUNDLE_STATS {
                         | (.key
                             | sub("^" + \$sid + "__"; "")
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
-                            elif test("_afd_fixel_metric\$") then "afd_fixel"
-                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
+                            elif test("_afd_metric\$") then "afd_fixel"
                             else . end
                         )
                     )
@@ -238,8 +250,7 @@ process BUNDLE_STATS {
                         | {((.key
                             | sub("^" + \$sid + "__"; "")
                             | if test("desc-") then capture("desc-(?<m>[^:]+)\$").m
-                            elif test("_afd_fixel_metric\$") then "afd_fixel"
-                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
+                            elif test("_afd_metric\$") then "afd_fixel"
                             else . end
                         )): .value.mean}
                     )
@@ -265,20 +276,24 @@ process BUNDLE_STATS {
             # Get sample data
             .[\$sid] as \$s
 
-            # Extract all metric names (handling both simple and per-point metrics)
+            # Extract all metric names (handling both simple and per-point metrics), removing prefix
             | ( [ \$s | to_entries[]
                 | select(.value | type == "object")
                 | (.value | to_entries
                     | map(
                         if .value | has("mean") then
                             # Simple metric with direct mean
-                            (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                                elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            (.key
+                                | sub("^" + \$sid + "__"; "")
+                                | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
+                                elif test("_afd_metric\$") then "afd_fixel"
                                 else . end)
                         elif (.value | type == "object") then
                             # Per-point metric
-                            (.key | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                                elif test("_afd_fixel_metric\$") then "afd_fixel"
+                            (.key
+                                | sub("^" + \$sid + "__"; "")
+                                | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
+                                elif test("_afd_metric\$") then "afd_fixel"
                                 else . end)
                         else empty end
                     )
@@ -320,8 +335,7 @@ process BUNDLE_STATS {
                         key: (.key
                             | sub("^" + \$sid + "__"; "")
                             | if test("desc-") then capture("desc-(?<metric>[^:]+)\$").metric
-                            elif test("_afd_fixel_metric\$") then "afd_fixel"
-                            elif test("_afd_metric\$") then sub("_afd_metric\$"; "_afd")
+                            elif test("_afd_metric\$") then "afd_fixel"
                             else . end),
                         value: .value
                     })
@@ -371,8 +385,8 @@ process BUNDLE_STATS {
             # Collect bundles that are objects
             | (\$s | to_entries | map(select(.value | type == "object"))) as \$bundles
 
-            # Get union of all metric keys across bundles, removing prefix
-            | (\$bundles | map(.value | keys | map(sub("^" + \$sid + "__"; ""))) | add // [] | unique | sort) as \$metrics
+            # Get union of all metric keys across bundles (no prefix removal needed - values are plain)
+            | (\$bundles | map(.value | keys) | add // [] | unique | sort) as \$metrics
 
             # Create header row
             | (["sample", "bundle"] + \$metrics) | @tsv,
@@ -381,13 +395,11 @@ process BUNDLE_STATS {
             (\$bundles[]
                 | . as \$b
                 | (\$b.value) as \$vals
-                # Build metric map with cleaned keys
-                | (\$vals | to_entries | map({key: (.key | sub("^" + \$sid + "__"; "")), value: .value}) | from_entries) as \$cleaned_vals
                 # Build row: sample, cleaned bundle name, then metric values
                 | ([\$sid,
                     (\$b.key | sub("^" + \$sid + "__"; "") | gsub("_cleaned"; "")
                         | gsub("(_volume_stat|_labels_uniformized)\$"; ""))]
-                    + (\$metrics | map((\$cleaned_vals[.] // ""))))
+                    + (\$metrics | map((\$vals[.] // ""))))
                 | @tsv
             )
         ' "\$f" > "\$out"
