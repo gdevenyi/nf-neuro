@@ -29,7 +29,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,d1a3d0a95f689185c564e3aeea2ceaa6"
+                        "test_desc-mean_stats.tsv:md5,3ccf55bb588f464b994f2dec4dcbcb8a"
                     ]
                 ],
                 "2": [
@@ -38,7 +38,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.tsv:md5,54ea06360b1f19dfcf85020931440e50"
+                        "test_desc-std_stats.tsv:md5,839dffc28119ba0e6c3e5c627a500802"
                     ]
                 ],
                 "3": [
@@ -59,7 +59,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,d1a3d0a95f689185c564e3aeea2ceaa6"
+                        "test_desc-mean_stats.tsv:md5,3ccf55bb588f464b994f2dec4dcbcb8a"
                     ]
                 ],
                 "stats_std": [
@@ -68,7 +68,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.tsv:md5,54ea06360b1f19dfcf85020931440e50"
+                        "test_desc-std_stats.tsv:md5,839dffc28119ba0e6c3e5c627a500802"
                     ]
                 ],
                 "versions": [
@@ -80,7 +80,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-28T11:06:01.309193"
+        "timestamp": "2025-11-28T15:46:19.423565"
     },
     "stats - metrics in Label": {
         "content": [
@@ -100,7 +100,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,198cc268a580aeb5704e9972450ebcdb"
+                        "test_desc-mean_stats.tsv:md5,4252c17f0f9a9cfb96f0b3f84e5a00d3"
                     ]
                 ],
                 "2": [
@@ -109,7 +109,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.tsv:md5,0077c0f4581e33c15ffae05872da9c50"
+                        "test_desc-std_stats.tsv:md5,fb3927a64184d184740274e1118fa5c6"
                     ]
                 ],
                 "3": [
@@ -130,7 +130,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.tsv:md5,198cc268a580aeb5704e9972450ebcdb"
+                        "test_desc-mean_stats.tsv:md5,4252c17f0f9a9cfb96f0b3f84e5a00d3"
                     ]
                 ],
                 "stats_std": [
@@ -139,7 +139,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.tsv:md5,0077c0f4581e33c15ffae05872da9c50"
+                        "test_desc-std_stats.tsv:md5,fb3927a64184d184740274e1118fa5c6"
                     ]
                 ],
                 "versions": [
@@ -151,7 +151,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-28T11:06:27.314522"
+        "timestamp": "2025-11-28T15:46:54.644964"
     },
     "stats - metrics in ROI - csv": {
         "content": [
@@ -171,7 +171,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.csv:md5,90fe474d14e2342298b92b9a89ae5ff3"
+                        "test_desc-mean_stats.csv:md5,9a2e347e4427811ffb352d144b510283"
                     ]
                 ],
                 "2": [
@@ -180,7 +180,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.csv:md5,48d581257c6993a0c7a66ec2fdb329a4"
+                        "test_desc-std_stats.csv:md5,34a487ce1fcab0a28a3bb522c08fd3e4"
                     ]
                 ],
                 "3": [
@@ -201,7 +201,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-mean_stats.csv:md5,90fe474d14e2342298b92b9a89ae5ff3"
+                        "test_desc-mean_stats.csv:md5,9a2e347e4427811ffb352d144b510283"
                     ]
                 ],
                 "stats_std": [
@@ -210,7 +210,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_desc-std_stats.csv:md5,48d581257c6993a0c7a66ec2fdb329a4"
+                        "test_desc-std_stats.csv:md5,34a487ce1fcab0a28a3bb522c08fd3e4"
                     ]
                 ],
                 "versions": [
@@ -222,6 +222,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-11-28T11:06:11.006113"
+        "timestamp": "2025-11-28T15:46:33.298563"
     }
 }
