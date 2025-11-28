@@ -107,7 +107,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*_desc-mean_*.{csv,tsv}":
           type: file
-          description: Tabular file containing rows of (sid, roi, mean_metric1, mean_metric1, ...). Can be
+          description: Tabular file containing rows of (sid, roi, mean_metric1, mean_metric2, ...). Can be
             either TSV or CSV depending on the output_format argument.
           pattern: "*_desc-mean_*.{csv,tsv}"
           ontologies:
