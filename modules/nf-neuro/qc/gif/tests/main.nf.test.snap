@@ -2,14 +2,14 @@
     "mqc - stub-run": {
         "content": [
             [
-                "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                "versions.yml:md5,ade0e054722123e696be303714de5eec"
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-09-22T19:14:24.430447807"
+        "timestamp": "2025-11-28T11:39:10.540473047"
     },
     "mqc - 4d": {
         "content": [
@@ -24,7 +24,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ],
                 "mqc_screenshots": [
                     [
@@ -36,15 +36,15 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-09-24T22:14:20.381686"
+        "timestamp": "2025-11-28T11:38:41.778640813"
     },
     "mqc - option": {
         "content": [
@@ -59,7 +59,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ],
                 "mqc_screenshots": [
                     [
@@ -71,15 +71,15 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-09-24T22:08:05.756801"
+        "timestamp": "2025-11-28T11:33:02.606304636"
     },
     "mqc - comparison": {
         "content": [
@@ -94,7 +94,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ],
                 "mqc_screenshots": [
                     [
@@ -106,14 +106,14 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,8b1d9a1d7f1818ee1df135c8014bd00f"
+                    "versions.yml:md5,ade0e054722123e696be303714de5eec"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.04.7"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-09-24T22:07:09.389301"
+        "timestamp": "2025-11-28T11:32:03.50310735"
     }
 }

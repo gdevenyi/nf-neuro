@@ -1,13 +1,13 @@
 nextflow_process {
 
-    name "Test Process MQC_GIF"
+    name "Test Process QC_GIF"
     script "../main.nf"
-    process "MQC_GIF"
+    process "QC_GIF"
 
     tag "modules"
     tag "modules_nfneuro"
     tag "mqc"
-    tag "mqc/gif"
+    tag "qc/gif"
 
     tag "subworkflows"
     tag "subworkflows/load_test_data"

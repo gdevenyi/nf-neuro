@@ -1,4 +1,4 @@
-name: "mqc_gif"
+name: "qc_gif"
 description: generates quality control (QC) screenshots between two MRI volumes or,
   if you give only one input, runs through all the images in a volume in 4d. It extracts
   the central sections (sagittal, coronal and axial) of the volumes, creates annotated
