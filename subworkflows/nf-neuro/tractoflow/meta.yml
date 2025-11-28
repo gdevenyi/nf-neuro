@@ -127,7 +127,7 @@ args:
       type: boolean
       description: Enable N4 bias field correction for T1 image.
       default: true
-  - preproc_t1_run_synthbet:
+  - preproc_t1_run_synthstrip:
       type: boolean
       description: Enable SynthStrip brain extraction for T1 image.
       default: false

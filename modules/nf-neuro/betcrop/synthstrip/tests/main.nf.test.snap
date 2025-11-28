@@ -1,17 +1,5 @@
 {
-    "betcrop - synthbet - stub-run": {
-        "content": [
-            [
-                "versions.yml:md5,c639461870ca534b5105f61d672f740f"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.1"
-        },
-        "timestamp": "2024-12-12T10:54:37.644838"
-    },
-    "betcrop - synthbet": {
+    "betcrop - synthstrip": {
         "content": [
             {
                 "0": [
@@ -33,7 +21,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,c639461870ca534b5105f61d672f740f"
+                    "versions.yml:md5,75d1b1a94fe991e1e0e25a4cb899d745"
                 ],
                 "bet_image": [
                     [
@@ -54,14 +42,26 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,c639461870ca534b5105f61d672f740f"
+                    "versions.yml:md5,75d1b1a94fe991e1e0e25a4cb899d745"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.0"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2024-11-25T18:19:01.459548926"
+        "timestamp": "2025-11-28T00:24:49.101635296"
+    },
+    "betcrop - synthstrip - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,75d1b1a94fe991e1e0e25a4cb899d745"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-11-28T00:25:10.867595936"
     }
 }
