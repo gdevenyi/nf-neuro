@@ -1,19 +1,19 @@
 nextflow_process {
 
-    name "Test Process BETCROP_SYNTHBET"
+    name "Test Process BETCROP_SYNTHSTRIP"
     script "../main.nf"
-    process "BETCROP_SYNTHBET"
+    process "BETCROP_SYNTHSTRIP"
     config "./nextflow.config"
 
     tag "modules"
     tag "modules_nfneuro"
     tag "betcrop"
-    tag "betcrop/synthbet"
+    tag "betcrop/synthstrip"
 
     tag "subworkflows"
     tag "subworkflows/load_test_data"
 
-    test("betcrop - synthbet") {
+    test("betcrop - synthstrip") {
         setup {
             run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
                 script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
@@ -46,7 +46,7 @@ nextflow_process {
         }
     }
 
-    test("betcrop - synthbet - stub-run") {
+    test("betcrop - synthstrip - stub-run") {
         tag "stub"
         options "-stub-run"
         setup {

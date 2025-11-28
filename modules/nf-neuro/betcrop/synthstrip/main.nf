@@ -1,4 +1,4 @@
-process BETCROP_SYNTHBET {
+process BETCROP_SYNTHSTRIP {
     tag "$meta.id"
     label 'process_single'
 
