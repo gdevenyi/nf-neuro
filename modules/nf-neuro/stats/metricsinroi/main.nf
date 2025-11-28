@@ -87,9 +87,9 @@ process STATS_METRICSINROI {
     metrics=\$(FIRST_ROI="\$first_roi" jq -r ".\\"\$first_roi\\" | keys[]" ${prefix}_${suffix}.json)
 
     # Create the CSV/TSV headers
-    # (SID, roi, metric1, metric2, ..., metricN)
-    header_mean="sid${sep}roi"
-    header_std="sid${sep}roi"
+    # (sample, roi, metric1, metric2, ..., metricN)
+    header_mean="sample${sep}roi"
+    header_std="sample${sep}roi"
     for metric in \$metrics; do
         header_mean="\${header_mean}${sep}\${metric}"
         header_std="\${header_std}${sep}\${metric}"
@@ -99,7 +99,7 @@ process STATS_METRICSINROI {
 
     for roi in \$rois;
     do
-        # Initialize lines with SID and roi
+        # Initialize lines with sample and roi
         line_mean="${prefix}${sep}\${roi}"
         line_std="${prefix}${sep}\${roi}"
 
