@@ -6,7 +6,7 @@ nextflow_process {
 
     tag "modules"
     tag "modules_nfneuro"
-    tag "mqc"
+    tag "qc"
     tag "qc/gif"
 
     tag "subworkflows"

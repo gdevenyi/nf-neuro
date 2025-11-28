@@ -4,7 +4,7 @@ description: generates quality control (QC) screenshots between two MRI volumes 
   the central sections (sagittal, coronal and axial) of the volumes, creates annotated
   mosaics and combines them into an animated GIF for rapid visual comparison.
 keywords:
-  - mqc
+  - qc
   - Visualisation
   - gif
 tools:
