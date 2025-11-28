@@ -18,27 +18,53 @@ description: |
 
   ---------  Steps  --------------------
 
-  1. Brain Extraction (bet, FSL).
-      Extract brain mask from the b0 image and applied to the whole DWI.
-      This brain extraction is required to remove the skull and prepare the DWI to the T1 Registration.
-  2. Denoising (dwidenoise, MPPCA method, MRtrix3).
+  1. Denoising (dwidenoise, MPPCA method, MRtrix3) - optional
+
       Used to remove the noise induced by the MRI acquisition,
       enhance the signal to noise ratio and improve the image quality and following metrics.
       The denoising is performed in the original spatial resolution and uses the MP-PCA method.
-  3. Topup (FSL - optional).
+
+  2. Gibbs artifact removal (mrdegibbs, MRtrix3) - optional
+
+      Used to remove the Gibbs ringing artifacts that can be observed
+      as oscillations near sharp image edges. This artifact is due to the
+      truncation of the k-space during MRI acquisition.
+      The Gibbs artifact removal is performed in the original spatial resolution and
+      running the algorithm on gibbs-free images does not lead to data degradation.
+
+  3. Brain Extraction (bet, FSL)
+
+      Extract brain mask from the b0 image and applied to the whole DWI.
+      This brain extraction is required to remove the skull and prepare the DWI to the T1 Registration.
+
+  4. Topup (FSL) - optional
+
       Topup uses the b=0 and reversed phase encoded b=0 images to extract the deformation field and
       corrects the brain deformation induced by the magnetic field susceptibility artefacts.
-  4. Eddy (FSL).
+
+  5. Eddy (FSL) - optional
+
       Eddy corrects eddy-currents, motion artefacts and performs slice-wise outlier detection and correction.
       When Topup is run, the eddy command is performed using the topup output.
-  5. N4 Bias Correction (N4BiasFieldCorrection, ANTs).
+
+  6. Image Cropping (scil_crop_volume, Scilpy, Dipy)
+
+      The DWI is cropped to reduce the image size and optimize the computation time of the next steps.
+      The bounding box is computed on the brain mask extracted from the b0 image.
+
+  7. N4 Bias Correction (N4BiasFieldCorrection, ANTs) - optional
+
       The N4 Bias Correction normalizes the image intensities and reduces this intensity bias
       (the center of the brain is less intense than its outer boundary due to multi-channel
       head coils). N4 correction is performed on the b=0 and applied to the whole DWI.
-  6. Normalize (dwinormalise, MRtrix3).
+
+  8. Normalize (dwinormalise, MRtrix3)
+
       The DWI is normalized to have a mean value in the WM of approximately 1000.
       This task permits analyzing datasets from different MRI scanners with the same acquisition scheme.
-  7. Resample (DIPY).
+
+  9. Resample (DIPY)
+
       The DWI is resampled to 1 mm isotropic spatial resolution, which is usually the spatial
       resolution of the T1. This spatial resolution is modifiable in the configuration file.
 
