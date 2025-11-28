@@ -1,4 +1,4 @@
-process MQC_GIF {
+process QC_GIF {
     tag "$meta.id"
     label 'process_single'
 
