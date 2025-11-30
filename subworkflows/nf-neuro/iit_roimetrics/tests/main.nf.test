@@ -1,0 +1,30 @@
+nextflow_workflow {
+
+    name "Test Subworkflow ATLAS_IIT"
+    script "../main.nf"
+    workflow "ATLAS_IIT"
+
+    config "../nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfneuro"
+    tag "subworkflows/atlas_iit"
+    tag "subworkflows/iit_roimetrics"
+
+    tag "stats/metricsinroi"
+    tag "registration/ants"
+    tag "registration/antsapplytransform"
+
+    test("iit_roimetrics - process") {
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    workflow.out.json,
+                    workflow.out.tab_mean,
+                    workflow.out.tab_std,
+                    workflow.out.versions).match() }
+            )
+        }
+    }
+}
