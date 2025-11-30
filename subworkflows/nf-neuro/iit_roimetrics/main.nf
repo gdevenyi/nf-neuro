@@ -19,6 +19,7 @@ workflow IIT_ROIMETRICS {
         .combine(ATLAS_IIT.out.b0)
         .map{ meta, b0, template_b0 -> [meta, b0, template_b0, []] }
     REGISTER_ATLAS_B0(ch_input_register_iit)
+    ch_versions = ch_versions.mix(REGISTER_ATLAS_B0.out.versions)
 
     // Apply the transformation to subject space to the bundles
     ch_iit_transform_bundles = ch_b0
@@ -43,6 +44,7 @@ workflow IIT_ROIMETRICS {
         }
 
     STATS_METRICSINROI(ch_input_metricsinroi)
+    ch_versions = ch_versions.mix(STATS_METRICSINROI.out.versions)
 
     emit:
     json        = STATS_METRICSINROI.out.stats_json
