@@ -1,0 +1,2 @@
+qc/gif:
+  - "modules/nf-neuro/qc/gif/**"

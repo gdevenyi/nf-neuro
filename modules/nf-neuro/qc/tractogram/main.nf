@@ -20,9 +20,6 @@ process QC_TRACTOGRAM {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def values = meta.values() as List
-    prefix = values.size() > 1 ? "${meta.id}_${values[1]}" : meta.id
-
     def sh_basis = task.ext.sh_basis ? "--sh_basis ${task.ext.sh_basis}" : ''
     def sphere = task.ext.sphere ? "--sphere ${task.ext.sphere}" : ''
     def sh_order = task.ext.sh_order ? "--sh_order ${task.ext.sh_order}" : ''
