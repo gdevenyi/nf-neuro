@@ -1,26 +1,25 @@
 name: "harmonization_clinicalcombat"
 description: ComBAT harmonization of clinical MRI data. It's a ComBAT
-  implementations for adapting sites to a reference site
-  along with ready-to-run scripts to prepare datasets,
-  fit a model, apply the harmonization and analyze the outputs.
-  Two harmonization methods are available pairwise (linear) and clinic (non-linear).
+  implementations for adapting sites to a reference site along with ready-to-run
+  scripts to prepare datasets, fit a model, apply the harmonization and analyze
+  the outputs. Two harmonization methods are available pairwise (linear) and
+  clinic (non-linear).
 keywords:
-- Harmonization
-- Pairwise
-- Clinical
-- ComBAT
+  - Harmonization
+  - Pairwise
+  - Clinical
+  - ComBAT
 tools:
-- "clinical-ComBAT":
-    description: ""
-    homepage: "https://github.com/scil-vital/clinical-ComBAT"
-    doi: "10.48550/arXiv.2511.04871"
-    licence: "CC BY-NC-SA 4.0"
-    identifier: ""
+  - "clinical-ComBAT":
+      description: "Method for harmonizing MRI data across different sites."
+      homepage: "https://github.com/scil-vital/clinical-ComBAT"
+      doi: "10.48550/arXiv.2511.04871"
+      identifier: ""
 args:
   - method:
       type: string
-      description: |
-        Harmonization strategy to use: clinic (non-linear) or pairwise (linear)
+      description: Harmonization strategy to use clinic (non-linear) or pairwise
+        (linear)
       default: clinic
   - bundles:
       type: list
@@ -51,7 +50,7 @@ args:
       default: disabled
   - regul_ref:
       type: integer
-      description:  |
+      description: |
         Ridge penalty applied to reference regression.
         Parameter use for clinic method only.
       default: 0
@@ -74,7 +73,6 @@ args:
         Variance hyperparameter for the moving site.
         Parameter use for clinic method only.
       default: 5
-      choices: "tournier07, descoteaux07, descoteaux07_legacy, tournier07_legacy"
   - tau:
       type: integer
       description: |
@@ -86,22 +84,24 @@ args:
       description: QC model degree override (0 reuses the harmonization degree).
       default: 0
 input:
-    - ref_site:
+  - - ref_site:
         type: file
         description: |
           CSV for Reference site data for one metric, all bundles and subjects.
           Must include sid,site,bundle,metric,mean,age,sex,handedness,disease.
           The Disease column must include at least the label HC.
         pattern: "*.{csv,csv.gz}"
-    - mov_site:
+        ontologies:
+          - edam: http://edamontology.org/format_3752 # CSV
+    - move_site:
         type: file
         description: |
-          CSV for moving site data for one metric, all bundles and subjects.
+          CSV for Moving site data for one metric, all bundles and subjects.
           Must include sid,site,bundle,metric,mean,age,sex,handedness,disease.
-          If one of the expected covariates (sex, handedness) is missing,
-          assign the same value to all subjects (1 or 0).
           The Disease column must include at least the label HC.
-        pattern:  "*.{csv,csv.gz}"
+        pattern: "*.{csv,csv.gz}"
+        ontologies:
+          - edam: http://edamontology.org/format_3752 # CSV
 output:
   model:
     - "*.model.csv":
@@ -111,33 +111,30 @@ output:
         ontologies:
           - edam: http://edamontology.org/format_3752
   harmonizedsite:
-    - "*.csv.gz":
+    - "*.harmonized.csv.gz":
         type: file
-        description: Moving site harmonized data.
-        pattern: "*.csv.gz"
-        ontologies:""
+        description: Harmonized moving site data.
+        pattern: "*.harmonized.csv.gz"
+        ontologies:
+          - edam: http://edamontology.org/format_3752 # CSV
   bdqc:
-    - "*.bhattacharrya.txt":
-        type: file
-        description: Bhattacharrya distance (QC) data before and after harmonization.
-        pattern: "*.bhattacharrya.txt"
-        ontologies:
-          - edam: http://edamontology.org/format_2330
+    - qc_reports:
+        type: directory
+        description: BDQC reports for harmonized data.
+        pattern: "qc_reports/"
   figures:
-    - "*png":
-        type: file
-        description: Figure plotting reference and moving site data before and after harmonization as well as the harmonization model.
-        pattern: "*png"
-        ontologies:
-          - edam: http://edamontology.org/format_3603
+    - figures:
+        type: directory
+        description: Figures generated to visualize harmonization results.
+        pattern: "figures/"
   versions:
     - versions.yml:
-      type: file
-      description: File containing software versions
-      pattern: versions.yml
-      ontologies:
-      - edam: http://edamontology.org/format_3750  # YAML
+        type: file
+        description: File containing software versions
+        pattern: versions.yml
+        ontologies:
+          - edam: http://edamontology.org/format_3750 # YAML
 authors:
-- "@manonedde"
+  - "@manonedde"
 maintainers:
-- "@manonedde"
+  - "@scilus"
