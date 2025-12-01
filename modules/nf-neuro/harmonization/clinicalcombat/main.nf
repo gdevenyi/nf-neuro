@@ -1,7 +1,7 @@
 process HARMONIZATION_CLINICALCOMBAT {
     label 'process_medium'
 
-    container "scilus/clinical_combat:dev"
+    container "scilus/clinical_combat:1.0.1"
 
     input:
     tuple path(ref_site), path(move_site)
