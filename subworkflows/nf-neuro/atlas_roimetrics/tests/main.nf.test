@@ -1,15 +1,15 @@
 nextflow_workflow {
 
-    name "Test Subworkflow IIT_ROIMETRICS"
+    name "Test Subworkflow ATLAS_ROIMETRICS"
     script "../main.nf"
-    workflow "IIT_ROIMETRICS"
+    workflow "ATLAS_ROIMETRICS"
 
     config "../nextflow.config"
 
     tag "subworkflows"
     tag "subworkflows_nfneuro"
     tag "subworkflows/atlas_iit"
-    tag "subworkflows/iit_roimetrics"
+    tag "subworkflows/atlas_roimetrics"
 
     tag "stats/metricsinroi"
     tag "registration/ants"
@@ -30,9 +30,9 @@ nextflow_workflow {
         }
     }
 
-    test("iit_roimetrics - process") {
+    test("atlas_roimetrics - IIT atlas") {
         when {
-            config "../nextflow.config"
+            config "./iit_atlas.config"
 
             workflow {
                 """
@@ -46,10 +46,10 @@ nextflow_workflow {
                 input[1] = ch_split_test_data
                     .map{ test_data_directory -> [
                         [ id:'test', single_end:false ], // meta map
-                        file("\${test_data_directory}/fa.nii.gz"),
+                        [file("\${test_data_directory}/fa.nii.gz"),
                         file("\${test_data_directory}/ad.nii.gz"),
                         file("\${test_data_directory}/rd.nii.gz"),
-                        file("\${test_data_directory}/md.nii.gz")
+                        file("\${test_data_directory}/md.nii.gz")]
                     ]}
                 """
             }
@@ -64,6 +64,35 @@ nextflow_workflow {
                     workflow.out.tab_std,
                     workflow.out.versions).match() }
             )
+        }
+    }
+    test("atlas_roimetrics - no atlas selected") {
+        when {
+            config "./no_atlas.config"
+
+            workflow {
+                """
+                ch_split_test_data = LOAD_DATA.out.test_data_directory
+
+                input[0] = ch_split_test_data
+                    .map{ test_data_directory -> [
+                    [ id:'test', single_end:false ], // meta map
+                    file("\${test_data_directory}/b0.nii.gz")
+                    ]}
+                input[1] = ch_split_test_data
+                    .map{ test_data_directory -> [
+                        [ id:'test', single_end:false ], // meta map
+                        [file("\${test_data_directory}/fa.nii.gz"),
+                        file("\${test_data_directory}/ad.nii.gz"),
+                        file("\${test_data_directory}/rd.nii.gz"),
+                        file("\${test_data_directory}/md.nii.gz")]
+                    ]}
+                """
+            }
+        }
+
+        then {
+            assert workflow.failed
         }
     }
 }
