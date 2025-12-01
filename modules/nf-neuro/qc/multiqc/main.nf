@@ -4,7 +4,9 @@ process QC_MULTIQC {
 
     conda "${moduleDir}/environment.yml"
     container "gagnonanthony/multiqc-neuroimaging:latest"
-    containerOptions '--entrypoint "" -u $(id -u):$(id -g)'
+    containerOptions {
+        (workflow.containerEngine == 'docker') ? '--entrypoint "" --user $(id -u):$(id -g)' : ''
+    }
 
     input:
     tuple val(meta), path(qc_images)
@@ -27,7 +29,7 @@ process QC_MULTIQC {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = "${meta.id}-${workflow.start.format('yyMMdd-HHmm')}"
+    def prefix = task.ext.prefix ? "$task.ext.prefix-${workflow.start.format('yyMMdd-HHmm')}" : "${meta.id}-${workflow.start.format('yyMMdd-HHmm')}"
     def config = multiqc_config ? "--config $multiqc_config" : ''
     def extra_config = extra_multiqc_config ? "--config $extra_multiqc_config" : ''
     def logo = multiqc_logo ? "--cl-config 'custom_logo: \"${multiqc_logo}\"'" : ''

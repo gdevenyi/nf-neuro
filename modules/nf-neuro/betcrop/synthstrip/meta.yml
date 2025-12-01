@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: betcrop_synthbet
+name: betcrop_synthstrip
 description: Perform brain extraction using synthstrip on image
 keywords:
   - anatomical image
