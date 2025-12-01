@@ -25,7 +25,7 @@ workflow ATLAS_ROIMETRICS {
     }
     else {
         error "No atlas selected for ROI metrics extraction. Please set one of 'params.use_atlas_*'"
-              "to 'true' to run atlas-based ROI metrics"
+            "to 'true' to run atlas-based ROI metrics"
     }
 
     // Register IIT atlas to subject space
