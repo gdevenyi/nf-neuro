@@ -1,44 +1,46 @@
 {
     "atlas_roimetrics - IIT atlas": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_stats.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+            {
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_stats.json"
+                    ]
+                ],
+                "tab_mean": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-mean_stats.tsv"
+                    ]
+                ],
+                "tab_std": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_desc-std_stats.tsv"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,37dfe7104743280c6e8dd82191e4b9a2",
+                    "versions.yml:md5,47d49a165d2ab40f37deba36f77c4bad",
+                    "versions.yml:md5,a5af5e7977506198381bcf6742c334db",
+                    "versions.yml:md5,ed314f4bb56aca9fa497cd3500133ce0"
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_desc-mean_stats.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_desc-std_stats.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
-            [
-                "versions.yml:md5,37dfe7104743280c6e8dd82191e4b9a2",
-                "versions.yml:md5,47d49a165d2ab40f37deba36f77c4bad",
-                "versions.yml:md5,a5af5e7977506198381bcf6742c334db",
-                "versions.yml:md5,ed314f4bb56aca9fa497cd3500133ce0"
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-01T11:09:25.218552788"
+        "timestamp": "2025-12-01T11:19:24.086226293"
     }
 }

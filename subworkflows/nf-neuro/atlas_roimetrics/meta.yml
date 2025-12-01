@@ -19,8 +19,8 @@ keywords:
 components:
   - atlas_iit
   - registration/ants
-  - registration/antsapplytransform
   - stats/metricsinroi
+  - registration/antsapplytransforms
 args:
   - use_atlas_iit:
       type: boolean

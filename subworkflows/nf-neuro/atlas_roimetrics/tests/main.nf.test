@@ -8,12 +8,14 @@ nextflow_workflow {
 
     tag "subworkflows"
     tag "subworkflows_nfneuro"
-    tag "subworkflows/atlas_iit"
+    tag "atlas_iit"
+    tag "load_test_data"
     tag "subworkflows/atlas_roimetrics"
 
     tag "stats/metricsinroi"
     tag "registration/ants"
-    tag "registration/antsapplytransform"
+    tag "registration/antsapplytransforms"
+
 
     tag "stub"
     options "-stub-run"
@@ -57,12 +59,20 @@ nextflow_workflow {
 
         then {
             assertAll(
-                { assert workflow.success},
+                { assert workflow.success },
                 { assert snapshot(
-                    workflow.out.json,
-                    workflow.out.tab_mean,
-                    workflow.out.tab_std,
-                    workflow.out.versions).match() }
+                    workflow.out
+                        .findAll{ channel -> !channel.key.isInteger() && channel.value  }
+                        .collectEntries{ channel ->
+                            [(channel.key): ["versions"].contains(channel.key)
+                                ? channel.value
+                                : channel.value.collect{ subject ->
+                                    [ subject[0] ] + subject[1..-1].flatten().collect{ entry -> entry
+                                        ? file(entry).name
+                                        : "" }
+                            } ]
+                        }
+                ).match() }
             )
         }
     }
