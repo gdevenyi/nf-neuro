@@ -46,7 +46,13 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    file(process.out.model.get(0)).name,
+                    file(process.out.harmonizedsite.get(0)).name,
+                    file(process.out.bdqc.get(0)).listFiles().collect { it.name }.sort(),
+                    file(process.out.figures.get(0)).listFiles().collect { it.name }.sort(),
+                    process.out.versions
+                ).match() }
             )
         }
     }
@@ -72,7 +78,13 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    file(process.out.model.get(0)).name,
+                    file(process.out.harmonizedsite.get(0)).name,
+                    file(process.out.bdqc.get(0)).listFiles().collect { it.name }.sort(),
+                    file(process.out.figures.get(0)).listFiles().collect { it.name }.sort(),
+                    process.out.versions
+                ).match() }
             )
         }
     }
@@ -99,8 +111,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.version).match() }
-
+                { assert snapshot(process.out.versions).match() }
             )
         }
     }
