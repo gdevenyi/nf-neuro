@@ -34,8 +34,6 @@ nextflow_workflow {
 
     test("atlas_roimetrics - IIT atlas") {
         when {
-            config "./iit_atlas.config"
-
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -53,6 +51,7 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")]
                     ]}
+                input[2] = [use_atlas_iit: true]
                 """
             }
         }
@@ -78,8 +77,6 @@ nextflow_workflow {
     }
     test("atlas_roimetrics - no atlas selected") {
         when {
-            config "./no_atlas.config"
-
             workflow {
                 """
                 ch_split_test_data = LOAD_DATA.out.test_data_directory
@@ -97,6 +94,7 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")]
                     ]}
+                input[2] = [ : ]
                 """
             }
         }
