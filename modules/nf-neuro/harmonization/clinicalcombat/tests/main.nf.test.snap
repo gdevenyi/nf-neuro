@@ -1,0 +1,60 @@
+{
+    "harmonization - clinicalcombat_pairwise": {
+        "content": [
+            "ShamCamCAN-CamCAN.md.pairwise.model.csv",
+            "ShamCamCAN.md.pairwise.harmonized.csv.gz",
+            [
+                "ShamCamCAN.md.pairwise.harmonized.bhattacharrya.txt",
+                "ShamCamCAN.md.raw.bhattacharrya.txt"
+            ],
+            [
+                "AgeCurve_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png",
+                "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png",
+                "DataModels_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png"
+            ],
+            [
+                "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-12-02T12:57:32.640242755"
+    },
+    "harmonization - stub-un clinicalcombat": {
+        "content": [
+            [
+                "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-12-02T12:58:25.85838548"
+    },
+    "harmonization - clinicalcombat_clinic": {
+        "content": [
+            "ShamCamCAN-CamCAN.md.clinic.model.csv",
+            "ShamCamCAN.md.clinic.harmonized.csv.gz",
+            [
+                "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt",
+                "ShamCamCAN.md.raw.bhattacharrya.txt"
+            ],
+            [
+                "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png",
+                "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png",
+                "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png"
+            ],
+            [
+                "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-12-02T12:58:19.998188644"
+    }
+}
