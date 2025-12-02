@@ -73,7 +73,7 @@ output:
       pattern: "*.nii.gz"
       ontologies:
         - edam: http://edamontology.org/format_4001 # NIFTI format
-  - tab_mean:
+  - stats_tab_mean:
       type: file
       description: |
         Structured tabular (TSV or CSV) file holding MEAN metrics
@@ -82,7 +82,7 @@ output:
         Structure: [ val(meta), path(tab_mean) ]
       pattern: "*_desc-mean_*.{csv,tsv}"
       ontologies: []
-  - tab_std:
+  - stats_tab_std:
       type: file
       description: |
         Structured tabular (TSV or CSV) file holding STANDARD
