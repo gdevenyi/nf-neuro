@@ -68,7 +68,7 @@ output:
   - json:
       type: file
       description: |
-        List of IIT binary bundle masks.
+        List of binary bundle masks.
         Structure: [ path(img), path(img), ... ]
       pattern: "*.nii.gz"
       ontologies:
