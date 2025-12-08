@@ -24,6 +24,10 @@ process STATS_METRICSINROI {
     def use_label = task.ext.use_label ? true : false
     def key_substrs_to_remove = task.ext.key_substrs_to_remove ?: []
     def value_substrs_to_remove = task.ext.value_substrs_to_remove ?: []
+
+    def meta_columns = task.ext.meta_columns ?: []
+    def meta_columns_values  = meta_columns.collect { col -> meta.containsKey(col) ? meta[col] : "" }
+
     def output_format = task.ext.output_format ?: 'tsv'  // 'csv' or 'tsv'
 
     assert output_format in ['csv', 'tsv'] : "output_format must be either 'csv' or 'tsv'"
@@ -90,6 +94,14 @@ process STATS_METRICSINROI {
     # (sample, roi, metric1, metric2, ..., metricN)
     header_mean="sample${sep}roi"
     header_std="sample${sep}roi"
+
+    # Create the meta columns
+    for meta_col in ${meta_columns.join(' ')}; do
+        header_mean="\${header_mean}${sep}\${meta_col}"
+        header_std="\${header_std}${sep}\${meta_col}"
+    done
+
+    # Add the metric columns
     for metric in \$metrics; do
         header_mean="\${header_mean}${sep}\${metric}"
         header_std="\${header_std}${sep}\${metric}"
@@ -102,6 +114,12 @@ process STATS_METRICSINROI {
         # Initialize lines with sample and roi
         line_mean="${prefix}${sep}\${roi}"
         line_std="${prefix}${sep}\${roi}"
+
+        # Add meta columns values if specified
+        for meta_val in ${meta_columns_values.join(' ')}; do
+            line_mean="\${line_mean}${sep}\${meta_val}"
+            line_std="\${line_std}${sep}\${meta_val}"
+        done
 
         for metric in \$metrics;
         do
