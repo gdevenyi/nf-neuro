@@ -45,7 +45,6 @@ process RECONST_DTIMETRICS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ? "${task.ext.suffix}" : ""
     def dwi_shell_tolerance = task.ext.dwi_shell_tolerance ? "--tolerance " + task.ext.dwi_shell_tolerance : ""
     def max_dti_shell_value = task.ext.max_dti_shell_value ?: 1500
     def b0_thr_extract_b0 = task.ext.b0_thr_extract_b0 ?: 10
@@ -54,20 +53,20 @@ process RECONST_DTIMETRICS {
     def run_qc = task.ext.run_qc ?: false
 
     if ( b0mask ) args += " --mask $b0mask"
-    if ( task.ext.ad ) args += " --ad ${prefix}__ad${suffix}.nii.gz"
-    if ( task.ext.evecs ) args += " --evecs ${prefix}__evecs${suffix}.nii.gz"
-    if ( task.ext.evals ) args += " --evals ${prefix}__evals${suffix}.nii.gz"
-    if ( task.ext.fa ) args += " --fa ${prefix}__fa${suffix}.nii.gz"
-    if ( task.ext.ga ) args += " --ga ${prefix}__ga${suffix}.nii.gz"
-    if ( task.ext.rgb ) args += " --rgb ${prefix}__rgb${suffix}.nii.gz"
-    if ( task.ext.md ) args += " --md ${prefix}__md${suffix}.nii.gz"
-    if ( task.ext.mode ) args += " --mode ${prefix}__mode${suffix}.nii.gz"
-    if ( task.ext.norm ) args += " --norm ${prefix}__norm${suffix}.nii.gz"
-    if ( task.ext.rd ) args += " --rd ${prefix}__rd${suffix}.nii.gz"
-    if ( task.ext.tensor ) args += " --tensor ${prefix}__tensor${suffix}.nii.gz"
-    if ( task.ext.nonphysical ) args += " --non-physical ${prefix}__nonphysical${suffix}.nii.gz"
-    if ( task.ext.pulsation ) args += " --pulsation ${prefix}__pulsation${suffix}.nii.gz"
-    if ( task.ext.residual ) args += " --residual ${prefix}__residual${suffix}.nii.gz"
+    if ( task.ext.ad ) args += " --ad ${prefix}__ad.nii.gz"
+    if ( task.ext.evecs ) args += " --evecs ${prefix}__evecs.nii.gz"
+    if ( task.ext.evals ) args += " --evals ${prefix}__evals.nii.gz"
+    if ( task.ext.fa ) args += " --fa ${prefix}__fa.nii.gz"
+    if ( task.ext.ga ) args += " --ga ${prefix}__ga.nii.gz"
+    if ( task.ext.rgb ) args += " --rgb ${prefix}__rgb.nii.gz"
+    if ( task.ext.md ) args += " --md ${prefix}__md.nii.gz"
+    if ( task.ext.mode ) args += " --mode ${prefix}__mode.nii.gz"
+    if ( task.ext.norm ) args += " --norm ${prefix}__norm.nii.gz"
+    if ( task.ext.rd ) args += " --rd ${prefix}__rd.nii.gz"
+    if ( task.ext.tensor ) args += " --tensor ${prefix}__tensor.nii.gz"
+    if ( task.ext.nonphysical ) args += " --non-physical ${prefix}__nonphysical.nii.gz"
+    if ( task.ext.pulsation ) args += " --pulsation ${prefix}__pulsation.nii.gz"
+    if ( task.ext.residual ) args += " --residual ${prefix}__residual.nii.gz"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1

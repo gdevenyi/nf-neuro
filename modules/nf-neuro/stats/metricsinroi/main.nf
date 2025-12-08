@@ -66,6 +66,23 @@ process STATS_METRICSINROI {
         mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
     done
 
+    # Extract 'desc' substring from keys and store it temporarily in values
+    # This allows us to remove the substring from the key now and append it later
+    jq -r '
+        with_entries(
+            .value |= with_entries(
+                if (.key | test("_desc-[a-zA-Z0-9]+")) then
+                    (.key | capture("_desc-(?<desc>[a-zA-Z0-9]+)").desc) as \$d |
+                    .value.extracted_desc = \$d |
+                    .key |= sub("_desc-[a-zA-Z0-9]+"; "")
+                else
+                    .
+                end
+            )
+        )
+    ' ${prefix}_${suffix}.json > ${prefix}_${suffix}_tmp.json
+    mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
+
     # Remove all substrings from the values as specified
     # in the configuration via 'task.ext.value_substrs_to_remove'
     for substr in ${value_substrs_to_remove.join(' ')};
@@ -79,6 +96,22 @@ process STATS_METRICSINROI {
         ' ${prefix}_${suffix}.json > ${prefix}_${suffix}_tmp.json
         mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
     done
+
+    # Append the extracted 'desc' to the keys, before the extension if present
+    jq -r '
+        with_entries(
+            .value |= with_entries(
+                if (.value.extracted_desc) then
+                    (.value.extracted_desc) as \$d |
+                    del(.value.extracted_desc) |
+                    .key |= if test("\\\\.") then sub("(?<base>.*?)(?<ext>\\\\..*)\$"; .base + "_" + \$d + .ext) else . + "_" + \$d end
+                else
+                    .
+                end
+            )
+        )
+    ' ${prefix}_${suffix}.json > ${prefix}_${suffix}_tmp.json
+    mv ${prefix}_${suffix}_tmp.json ${prefix}_${suffix}.json
 
     # Get all ROIs names from the JSON
     rois=\$(jq -r "keys[]" ${prefix}_${suffix}.json)
