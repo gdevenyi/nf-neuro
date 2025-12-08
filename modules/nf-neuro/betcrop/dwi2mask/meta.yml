@@ -48,7 +48,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*_dwi_mask.nii.gz":
           type: file
-          description: mask brain-extracted and cropped.
+          description: DWI mask.
           pattern: "*_dwi_mask.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
