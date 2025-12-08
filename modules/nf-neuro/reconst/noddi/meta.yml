@@ -54,19 +54,19 @@ input:
         pattern: kernels
     - para_diff:
         type: float
-        description: Parallel diffusivity value (diff prior).
+        description: Parallel diffusivity value (diff prior) (mm2/s).
         mandatory: false
     - iso_diff:
         type: float
-        description: Isotropic diffusivity value (diff prior).
+        description: Isotropic diffusivity value (diff prior) (mm2/s).
         mandatory: false
 args:
   - para_diff:
       type: float
-      description: Axial diffusivity (AD) in the CC.
+      description: Axial diffusivity (AD) in the CC (mm2/s).
   - iso_diff:
       type: float
-      description: Mean diffusivity (MD) in ventricles.
+      description: Mean diffusivity (MD) in ventricles (mm2/s).
   - noddi_lambda1:
       type: float
       description: First regularization parameter for NODDI fitting.
