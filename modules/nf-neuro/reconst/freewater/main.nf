@@ -1,7 +1,7 @@
 
 process RECONST_FREEWATER {
     tag "$meta.id"
-    label 'process_single'
+    label 'process_low'
 
     container "scilus/scilpy:2.2.0_cpu"
 
@@ -29,7 +29,7 @@ process RECONST_FREEWATER {
     def perp_diff_max_str = task.ext.perp_diff_max ? "--perp_diff_max " + task.ext.perp_diff_max : perp_diff_max ? "--perp_diff_max " + perp_diff_max : ""
     def lambda1 = task.ext.fw_lambda1 ? "--lambda1 " + task.ext.fw_lambda1 : ""
     def lambda2 = task.ext.fw_lambda2 ? "--lambda2 " + task.ext.fw_lambda2 : ""
-    def nb_threads = task.ext.nb_threads ? "--processes " + task.ext.nb_threads : ""
+    def nb_threads = "--processes $task.cpus"
     def b_thr = task.ext.b_thr ? "--b_thr " + task.ext.b_thr : ""
     def set_kernels = kernels ? "--load_kernels $kernels" : "--save_kernels kernels/"
     def set_mask = mask ? "--mask $mask" : ""

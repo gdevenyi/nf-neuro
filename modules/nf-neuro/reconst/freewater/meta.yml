@@ -89,6 +89,12 @@ args:
   - fw_lambda2:
       type: float
       description: Second regularization parameter for freewater fitting.
+  - b_thr:
+      type: float
+      description: Limit value to consider that a b-value is on an existing shell. Above this limit, the b-value is placed on a new shell. This includes b0s values.
+  - compute_only:
+      type: boolean
+      description: Compute kernels only.
 
 output:
   dwi_fw_corrected:

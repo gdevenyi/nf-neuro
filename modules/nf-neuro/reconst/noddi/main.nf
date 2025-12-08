@@ -1,6 +1,6 @@
 process RECONST_NODDI {
     tag "$meta.id"
-    label 'process_single'
+    label 'process_medium'
 
     container "scilus/scilpy:2.2.0_cpu"
 
@@ -26,7 +26,7 @@ process RECONST_NODDI {
     def iso_diff_str = task.ext.iso_diff ? "--iso_diff " + task.ext.iso_diff : iso_diff ? "--iso_diff " + iso_diff : ""
     def lambda1 = task.ext.noddi_lambda1 ? "--lambda1 " + task.ext.noddi_lambda1 : ""
     def lambda2 = task.ext.noddi_lambda2 ? "--lambda2 " + task.ext.noddi_lambda2 : ""
-    def nb_threads = task.ext.nb_threads ? "--processes " + task.ext.nb_threads : ""
+    def nb_threads = "--processes $task.cpus"
     def b_thr = task.ext.b_thr ? "--tolerance " + task.ext.b_thr : ""
     def set_kernels = kernels ? "--load_kernels $kernels" : "--save_kernels kernels/"
     def set_mask = mask ? "--mask $mask" : ""
