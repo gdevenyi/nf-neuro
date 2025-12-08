@@ -73,16 +73,16 @@ input:
 args:
   - para_diff:
       type: float
-      description: Axial diffusivity (AD) in the CC.
+      description: Axial diffusivity (AD) in the CC. It overwrites the input para_diff if provided.
   - iso_diff:
       type: float
-      description: Mean diffusivity (MD) in ventricles (mm2/s).
+      description: Mean diffusivity (MD) in ventricles (mm2/s). It overwrites the input iso_diff if provided.
   - perp_diff_min:
       type: float
-      description: Radial diffusivity (RD) minimum (mm2/s).
+      description: Radial diffusivity (RD) minimum (mm2/s). It overwrites the input perp_diff_min if provided.
   - perp_diff_max:
       type: float
-      description: Radial diffusivity (RD) maximum (mm2/s).
+      description: Radial diffusivity (RD) maximum (mm2/s). It overwrites the input perp_diff_max if provided.
   - fw_lambda1:
       type: float
       description: First regularization parameter for freewater fitting.
