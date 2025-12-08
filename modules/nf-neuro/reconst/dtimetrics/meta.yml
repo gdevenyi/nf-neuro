@@ -93,6 +93,10 @@ args:
       type: boolean
       description: "Compute the residual."
       default: true
+  - suffix:
+      type: string
+      description: "Suffix to add to the output files right before the extension."
+      default: ""
 input:
   - - meta:
         type: map
