@@ -25,9 +25,7 @@ nextflow_process {
     }
 
     test("stats - metrics in ROI - with covariates") {
-
         config "./nextflow_covariates.config"
-        tag "working"
 
         when {
             process {
