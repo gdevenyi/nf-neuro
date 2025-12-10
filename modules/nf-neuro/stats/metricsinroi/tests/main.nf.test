@@ -24,6 +24,68 @@ nextflow_process {
         }
     }
 
+    test("stats - metrics in ROI - with covariates") {
+
+        config "./nextflow_covariates.config"
+        tag "working"
+
+        when {
+            process {
+                """
+                ch_split_test_data = LOAD_DATA.out.test_data_directory
+                    .branch{
+                        tractometry: it.simpleName == "tractometry"
+                        plot: it.simpleName == "plot"
+                    }
+                input[0] = ch_split_test_data.tractometry.map{
+                    test_data_directory -> [
+                        [ id:'test', single_end:false, 'sex': 1, 'age': 25, 'site': 'testingSite' ], // meta map
+                        file("\${test_data_directory}/mni_masked.nii.gz"),
+                        file("\${test_data_directory}/IFGWM.nii.gz"),
+                        []
+                    ]
+                }
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                {
+                    def csv_file = file(process.out.stats_mean.get(0).get(1))
+                    def csv_lines = csv_file.text.split('\n')
+                    assert csv_lines.size() == 2 // Header + one data row
+
+                    def header = csv_lines[0].split('\t')
+                    def data_row = csv_lines[1].split('\t')
+
+                    def header_map = [:]
+                    header.eachWithIndex { col, idx ->
+                        header_map[col] = idx
+                    }
+
+                    // This makes sure each column is present
+                    // with the right values. Also, "unknown" is
+                    // not specified within the meta map, so the column
+                    // name should be there, but with no value (still
+                    // adding the separator since it's still a column).
+                    // If the separator is not added for some reason,
+                    // this will cause all other columns to shift
+                    // causing issues which should be caught by this test.
+                    assert header_map.containsKey('sex')
+                    assert header_map.containsKey('unknown')
+                    assert header_map.containsKey('age')
+                    assert header_map.containsKey('site')
+
+                    assert data_row[header_map['sex']] == '1'
+                    assert data_row[header_map['age']] == '25'
+                    assert data_row[header_map['site']] == 'testingSite'
+                    assert data_row[header_map['unknown']] == ''
+                }
+            )
+        }
+    }
+
     test("stats - metrics in ROI") {
 
         config "./nextflow.config"

@@ -26,7 +26,7 @@ process STATS_METRICSINROI {
     def value_substrs_to_remove = task.ext.value_substrs_to_remove ?: []
 
     def meta_columns = task.ext.meta_columns ?: []
-    def meta_columns_values  = meta_columns.collect { col -> meta.containsKey(col) ? meta[col] : "" }
+    def meta_columns_values  = meta_columns.collect { col -> meta.containsKey(col) ? meta[col] : "null" }
 
     def output_format = task.ext.output_format ?: 'tsv'  // 'csv' or 'tsv'
 
@@ -150,8 +150,13 @@ process STATS_METRICSINROI {
 
         # Add meta columns values if specified
         for meta_val in ${meta_columns_values.join(' ')}; do
-            line_mean="\${line_mean}${sep}\${meta_val}"
-            line_std="\${line_std}${sep}\${meta_val}"
+            if [ "\${meta_val}" == "null" ]; then
+                line_mean="\${line_mean}${sep}" # no value = empty string
+                line_std="\${line_std}${sep}" # no value = empty string
+            else
+                line_mean="\${line_mean}${sep}\${meta_val}"
+                line_std="\${line_std}${sep}\${meta_val}"
+            fi
         done
 
         for metric in \$metrics;
