@@ -27,8 +27,8 @@ workflow RECONST_FW_NODDI {
     ch_base_noddi = dwi_bval_bvec.join(brain_mask)
     ch_base_freewater = dwi_bval_bvec.join(brain_mask)
 
-    // Normalize inputs to get the same shape of tuple for all possible cases.
-    def normalize_input = { ch ->
+    // Format inputs to get the same shape of tuple for all possible cases.
+    def format_input = { ch ->
         ch.ifEmpty { [[tag: 'empty'], null] }
             .map { it ->
                 // If we have subject-bound, leave as is
@@ -40,10 +40,10 @@ workflow RECONST_FW_NODDI {
                 }
             }
     }
-    para_diff = normalize_input(para_diff)
-    iso_diff = normalize_input(iso_diff)
-    perp_diff_min = normalize_input(perp_diff_min)
-    perp_diff_max = normalize_input(perp_diff_max)
+    para_diff = format_input(para_diff)
+    iso_diff = format_input(iso_diff)
+    perp_diff_min = format_input(perp_diff_min)
+    perp_diff_max = format_input(perp_diff_max)
 
     // Combine all diffusivity priors together, and assess wheter they are
     // empty, single value, or per-subject values.
