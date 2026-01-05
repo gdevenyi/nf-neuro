@@ -9,10 +9,7 @@ workflow RECONST_FW_NODDI {
     dwi_bval_bvec
     brain_mask
     fa_ad_rd_md
-    para_diff       // Can either be empty, a single value, or a per-subject value.
-    iso_diff        // Can either be empty, a single value, or a per-subject value.
-    perp_diff_min   // Can either be empty, a single value, or a per-subject value.
-    perp_diff_max   // Can either be empty, a single value, or a per-subject value.
+    diffusivities // multiMap channel with para_diff, iso_diff, perp_diff_min, perp_diff_max
 
     main:
 
@@ -40,10 +37,10 @@ workflow RECONST_FW_NODDI {
                 }
             }
     }
-    para_diff = format_input(para_diff)
-    iso_diff = format_input(iso_diff)
-    perp_diff_min = format_input(perp_diff_min)
-    perp_diff_max = format_input(perp_diff_max)
+    para_diff = format_input(diffusivities.para_diff)
+    iso_diff = format_input(diffusivities.iso_diff)
+    perp_diff_min = format_input(diffusivities.perp_diff_min)
+    perp_diff_max = format_input(diffusivities.perp_diff_max)
 
     // Combine all diffusivity priors together, and assess wheter they are
     // empty, single value, or per-subject values.

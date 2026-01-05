@@ -61,10 +61,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.empty() // No custom diffusivity priors
-                input[4] = Channel.empty()
-                input[5] = Channel.empty()
-                input[6] = Channel.empty()
+                input[3] = [
+                    para_diff: Channel.empty(),
+                    iso_diff: Channel.empty(),
+                    perp_diff_min: Channel.empty(),
+                    perp_diff_max: Channel.empty()
+                ]
                 """
             }
         }
@@ -125,10 +127,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.empty() // No custom diffusivity priors
-                input[4] = Channel.empty()
-                input[5] = Channel.empty()
-                input[6] = Channel.empty()
+                input[3] = [
+                    para_diff: Channel.empty(),
+                    iso_diff: Channel.empty(),
+                    perp_diff_min: Channel.empty(),
+                    perp_diff_max: Channel.empty()
+                ]
                 """
             }
         }
@@ -189,10 +193,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.empty() // No custom diffusivity priors
-                input[4] = Channel.empty()
-                input[5] = Channel.empty()
-                input[6] = Channel.empty()
+                input[3] = [
+                    para_diff: Channel.empty(),
+                    iso_diff: Channel.empty(),
+                    perp_diff_min: Channel.empty(),
+                    perp_diff_max: Channel.empty()
+                ]
                 """
             }
         }
@@ -253,10 +259,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.empty() // No custom diffusivity priors
-                input[4] = Channel.empty()
-                input[5] = Channel.empty()
-                input[6] = Channel.empty()
+                input[3] = [
+                    para_diff: Channel.empty(),
+                    iso_diff: Channel.empty(),
+                    perp_diff_min: Channel.empty(),
+                    perp_diff_max: Channel.empty()
+                ]
                 """
             }
         }
@@ -342,10 +350,12 @@ nextflow_workflow {
                             file("\${test_data_directory}/md.nii.gz")
                         ]
                     ]}
-                input[3] = Channel.value(0.0015) // Custom diffusivity priors
-                input[4] = Channel.value(0.003)
-                input[5] = Channel.value(0.0001)
-                input[6] = Channel.value(0.0007)
+                input[3] = [
+                    para_diff: Channel.value(0.0015),
+                    iso_diff: Channel.value(0.003),
+                    perp_diff_min: Channel.value(0.0001),
+                    perp_diff_max: Channel.value(0.0007)
+                ]
                 """
             }
         }
@@ -405,10 +415,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.of(tuple([ id:'test', single_end:false ], 0.0015)) // Custom diffusivity priors subject-bound
-                input[4] = Channel.of(tuple([ id:'test', single_end:false ], 0.003))
-                input[5] = Channel.of(tuple([ id:'test', single_end:false ], 0.0001))
-                input[6] = Channel.of(tuple([ id:'test', single_end:false ], 0.0007))
+                input[3] = [
+                    para_diff: Channel.of(tuple([ id:'test', single_end:false ], 0.0015)),
+                    iso_diff: Channel.of(tuple([ id:'test', single_end:false ], 0.003)),
+                    perp_diff_min: Channel.of(tuple([ id:'test', single_end:false ], 0.0001)),
+                    perp_diff_max: Channel.of(tuple([ id:'test', single_end:false ], 0.0007))
+                ]
                 """
             }
         }
@@ -468,10 +480,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.value(0.0015) // Custom diffusivity priors
-                input[4] = Channel.value(0.003)
-                input[5] = Channel.value(0.0001)
-                input[6] = Channel.value(0.0007)
+                input[3] = [
+                    para_diff: Channel.value(0.0015),
+                    iso_diff: Channel.value(0.003),
+                    perp_diff_min: Channel.value(0.0001),
+                    perp_diff_max: Channel.value(0.0007)
+                ]
                 """
             }
         }
@@ -531,10 +545,12 @@ nextflow_workflow {
                         file("\${test_data_directory}/rd.nii.gz"),
                         file("\${test_data_directory}/md.nii.gz")
                     ]}
-                input[3] = Channel.value(0.0015) // Custom diffusivity priors
-                input[4] = Channel.value(0.003)
-                input[5] = Channel.value(0.0001)
-                input[6] = Channel.value(0.0007)
+                input[3] = [
+                    para_diff: Channel.value(0.0015),
+                    iso_diff: Channel.value(0.003),
+                    perp_diff_min: Channel.value(0.0001),
+                    perp_diff_max: Channel.value(0.0007)
+                ]
                 """
             }
         }
