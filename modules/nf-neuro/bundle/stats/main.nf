@@ -237,10 +237,10 @@ process BUNDLE_STATS {
                             | sub("^" + \$sid + "__"; "")
                             | if test("param-") then
                                 (capture("param-(?<m>[^_]+)").m + (if test("desc-fwc") then "t" else "" end))
-                              elif test("_afd_metric\$") then "afd_fixel"
-                              elif test("desc-fwc") then
+                            elif test("_afd_metric\$") then "afd_fixel"
+                            elif test("desc-fwc") then
                                 (capture("__(?<m>[^.]+)").m + "t")
-                              else . end
+                            else . end
                         )
                     )
                 )
@@ -263,10 +263,10 @@ process BUNDLE_STATS {
                             | sub("^" + \$sid + "__"; "")
                             | if test("param-") then
                                 (capture("param-(?<m>[^_]+)").m + (if test("desc-fwc") then "t" else "" end))
-                              elif test("_afd_metric\$") then "afd_fixel"
-                              elif test("desc-fwc") then
+                            elif test("_afd_metric\$") then "afd_fixel"
+                            elif test("desc-fwc") then
                                 (capture("__(?<m>[^.]+)").m + "t")
-                              else . end
+                            else . end
                         )): .value.mean}
                     )
                     | add // {}
@@ -303,20 +303,20 @@ process BUNDLE_STATS {
                                 | sub("^" + \$sid + "__"; "")
                                 | if test("param-") then
                                     (capture("param-(?<m>[^_]+)").m + (if test("desc-fwc") then "t" else "" end))
-                                  elif test("_afd_metric\$") then "afd_fixel"
-                                  elif test("desc-fwc") then
+                                elif test("_afd_metric\$") then "afd_fixel"
+                                elif test("desc-fwc") then
                                     (capture("__(?<m>[^.]+)").m + "t")
-                                  else . end)
+                                else . end)
                         elif (.value | type == "object") then
                             # Per-point metric
                             (.key
                                 | sub("^" + \$sid + "__"; "")
                                 | if test("param-") then
                                     (capture("param-(?<m>[^_]+)").m + (if test("desc-fwc") then "t" else "" end))
-                                  elif test("_afd_metric\$") then "afd_fixel"
-                                  elif test("desc-fwc") then
+                                elif test("_afd_metric\$") then "afd_fixel"
+                                elif test("desc-fwc") then
                                     (capture("__(?<m>[^.]+)").m + "t")
-                                  else . end)
+                                else . end)
                         else empty end
                     )
                 )
@@ -358,10 +358,10 @@ process BUNDLE_STATS {
                             | sub("^" + \$sid + "__"; "")
                             | if test("param-") then
                                 (capture("param-(?<m>[^_]+)").m + (if test("desc-fwc") then "t" else "" end))
-                              elif test("_afd_metric\$") then "afd_fixel"
-                              elif test("desc-fwc") then
+                            elif test("_afd_metric\$") then "afd_fixel"
+                            elif test("desc-fwc") then
                                 (capture("__(?<m>[^.]+)").m + "t")
-                              else . end),
+                            else . end),
                         value: .value
                     })
                 ) as \$mes
