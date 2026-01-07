@@ -87,10 +87,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'test', single_end:false ]`
-      - "*__fit_dir.nii.gz":
+      - "*__dir.nii.gz":
           type: file
           description: Nifti file main direction.
-          pattern: "*__fit_dir.{nii,nii.gz}"
+          pattern: "*__dir.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
   isovf:
@@ -101,7 +101,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*__isovf.nii.gz":
           type: file
-          description: Nifti file for isotropic volume fraction.
+          description: Nifti file for isotropic volume fraction (e.g. Free Water Fraction (FWF)).
           pattern: "*__isovf.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
@@ -113,7 +113,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*__icvf.nii.gz":
           type: file
-          description: Nifti file for Intra-Cellular Volume Fraction.
+          description: Nifti file for Intra-Cellular Volume Fraction (e.g. Neurite Density Index (NDI)).
           pattern: "*__icvf.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format

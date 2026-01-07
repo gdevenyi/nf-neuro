@@ -8,7 +8,7 @@ process RECONST_NODDI {
         tuple val(meta), path(dwi), path(bval), path(bvec), path(mask), path(kernels), val(para_diff), val(iso_diff)
 
     output:
-        tuple val(meta), path("*__fit_dir.nii.gz")      , emit: dir, optional: true
+        tuple val(meta), path("*__dir.nii.gz")          , emit: dir, optional: true
         tuple val(meta), path("*__isovf.nii.gz")        , emit: isovf, optional: true
         tuple val(meta), path("*__icvf.nii.gz")         , emit: icvf, optional: true
         tuple val(meta), path("*__ecvf.nii.gz")         , emit: ecvf, optional: true
@@ -67,10 +67,10 @@ process RECONST_NODDI {
 
     if [ -z "${compute_only}" ];
     then
-        mv results/fit_dir.nii.gz ${prefix}__fit_dir.nii.gz
+        mv results/fit_dir.nii.gz ${prefix}__dir.nii.gz
         mv results/fit_NDI.nii.gz ${prefix}__icvf.nii.gz    # ICVF -> NDI
-        mv results/fit_FWF.nii.gz ${prefix}__isovf.nii.gz   # ISOVF/FISO -> FWF
-        mv results/fit_ODI.nii.gz ${prefix}__odi.nii.gz     # OD -> ODI
+        mv results/fit_FWF.nii.gz ${prefix}__isovf.nii.gz   # ISOVF -> FWF
+        mv results/fit_ODI.nii.gz ${prefix}__odi.nii.gz     # ODI -> OD
 
         scil_volume_math subtraction 1 ${prefix}__isovf.nii.gz ${prefix}__ecvf.nii.gz
 
@@ -92,7 +92,7 @@ process RECONST_NODDI {
 
     mkdir kernels
 
-    touch "${prefix}__fit_dir.nii.gz"
+    touch "${prefix}__dir.nii.gz"
     touch "${prefix}__icvf.nii.gz"
     touch "${prefix}__isovf.nii.gz"
     touch "${prefix}__ecvf.nii.gz"

@@ -473,14 +473,14 @@
                             "id": "test1",
                             "single_end": false
                         },
-                        "test1__fit_dir.nii.gz"
+                        "test1__dir.nii.gz"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2__fit_dir.nii.gz"
+                        "test2__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -561,7 +561,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:41:32.447549"
+        "timestamp": "2026-01-07T13:01:00.125977"
     },
     "reconst_fw_noddi - noddi & freewater": {
         "content": [
@@ -734,7 +734,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__fit_dir.nii.gz"
+                        "test__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -785,7 +785,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:40:09.870964"
+        "timestamp": "2026-01-07T12:59:40.0078"
     },
     "reconst_fw_noddi - noddi & freewater - average priors": {
         "content": [
@@ -958,7 +958,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__fit_dir.nii.gz"
+                        "test__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -1010,7 +1010,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:40:52.401705"
+        "timestamp": "2026-01-07T13:00:24.184698"
     },
     "reconst_fw_noddi - noddi": {
         "content": [
@@ -1021,7 +1021,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__fit_dir.nii.gz"
+                        "test__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -1070,7 +1070,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:38:51.116959"
+        "timestamp": "2026-01-07T12:58:12.483052"
     },
     "reconst_fw_noddi - freewater": {
         "content": [
@@ -1259,7 +1259,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__fit_dir.nii.gz"
+                        "test__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -1307,7 +1307,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:42:27.01726"
+        "timestamp": "2026-01-07T13:01:52.180681"
     },
     "reconst_fw_noddi - noddi & freewater - custom priors subject-bound": {
         "content": [
@@ -1480,7 +1480,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__fit_dir.nii.gz"
+                        "test__dir.nii.gz"
                     ]
                 ],
                 "noddi_ecvf": [
@@ -1530,6 +1530,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:42:06.996525"
+        "timestamp": "2026-01-07T13:01:33.794529"
     }
 }

@@ -1,7 +1,7 @@
 {
     "reconst - noddi - extract_metrics": {
         "content": [
-            "test__fit_dir.nii.gz",
+            "test__dir.nii.gz",
             "test__isovf.nii.gz",
             "test__icvf.nii.gz",
             "test__ecvf.nii.gz",
@@ -15,11 +15,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T21:58:05.642482"
+        "timestamp": "2026-01-07T12:49:41.217264"
     },
     "reconst - noddi - with priors": {
         "content": [
-            "test__fit_dir.nii.gz",
+            "test__dir.nii.gz",
             "test__isovf.nii.gz",
             "test__icvf.nii.gz",
             "test__ecvf.nii.gz",
@@ -33,7 +33,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2026-01-06T22:00:22.285442"
+        "timestamp": "2026-01-07T12:52:14.874089"
     },
     "reconst - noddi - save_kernels - no mask": {
         "content": [

@@ -141,7 +141,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*__fwf.nii.gz":
           type: file
-          description: Nifti file for freewater (isotropic volume).
+          description: Nifti file for freewater fraction (isotropic volume).
           pattern: "*__fwf.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
