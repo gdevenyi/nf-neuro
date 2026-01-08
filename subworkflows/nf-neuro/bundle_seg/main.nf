@@ -13,9 +13,9 @@ def fetch_bundleseg_atlas(atlasUrl, configUrl, dest) {
     }
 
     def atlasFile = new java.util.zip.ZipFile("$dest/atlas.zip")
-    atlasFile.entries().each{ item ->
-        def path = java.nio.file.Paths.get("$dest/atlas/" + item.name)
-        if(item.directory){
+    atlasFile.entries().each{ it ->
+        def path = java.nio.file.Paths.get("$dest/atlas/" + it.name)
+        if(it.directory){
             java.nio.file.Files.createDirectories(path)
         }
         else {
@@ -23,14 +23,14 @@ def fetch_bundleseg_atlas(atlasUrl, configUrl, dest) {
             if (!java.nio.file.Files.exists(parentDir)) {
                 java.nio.file.Files.createDirectories(parentDir)
             }
-            java.nio.file.Files.copy(atlasFile.getInputStream(item), path)
+            java.nio.file.Files.copy(atlasFile.getInputStream(it), path)
         }
     }
 
     def configFile = new java.util.zip.ZipFile("$dest/config.zip")
-    configFile.entries().each{ item ->
-        def path = java.nio.file.Paths.get("$dest/config/" + item.name)
-        if(item.directory){
+    configFile.entries().each{ it ->
+        def path = java.nio.file.Paths.get("$dest/config/" + it.name)
+        if(it.directory){
             java.nio.file.Files.createDirectories(path)
         }
         else {
@@ -38,7 +38,7 @@ def fetch_bundleseg_atlas(atlasUrl, configUrl, dest) {
             if (!java.nio.file.Files.exists(parentDir)) {
                 java.nio.file.Files.createDirectories(parentDir)
             }
-            java.nio.file.Files.copy(configFile.getInputStream(item), path)
+            java.nio.file.Files.copy(configFile.getInputStream(it), path)
         }
     }
 }

@@ -25,7 +25,7 @@ workflow ANATOMICAL_SEGMENTATION {
             SEGMENTATION_SYNTHSEG (
                 ch_image
                     .join(ch_lesion, remainder: true)
-                    .map{ item -> item[0..1] + [item[2] ?: []] }
+                    .map{ it[0..1] + [it[2] ?: []] }
                     .combine(ch_fs_license)
             )
             ch_versions = ch_versions.mix(SEGMENTATION_SYNTHSEG.out.versions.first())
@@ -49,7 +49,7 @@ workflow ANATOMICAL_SEGMENTATION {
             SEGMENTATION_FASTSEG (
                 ch_image
                     .join(ch_lesion, remainder: true)
-                    .map{ item -> item[0..1] + [item[2] ?: []] }
+                    .map{ it[0..1] + [it[2] ?: []] }
             )
             ch_versions = ch_versions.mix(SEGMENTATION_FASTSEG.out.versions.first())
 
@@ -71,7 +71,7 @@ workflow ANATOMICAL_SEGMENTATION {
             SEGMENTATION_FREESURFERSEG (
                 ch_freesurferseg
                     .join(ch_lesion, remainder: true)
-                    .map{ item -> item[0..2] + [item[3] ?: []] }
+                    .map{ it[0..2] + [it[3] ?: []] }
             )
             ch_versions = ch_versions.mix(SEGMENTATION_FREESURFERSEG.out.versions.first())
 

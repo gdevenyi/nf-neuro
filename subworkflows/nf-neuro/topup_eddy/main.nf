@@ -37,12 +37,12 @@ workflow TOPUP_EDDY {
             // Finally, to create ch_topup, filter ensures DWI comes with either a rev-dwi (index 5) or a rev-b0 (index 8)
             ch_topup = ch_dwi
                 .join(ch_b0, remainder: true)
-                .map{ item -> item[0..3] + [item[4] ?: []] }
+                .map{ it[0..3] + [it[4] ?: []] }
                 .join(ch_rev_dwi, remainder: true)
-                .map{ item -> item[5] ? item : item[0..4] + [[], [], []] }
+                .map{ it[5] ? it : it[0..4] + [[], [], []] }
                 .join(ch_rev_b0, remainder: true)
-                .map{ item -> item[0..7] + [item[8] ?: []] }
-                .filter{ item -> item[5] || item[8] }
+                .map{ it[0..7] + [it[8] ?: []] }
+                .filter{ it[5] || it[8] }
 
             // ** RUN TOPUP ** //
             PREPROC_TOPUP ( ch_topup, ch_config_topup )
@@ -69,13 +69,13 @@ workflow TOPUP_EDDY {
             //   - map  [ meta, dwi, bval, bvec, rev-dwi | [], rev-bval | [], rev-bvec | [], b0 | [], coeffs | [], movpar | [] ]
             ch_eddy_input = ch_dwi
                 .join(ch_rev_dwi, remainder: true)
-                .map{ item -> item[0..3] + [item[4] ? item[4..-1] : [], [], []] }
+                .map{ it[0..3] + [it[4] ? it[4..-1] : [], [], []] }
                 .join(ch_b0_corrected, remainder: true)
-                .map{ item -> item[0..6] + [item[7] ?: []] }
+                .map{ it[0..6] + [it[7] ?: []] }
                 .join(ch_topup_fieldcoeff, remainder: true)
-                .map{ item -> item[0..7] + [item[8] ?: []] }
+                .map{ it[0..7] + [it[8] ?: []] }
                 .join(ch_topup_movpart, remainder: true)
-                .map{ item -> item[0..8] + [item[9] ?: []] }
+                .map{ it[0..8] + [it[9] ?: []] }
 
             // ** RUN EDDY **//
             PREPROC_EDDY ( ch_eddy_input )
@@ -99,7 +99,7 @@ workflow TOPUP_EDDY {
         }
         else {
             // Compute bet mask on b0, since Eddy did not do it
-            BETCROP_FSLBETCROP(ch_b0_corrected.map{ item -> item + [[], []] })
+            BETCROP_FSLBETCROP(ch_b0_corrected.map{ it + [[], []] })
             ch_versions = ch_versions.mix(BETCROP_FSLBETCROP.out.versions.first())
 
             ch_b0_mask = BETCROP_FSLBETCROP.out.mask

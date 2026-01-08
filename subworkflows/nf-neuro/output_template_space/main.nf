@@ -88,8 +88,8 @@ workflow OUTPUT_TEMPLATE_SPACE {
     }
 
     ch_brain_mask = ch_brain_mask.ifEmpty(null)
-    ch_brain_mask = ch_brain_mask.branch { item ->
-        with_mask : item != null
+    ch_brain_mask = ch_brain_mask.branch {
+        with_mask : it != null
         no_mask   : true
     }
 
@@ -190,7 +190,7 @@ workflow OUTPUT_TEMPLATE_SPACE {
         .join(REGISTRATION.out.image_warped)
         .join(REGISTRATION.out.backward_affine)
         .join(REGISTRATION.out.backward_warp, remainder: true)
-        .filter{ item -> item.size() > 4 }
+        .filter{ it.size() > 4 }
         .map{ meta, trk, image, affine, warp ->
             [meta, image, affine, trk, [], warp ?: []]
         }
