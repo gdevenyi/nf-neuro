@@ -27,7 +27,7 @@ process REGISTRATION_CONVERT {
 
     // Validation transformation type and coercion with conversion type
     def in_extension = transformation.name.tokenize('.')[1..-1].join('.')
-    def transform_type = transform_types.affine.find{ it -> it.value == in_extension } ? "affine" : "warp"
+    def transform_type = transform_types.affine.find{ item -> item.value == in_extension } ? "affine" : "warp"
     if ( transform_type == "warp" && !transform_types.warp.containsKey(output_type) ) {
         error "Invalid combination of transformation type and conversion type: ${transform_type} to ${output_type}."
     }
@@ -86,7 +86,7 @@ process REGISTRATION_CONVERT {
     ]
     // Validation transformation type and coercion with conversion type
     def in_extension = transformation.name.tokenize('.')[1..-1].join('.')
-    def transform_type = transform_types.affine.find{ it -> it.value == in_extension } ? "affine" : "warp"
+    def transform_type = transform_types.affine.find{ item -> item.value == in_extension } ? "affine" : "warp"
     if ( transform_type == "warp" && !transform_types.warp.containsKey(output_type) ) {
         error "Invalid combination of transformation type and conversion type: ${transform_type} to ${output_type}."
     }

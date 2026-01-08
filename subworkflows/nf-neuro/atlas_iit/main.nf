@@ -26,9 +26,9 @@ def fetch_iit_atlas_tdi(bundleMapsUrl, dest, thresholds) {
     }
 
     def bundleMapsFile = new java.util.zip.ZipFile("$intermediate_dir/IIT_bundles.zip")
-    bundleMapsFile.entries().each{ it ->
-        def path = java.nio.file.Paths.get("$dest/bundle_maps/" + it.name)
-        if (it.directory) {
+    bundleMapsFile.entries().each{ item ->
+        def path = java.nio.file.Paths.get("$dest/bundle_maps/" + item.name)
+        if (item.directory) {
             java.nio.file.Files.createDirectories(path)
         }
         else {

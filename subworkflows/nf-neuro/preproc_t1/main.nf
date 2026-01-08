@@ -107,7 +107,7 @@ workflow PREPROC_T1 {
         if ( params.preproc_t1_run_crop ) {
             // ** Crop image ** //
             ch_crop = ch_image
-                .map{ it -> it + [[]] }
+                .map{ item -> item + [[]] }
 
             IMAGE_CROPVOLUME_T1 ( ch_crop )
             ch_versions = ch_versions.mix(IMAGE_CROPVOLUME_T1.out.versions.first())

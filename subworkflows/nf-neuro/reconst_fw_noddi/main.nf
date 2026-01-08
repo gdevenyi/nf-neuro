@@ -27,13 +27,13 @@ workflow RECONST_FW_NODDI {
     // Format inputs to get the same shape of tuple for all possible cases.
     def format_input = { ch ->
         ch.ifEmpty { [[tag: 'empty'], null] }
-            .map { it ->
+            .map { item ->
                 // If we have subject-bound, leave as is
-                if (it instanceof List && it.size() == 2)
-                    return it
+                if (item instanceof List && item.size() == 2)
+                    return item
                 // If we have a single value, convert to tuple
                 else {
-                    return [[tag: 'global'], it]
+                    return [[tag: 'global'], item]
                 }
             }
     }
