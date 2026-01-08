@@ -29,7 +29,7 @@ process REGISTRATION_SYNTHMORPH {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     def models = task.ext.models ?: ["affine", "deform"]
-    def weights = (task.ext.weights ?: [null] * models.size()).collect{ it ? "-w $it" : "none" }.join(" ")
+    def weights = (task.ext.weights ?: [null] * models.size()).collect{ it -> it ? "-w $it" : "none" }.join(" ")
     def use_gpu = task.ext.use_gpu ? "-g" : ""
     def regularization = "-r ${task.ext.regularization ?: 0.5}"
     def steps = "-n ${task.ext.steps ?: 7 }"

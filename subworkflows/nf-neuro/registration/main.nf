@@ -41,7 +41,7 @@ workflow REGISTRATION {
                 .join(ch_fixed_image, remainder: true)
                 .join(ch_moving_segmentation, remainder: true)
                 .join(ch_segmentation, remainder: true)
-                .map{ it[0..1] + [it[2] ?: [], it[3] ?: [], it[4] ?: []] }
+                .map{ it -> it[0..1] + [it[2] ?: [], it[3] ?: [], it[4] ?: []] }
 
             REGISTRATION_EASYREG ( ch_register )
             ch_versions = ch_versions.mix(REGISTRATION_EASYREG.out.versions.first())
@@ -140,10 +140,10 @@ workflow REGISTRATION {
             out_backward_warp = ch_conversion_outputs.backward_warp
             out_forward_image_transform = ch_conversion_outputs.forward_image_transform
                 .groupTuple()
-                .map{ meta, trans -> [meta, trans.sort{ t1, t2 -> t1.idx <=> t2.idx }.collect{ it.trans }] }
+                .map{ meta, trans -> [meta, trans.sort{ t1, t2 -> t1.idx <=> t2.idx }.collect{ it -> it.trans }] }
             out_backward_image_transform = ch_conversion_outputs.backward_image_transform
                 .groupTuple()
-                .map{ meta, trans -> [meta, trans.sort{ t1, t2 -> t1.idx <=> t2.idx }.collect{ it.trans }] }
+                .map{ meta, trans -> [meta, trans.sort{ t1, t2 -> t1.idx <=> t2.idx }.collect{ it -> it.trans }] }
             out_forward_tractogram_transform = out_backward_image_transform
             out_backward_tractogram_transform = out_forward_image_transform
             // ** and optional outputs. ** //
@@ -164,8 +164,8 @@ workflow REGISTRATION {
             ch_register = ch_fixed_image
                 .join(ch_moving_image)
                 .join(ch_metric, remainder: true)
-                .map{ it[0..2] + [it[3] ?: []] }
-                .branch{
+                .map{ it -> it[0..2] + [it[3] ?: []] }
+                .branch{ it ->
                     anat_to_dwi : it[3]
                     ants_syn: true
                 }
@@ -195,7 +195,7 @@ workflow REGISTRATION {
             //   - map  [ meta, image, mask | [] ]
             ch_register = ch_register.ants_syn
                 .join(ch_fixed_mask, remainder: true)
-                .map{ it[0..2] + [it[4] ?: []] }
+                .map{ it -> it[0..2] + [it[4] ?: []] }
 
             REGISTRATION_ANTS ( ch_register )
             ch_versions = ch_versions.mix(REGISTRATION_ANTS.out.versions.first())

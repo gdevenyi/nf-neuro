@@ -173,7 +173,7 @@ workflow TRACTOFLOW {
 
         /* Run fiber response averaging over subjects */
         ch_single_frf = RECONST_FRF.out.frf
-            .map{ it + [[], []] }
+            .map{ it -> it + [[], []] }
 
         ch_fiber_response = RECONST_FRF.out.wm_frf
             .join(RECONST_FRF.out.gm_frf)
@@ -196,20 +196,20 @@ workflow TRACTOFLOW {
             ch_versions = ch_versions.mix(RECONST_MEANFRF.out.versions.first())
 
             ch_meanfrf = RECONST_MEANFRF.out.meanfrf
-                .map{ ["frf"] + it }
-                .branch{
+                .map{ it -> ["frf"] + it }
+                .branch{it ->
                     ssst: it[1] == "ssst"
                     wm: it[1] == "wm"
                     gm: it[1] == "gm"
                     csf: it[1] == "csf"
                 }
 
-            ch_fiber_response = ch_meanfrf.wm.map{ [it[0], it[2]] }
-                .join(ch_meanfrf.gm.map{ [it[0], it[2]] })
-                .join(ch_meanfrf.csf.map{ [it[0], it[2]] })
-                .map{ it[1..-1] }
-                .mix(ch_meanfrf.ssst.map{ [it[1], [], []] })
-                .combine(RECONST_FRF.out.map{ it[0] })
+            ch_fiber_response = ch_meanfrf.wm.map{ it -> [it[0], it[2]] }
+                .join(ch_meanfrf.gm.map{ it -> [it[0], it[2]] })
+                .join(ch_meanfrf.csf.map{ it -> [it[0], it[2]] })
+                .map{ it -> it[1..-1] }
+                .mix(ch_meanfrf.ssst.map{ it -> [it[1], [], []] })
+                .combine(RECONST_FRF.out.map{ it -> it[0] })
         }
 
         //
@@ -363,15 +363,15 @@ workflow TRACTOFLOW {
         qball_nufo              = ch_qball_nufo
 
         // TRACKING
-        pft_tractogram          = ch_pft_tracking.map{ [it[0], it[1]] }
-        pft_config              = ch_pft_tracking.map{ [it[0], it[2]] }
-        pft_map_include         = ch_pft_tracking.map{ [it[0], it[3]] }
-        pft_map_exclude         = ch_pft_tracking.map{ [it[0], it[4]] }
-        pft_seeding_mask        = ch_pft_tracking.map{ [it[0], it[5]] }
-        local_tractogram        = ch_local_tracking.map{ [it[0], it[1]] }
-        local_config            = ch_local_tracking.map{ [it[0], it[2]] }
-        local_seeding_mask      = ch_local_tracking.map{ [it[0], it[3]] }
-        local_tracking_mask     = ch_local_tracking.map{ [it[0], it[4]] }
+        pft_tractogram          = ch_pft_tracking.map{ it -> [it[0], it[1]] }
+        pft_config              = ch_pft_tracking.map{ it -> [it[0], it[2]] }
+        pft_map_include         = ch_pft_tracking.map{ it -> [it[0], it[3]] }
+        pft_map_exclude         = ch_pft_tracking.map{ it -> [it[0], it[4]] }
+        pft_seeding_mask        = ch_pft_tracking.map{ it -> [it[0], it[5]] }
+        local_tractogram        = ch_local_tracking.map{ it -> [it[0], it[1]] }
+        local_config            = ch_local_tracking.map{ it -> [it[0], it[2]] }
+        local_seeding_mask      = ch_local_tracking.map{ it -> [it[0], it[3]] }
+        local_tracking_mask     = ch_local_tracking.map{ it -> [it[0], it[4]] }
 
         // QC
         mqc                     = ch_mqc_files

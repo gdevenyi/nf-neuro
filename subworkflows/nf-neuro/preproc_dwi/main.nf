@@ -44,7 +44,7 @@ workflow PREPROC_DWI {
                 }
 
             ch_denoise_dwi = ch_dwi_bvalbvec.dwi
-                .map{ it + [[]] }
+                .map{ it -> it + [[]] }
 
             DENOISE_DWI ( ch_denoise_dwi )
             ch_versions = ch_versions.mix(DENOISE_DWI.out.versions.first())
@@ -52,7 +52,7 @@ workflow PREPROC_DWI {
             // ** Denoise REV-DWI ** //
 
             ch_denoise_rev_dwi = ch_rev_dwi_bvalbvec.rev_dwi
-                .map{ it + [[]] }
+                .map{ it -> it + [[]] }
 
             DENOISE_REVDWI ( ch_denoise_rev_dwi )
             ch_versions = ch_versions.mix(DENOISE_REVDWI.out.versions.first())
@@ -139,7 +139,7 @@ workflow PREPROC_DWI {
         if (params.preproc_dwi_run_resampling) {
             // ** Resample DWI ** //
             ch_resample_dwi = NORMALIZE_DWI.out.dwi
-                .map{ it + [[]] }
+                .map{ it -> it + [[]] }
 
             RESAMPLE_DWI ( ch_resample_dwi )
             ch_versions = ch_versions.mix(RESAMPLE_DWI.out.versions.first())

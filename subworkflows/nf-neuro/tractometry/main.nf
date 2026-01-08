@@ -24,7 +24,7 @@ main:
 
     ch_fixel = TRACTOGRAM_REMOVEINVALID.out.tractograms
         .join( ch_fodf )
-        .filter { it[1].size() > 0 }
+        .filter { it -> it[1].size() > 0 }
 
     BUNDLE_FIXELAFD( ch_fixel )
     ch_versions = ch_versions.mix( BUNDLE_FIXELAFD.out.versions.first() )
@@ -37,8 +37,8 @@ main:
 
     ch_bundles_centroids = TRACTOGRAM_REMOVEINVALID.out.tractograms
         .join( ch_centroids, remainder: true )
-        .map { [ it[0], it[1], it[2] ?: [] ] }
-        .branch {
+        .map { it -> [ it[0], it[1], it[2] ?: [] ] }
+        .branch { it ->
             centroids_only: it[2].size() > 0
                 return [ it[0], it[2] ]
             for_centroid: it[2].size() == 0
@@ -67,7 +67,7 @@ main:
         .join( BUNDLE_LABELMAP.out.labels )
         .join( ch_metrics )
         .join( ch_lesion_mask, remainder: true )
-        .map { [ it[0], it[1], it[2], it[3], it[4] ?: [] ] }
+        .map { it -> [ it[0], it[1], it[2], it[3], it[4] ?: [] ] }
 
     BUNDLE_STATS ( ch_stats )
     ch_versions = ch_versions.mix(BUNDLE_STATS.out.versions.first())
