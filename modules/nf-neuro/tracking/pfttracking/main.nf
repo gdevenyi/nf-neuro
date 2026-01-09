@@ -88,7 +88,7 @@ process TRACKING_PFTTRACKING {
         ${prefix}__map_include.nii.gz ${prefix}__map_exclude.nii.gz \
         ${prefix}__pft_tracking.trk \
         $pft_algo $pft_seeding_type $pft_nbr_seeds \
-        $pft_random_seed $pft_step $pft_theta \
+        $pft_random_seed \$pft_step $pft_theta \
         $pft_sfthres $pft_sfthres_init $pft_min_len $pft_max_len \
         $pft_particles $pft_back $pft_front $compress $basis -f
 

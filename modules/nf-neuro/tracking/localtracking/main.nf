@@ -101,7 +101,7 @@ process TRACKING_LOCALTRACKING {
     scil_tracking_local $fodf ${prefix}__local_seeding_mask.nii.gz \
             ${prefix}__local_tracking_mask.nii.gz tmp.trk $enable_gpu\
             $local_algo $local_seeding $local_nbr_seeds\
-            $local_random_seed $local_step $local_theta\
+            $local_random_seed \$local_step $local_theta\
             $local_sfthres $local_min_len\
             $local_max_len $compress $basis -f
 
