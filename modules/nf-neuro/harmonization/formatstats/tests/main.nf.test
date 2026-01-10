@@ -1,0 +1,51 @@
+nextflow_process {
+
+    name "Test Process HARMONIZATION_FORMATSTATS"
+    script "../main.nf"
+    process "HARMONIZATION_FORMATSTATS"
+
+    tag "modules"
+    tag "modules_nfneuro"
+    tag "harmonization"
+    tag "harmonization/formatstats"
+
+    test("formatstats - format stats input") {
+
+        when {
+            process {
+                """
+                input[0] = file('/data/levj1404/test_data/aggregated_atlas-iit_label-mean_desc-roi_stats_fixed.tsv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("formatstats - format stats output") {
+        tag "inverse"
+        when {
+            config './inverse.config'
+            process {
+                """
+                input[0] = [
+                    file('/data/levj1404/test_data/CamCAN.FW.raw.csv', checkIfExists: true),
+                    file('/data/levj1404/test_data/CamCAN.md_fwc.raw.csv', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
