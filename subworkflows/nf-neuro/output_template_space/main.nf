@@ -190,9 +190,8 @@ workflow OUTPUT_TEMPLATE_SPACE {
         .join(REGISTRATION.out.image_warped)
         .join(REGISTRATION.out.backward_affine)
         .join(REGISTRATION.out.backward_warp, remainder: true)
-        .filter{ it.size() > 4 }
-        .map{ meta, trk, image, affine, warp ->
-            [meta, image, affine, trk, [], warp ?: []]
+        .map{ meta, trk, reference, affine, warp ->
+            [meta, trk, [], reference, affine, warp ?: []]
         }
 
     REGISTRATION_TRACTOGRAM ( ch_tractograms_to_transform )
