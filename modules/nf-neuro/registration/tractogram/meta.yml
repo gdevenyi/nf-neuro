@@ -90,8 +90,8 @@ input:
     - transformations:
         type: list
         description: |
-          Transformation file(s) - can be one or two files. Deformation field(s) must be
-          .nii.gz format. Affine transform(s) must be .mat or .txt format.
+          Transformation file(s) - can be one or two files. Deformation field must be
+          .nii.gz format. Affine transform must be .mat or .txt format.
         pattern: "*.{mat,txt,nii.gz}"
         mandatory: true
         ontologies:

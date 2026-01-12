@@ -190,6 +190,7 @@ workflow OUTPUT_TEMPLATE_SPACE {
         .join(REGISTRATION.out.image_warped)
         .join(REGISTRATION.out.backward_affine)
         .join(REGISTRATION.out.backward_warp, remainder: true)
+        .filter{ it.size() > 4 }  // Ensure that we have a warp (non-linear) transform
         .map{ meta, trk, reference, affine, warp ->
             [meta, trk, [], reference, affine, warp ?: []]
         }

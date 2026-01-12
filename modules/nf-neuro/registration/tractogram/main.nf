@@ -30,9 +30,18 @@ process REGISTRATION_TRACTOGRAM {
     def threshold = task.ext.threshold ? "--threshold " + task.ext.threshold : ""
     def no_empty = task.ext.no_empty ? "--no_empty" : ""
 
+    // Validate transformations when size is 2
+    if (transformations.size() == 2) {
+        def has_nii = transformations.any { it.toString().endsWith('.nii.gz') }
+        def has_affine = transformations.any { it.toString().endsWith('.txt') || it.toString().endsWith('.mat') }
+        if (!has_nii || !has_affine) {
+            error "When providing 2 transformations, one must be .nii.gz and the other must be .txt or .mat"
+        }
+    }
+
     """
     # Identify deformation and affine from transformations
-    deformation=""
+    in_deformation=""
     affine=""
 
     for transform in ${transformations}; do
@@ -61,7 +70,7 @@ process REGISTRATION_TRACTOGRAM {
                 $reference \
                 \$affine \
                 \$name \
-                \$deformation \
+                \$in_deformation \
                 $inverse \
                 $reverse_operation \
                 $trk_reference \
@@ -72,7 +81,7 @@ process REGISTRATION_TRACTOGRAM {
         else
 
             scil_tractogram_apply_transform \$tractogram $reference \$affine \$name \
-                \$deformation \
+                \$in_deformation \
                 $inverse \
                 $reverse_operation \
                 $trk_reference \
