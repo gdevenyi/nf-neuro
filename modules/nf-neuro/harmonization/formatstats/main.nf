@@ -7,9 +7,9 @@ process HARMONIZATION_FORMATSTATS {
     path tabular_files
 
     output:
-    path "*.harmonized.tsv", emit: harmonized_files
-    path "*.raw.csv", emit: raw_files
-    path "versions.yml", emit: versions
+    path "*.tsv",               emit: harmonized_files, optional: true
+    path "*.csv",               emit: raw_files, optional: true
+    path "versions.yml",        emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -20,6 +20,7 @@ process HARMONIZATION_FORMATSTATS {
     def inverse = task.ext.inverse ?: false
     def value_col_name = task.ext.value_col_name ?: "mean"
     def metric_col_name = task.ext.metric_col_name ?: "metric"
+    def suffix = task.ext.suffix ?: (inverse ? "harmonized" : "raw")
 
     def inversepy = inverse ? "True" : "False"
     def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
@@ -41,7 +42,7 @@ process HARMONIZATION_FORMATSTATS {
 
     dataframes = []
     for file in [${file_list}]:
-        df = pd.read_csv(file, sep="\\t" if file.endswith(".tsv") else ",")
+        df = pd.read_csv(file, sep="\\t" if (file.endswith(".tsv") or file.endswith(".tsv.gz")) else ",")
         df = df.rename(columns=rename_map)
         dataframes.append(df)
 
@@ -70,7 +71,7 @@ process HARMONIZATION_FORMATSTATS {
         # This is the format that is excpected by MultiQC down the line.
 
         for site, group in full_df.groupby("site"):
-            output_file = f"{site}.harmonized.tsv"
+            output_file = f"{site}.${suffix}.tsv"
             group.to_csv(output_file, sep="\\t", index=False)
     else:
         # Save a separated file for each site and for each metric
@@ -79,7 +80,7 @@ process HARMONIZATION_FORMATSTATS {
         for site, group in full_df.groupby("site"):
             for metric in group["metric"].unique():
                 metric_group = group[group["metric"] == metric]
-                output_file = f"{site}.{metric}.raw.csv"
+                output_file = f"{site}.{metric}.${suffix}.csv"
                 metric_group.to_csv(output_file, index=False)
 
     # Write versions file (this is in python)
@@ -98,11 +99,24 @@ process HARMONIZATION_FORMATSTATS {
     def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
 
     """
-    echo $args
+    #!/usr/bin/env python
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        harmonization: \$(harmonization --version)
-    END_VERSIONS
+    import pandas as pd
+    import platform
+
+    if ${inversepy}:
+        with open("stub_output.harmonized.tsv", "w") as f:
+            pass
+    else:
+        with open("stub_output1.raw.csv", "w") as f:
+            pass
+        with open("stub_output2.raw.csv", "w") as f:
+            pass
+
+    # Write versions file (this is in python)
+    with open("versions.yml", "w") as f:
+        f.write("${task.process}:\\n")
+        f.write(f"    python: {platform.python_version()}\\n")
+        f.write(f"    pandas: {pd.__version__}\\n")
     """
 }

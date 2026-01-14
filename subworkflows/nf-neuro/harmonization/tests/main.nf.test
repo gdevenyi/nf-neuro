@@ -1,0 +1,36 @@
+nextflow_workflow {
+
+    name "Test Subworkflow HARMONIZATION"
+    script "../main.nf"
+    workflow "HARMONIZATION"
+
+    config "../nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfneuro"
+    tag "subworkflows/harmonization"
+
+    // tag "harmonization"
+    // tag "harmonization/formatstats"
+
+    test("harmonization - full workflow test") {
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCAN11subs_simple.tsv")
+                input[1] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified11subs_simple.tsv")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+}

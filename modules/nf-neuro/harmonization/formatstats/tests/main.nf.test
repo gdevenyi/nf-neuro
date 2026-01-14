@@ -10,11 +10,10 @@ nextflow_process {
     tag "harmonization/formatstats"
 
     test("formatstats - format stats input") {
-
         when {
             process {
                 """
-                input[0] = file('/data/levj1404/test_data/aggregated_atlas-iit_label-mean_desc-roi_stats_fixed.tsv', checkIfExists: true)
+                input[0] = file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/CamCAN7modified.tsv.gz', checkIfExists: true)
                 """
             }
         }
@@ -28,14 +27,12 @@ nextflow_process {
     }
 
     test("formatstats - format stats output") {
-        tag "inverse"
         when {
             config './inverse.config'
             process {
                 """
                 input[0] = [
-                    file('/data/levj1404/test_data/CamCAN.FW.raw.csv', checkIfExists: true),
-                    file('/data/levj1404/test_data/CamCAN.md_fwc.raw.csv', checkIfExists: true)
+                    file('/home/local/USHERBROOKE/levj1404/Documents/nf-neuro/tests/.runs/tests/c36522bd37bed5a72447be453fcd9e52/work/2e/97c970d6da43dea614f8b10d968740/CamCANmodified.ad.clinic.harmonized.csv.gz', checkIfExists: true)
                 ]
                 """
             }

@@ -64,7 +64,7 @@ args:
       type: integer
       description: |
         Polynomial degree used for age.
-        It depend on method used (1 for parwise, 2 for clinic)
+        It depends on method used (1 for pairwise, 2 for clinic)
       default: None
       choices: "1,2"
   - nu:

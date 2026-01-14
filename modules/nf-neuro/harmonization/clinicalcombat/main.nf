@@ -18,7 +18,7 @@ process HARMONIZATION_CLINICALCOMBAT {
 
     script:
     def method = task.ext.method ? "--method " + task.ext.method : ""
-    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : ""
+    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : "--bundles all"
     def regul_ref = task.ext.regul_ref ? "--regul_ref " + task.ext.regul_ref : ""
     def regul_mov = task.ext.regul_mov ? "--regul_mov " + task.ext.regul_mov : ""
     def degree = task.ext.degree ? "--degree " + task.ext.degree : ""
