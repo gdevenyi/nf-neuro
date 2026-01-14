@@ -24,7 +24,7 @@ main:
 
     ch_fixel = TRACTOGRAM_REMOVEINVALID.out.tractograms
         .join( ch_fodf )
-        .filter { it[1].size() > 0 }
+        .filter { _meta, trk, _fodf -> trk.size() > 0 }
 
     BUNDLE_FIXELAFD( ch_fixel )
     ch_versions = ch_versions.mix( BUNDLE_FIXELAFD.out.versions.first() )
@@ -37,12 +37,12 @@ main:
 
     ch_bundles_centroids = TRACTOGRAM_REMOVEINVALID.out.tractograms
         .join( ch_centroids, remainder: true )
-        .map { [ it[0], it[1], it[2] ?: [] ] }
-        .branch {
-            centroids_only: it[2].size() > 0
-                return [ it[0], it[2] ]
-            for_centroid: it[2].size() == 0
-                return [ it[0], it[1] ]
+        .map { meta, trk, centroids -> [ meta, trk, centroids ?: [] ] }
+        .branch { meta, trk, centroids ->
+            centroids_only: centroids.size() > 0
+                return [ meta, centroids ]
+            for_centroid: centroids.size() == 0
+                return [ meta, trk ]
         }
 
     TRACTOGRAM_RESAMPLE(ch_bundles_centroids.centroids_only )
@@ -67,12 +67,15 @@ main:
         .join( BUNDLE_LABELMAP.out.labels )
         .join( ch_metrics )
         .join( ch_lesion_mask, remainder: true )
-        .map { [ it[0], it[1], it[2], it[3], it[4] ?: [] ] }
+        .map { meta, bundles, labels, metrics, lesion ->
+            return [ meta, bundles, labels, metrics, lesion ?: [] ]
+        }
 
     BUNDLE_STATS ( ch_stats )
     ch_versions = ch_versions.mix(BUNDLE_STATS.out.versions.first())
 
     emit:
+    bundles                         = BUNDLE_UNIFORMIZE.out.bundles ?: channel.empty()
     stat_length                     = BUNDLE_STATS.out.length ?: channel.empty()
     stat_endpoints_raw              = BUNDLE_STATS.out.endpoints_raw ?: channel.empty()
     stat_endpoints_metric           = BUNDLE_STATS.out.endpoints_metric_stats ?: channel.empty()
