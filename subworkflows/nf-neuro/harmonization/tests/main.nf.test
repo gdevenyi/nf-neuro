@@ -10,16 +10,45 @@ nextflow_workflow {
     tag "subworkflows_nfneuro"
     tag "subworkflows/harmonization"
 
-    // tag "harmonization"
-    // tag "harmonization/formatstats"
+    tag "harmonization"
+    tag "harmonization/formatstats"
+
+    setup {
+        run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
+            script "../../load_test_data/main.nf"
+            process {
+                """
+                input[0] = Channel.from( [ "bids.zip" ] )
+                input[1] = "test.load-test-data"
+                """
+            }
+        }
+    }
 
     test("harmonization - full workflow test") {
-
         when {
             workflow {
                 """
                 input[0] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCAN11subs_simple.tsv")
                 input[1] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified11subs_simple.tsv")
+                """
+            }
+        }
+        when {
+            workflow {
+                """
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory -> [
+                        file("\${test_data_directory}/CamCAN11subs_simple.tsv", checkIfExists: true)
+                    ]
+                }
+                input[1] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory -> [
+                        file("\${test_data_directory}/CamCANmodified11subs_simple.tsv", checkIfExists: true)
+                    ]
+                }
+                input[1] = Channel.empty()
+                input[2] = Channel.empty()
                 """
             }
         }

@@ -105,12 +105,12 @@ process HARMONIZATION_FORMATSTATS {
     import platform
 
     if ${inversepy}:
-        with open("stub_output.harmonized.tsv", "w") as f:
+        with open("stubsite.harmonized.tsv", "w") as f:
             pass
     else:
-        with open("stub_output1.raw.csv", "w") as f:
+        with open("subsite.metric1.raw.csv", "w") as f:
             pass
-        with open("stub_output2.raw.csv", "w") as f:
+        with open("subsite.metric2.raw.csv", "w") as f:
             pass
 
     # Write versions file (this is in python)
