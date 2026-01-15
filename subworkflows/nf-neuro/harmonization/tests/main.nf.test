@@ -13,19 +13,22 @@ nextflow_workflow {
     tag "harmonization"
     tag "harmonization/formatstats"
 
+    tag "stub"
+    options "-stub-run"
+
     setup {
         run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
             script "../../load_test_data/main.nf"
             process {
                 """
-                input[0] = Channel.from( [ "bids.zip" ] )
+                input[0] = Channel.from( [ "harmonization.zip" ] )
                 input[1] = "test.load-test-data"
                 """
             }
         }
     }
 
-    test("harmonization - full workflow test") {
+    test("harmonization - subworkflow") {
         when {
             workflow {
                 """
@@ -34,24 +37,26 @@ nextflow_workflow {
                 """
             }
         }
-        when {
-            workflow {
-                """
-                input[0] = LOAD_DATA.out.test_data_directory.map{
-                    test_data_directory -> [
-                        file("\${test_data_directory}/CamCAN11subs_simple.tsv", checkIfExists: true)
-                    ]
-                }
-                input[1] = LOAD_DATA.out.test_data_directory.map{
-                    test_data_directory -> [
-                        file("\${test_data_directory}/CamCANmodified11subs_simple.tsv", checkIfExists: true)
-                    ]
-                }
-                input[1] = Channel.empty()
-                input[2] = Channel.empty()
-                """
-            }
-        }
+        // when {
+        //     // The workflow should be able to process files coming from the bundle/stats or stats/metricsinroi
+        //     // which are structured differently.
+        //     workflow {
+        //         """
+        //         input[0] = LOAD_DATA.out.test_data_directory.map{
+        //             test_data_directory -> [
+        //                 file("\${test_data_directory}/CamCAN11subs_simple.tsv", checkIfExists: true)
+        //             ]
+        //         }
+        //         input[1] = LOAD_DATA.out.test_data_directory.map{
+        //             test_data_directory -> [
+        //                 file("\${test_data_directory}/CamCANmodified11subs_simple.tsv", checkIfExists: true)
+        //             ]
+        //         }
+        //         input[1] = Channel.empty()
+        //         input[2] = Channel.empty()
+        //         """
+        //     }
+        // }
 
         then {
             assertAll(

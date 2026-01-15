@@ -14,16 +14,16 @@ nextflow_process {
     tag "subworkflows/load_test_data"
 
     setup {
-            run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
-                script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
-                process {
-                    """
-                    input[0] = Channel.from( [ "harmonization.zip" ] )
-                    input[1] = "test.load-test-data"
-                    """
-                }
+        run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
+            script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
+            process {
+                """
+                input[0] = Channel.from( [ "harmonization.zip" ] )
+                input[1] = "test.load-test-data"
+                """
             }
         }
+    }
 
     test("harmonization - clinicalcombat_pairwise") {
         config "./nextflow_pairwise.config"

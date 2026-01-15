@@ -9,11 +9,23 @@ nextflow_process {
     tag "harmonization"
     tag "harmonization/formatstats"
 
+    setup {
+        run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
+            script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
+            process {
+                """
+                input[0] = Channel.from( [ "harmonization.zip" ] )
+                input[1] = "test.load-test-data"
+                """
+            }
+        }
+    }
+
     test("formatstats - format stats input") {
         when {
             process {
                 """
-                input[0] = file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/CamCAN7modified.tsv.gz', checkIfExists: true)
+                input[0] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCAN11subs_simple.tsv")
                 """
             }
         }
@@ -32,7 +44,8 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    file('/home/local/USHERBROOKE/levj1404/Documents/nf-neuro/tests/.runs/tests/c36522bd37bed5a72447be453fcd9e52/work/2e/97c970d6da43dea614f8b10d968740/CamCANmodified.ad.clinic.harmonized.csv.gz', checkIfExists: true)
+                    file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified.ad.clinic.harmonized.csv.gz', checkIfExists: true),
+                    file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified.adt.clinic.harmonized.csv.gz', checkIfExists: true)
                 ]
                 """
             }
