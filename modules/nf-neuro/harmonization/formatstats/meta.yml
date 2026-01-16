@@ -16,17 +16,17 @@ description: |
   2) Format the CSV stats files (possibly coming from the harmonization modules) into a TSV format
       that can be easily read by MultiQC or other downstream tools (set ext.inverse = true).
 keywords:
-- harmonization
-- stats
-- format
-- tsv
-- csv
-- qc
+  - harmonization
+  - stats
+  - format
+  - tsv
+  - csv
+  - qc
 tools:
-- pandas:
-    description: "Python package used to manipulate the input and output tabular data for this module."
-    homepage: https://pypi.org/project/pandas/
-    identifier: ""
+  - pandas:
+      description: "Python package used to manipulate the input and output tabular data for this module."
+      homepage: https://pypi.org/project/pandas/
+      identifier: ""
 
 input:
   - tabular_files:
@@ -39,7 +39,7 @@ input:
           with columns: "sid,site,bundle,metric,mean,<covariates>".
       pattern: "*.{tsv,csv}"
       ontologies:
-      - edam: http://edamontology.org/format_3464  # JSON format
+        - edam: http://edamontology.org/format_3464 # JSON format
 args:
   covariates:
     type: file
@@ -87,7 +87,7 @@ output:
           if "ext.inverse = false" (the default).
         pattern: "*.raw.csv"
         ontologies:
-        - edam: http://edamontology.org/format_3752  # CSV format
+          - edam: http://edamontology.org/format_3752 # CSV format
   harmonized_files:
     - "*.tsv":
         type: file
@@ -96,15 +96,15 @@ output:
           if "ext.inverse = false" (the default).
         pattern: "*.harmonized.tsv"
         ontologies:
-        - edam: http://edamontology.org/format_3475  # TSV format
+          - edam: http://edamontology.org/format_3475 # TSV format
   versions:
     - versions.yml:
         type: file
         description: File containing software versions
         pattern: versions.yml
         ontologies:
-          - edam: http://edamontology.org/format_3750  # YAML
+          - edam: http://edamontology.org/format_3750 # YAML
 authors:
-- "@levje"
+  - "@levje"
 maintainers:
-- "@levje"
+  - "@levje"
