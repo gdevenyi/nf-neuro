@@ -36,17 +36,19 @@ input:
   - ch_reference_site:
       type: file
       description: |
-        The input channel containing the anatomical image.
-        Structure: [ val(meta), path(image) ]
-      pattern: "*.{nii,nii.gz}"
+        The input channel containing the reference site tractometry TSV stats file
+        with the following columns: "sid,roi,<covariates>,metric1,metric2,...".
+        Structure: [ val(meta), path(tsv_file) ]
+      pattern: "*.tsv"
       mandatory: true
   - ch_moving_site:
       type: file
       description: |
-        The input channel containing the anatomical template for antsBET.
-        Structure: [ val(meta), path(image) ]
-      pattern: "*.{nii,nii.gz}"
-      mandatory: false
+        The input channel containing the moving site tractometry TSV stats file
+        with the following columns: "sid,roi,<covariates>,metric1,metric2,...".
+        Structure: [ val(meta), path(tsv_file) ]
+      pattern: "*.tsv"
+      mandatory: true
 args:
   - atlas_iit_b0:
       type: string
@@ -65,7 +67,7 @@ args:
       mandatory: false
       default: null
 output:
-  - bundle_masks:
+  - harmonized_metrics:
       type: file
       description: |
         List of IIT binary bundle masks.
@@ -73,14 +75,30 @@ output:
       pattern: "*.nii.gz"
       ontologies:
         - edam: http://edamontology.org/format_4001 # NIFTI format
-  - b0:
+  - figures:
       type: file
       description: |
-        Mean B0 map of the IIT Human Brain Atlas.
+        PNG figures illustrating the harmonization results for each metric and each bundle.
         Structure: [ path(img) ]
-      pattern: "*_b0.nii.gz"
+      pattern: "*.png"
       ontologies:
         - edam: http://edamontology.org/format_4001 # NIFTI format
+  - model:
+      type: file
+      description: |
+        Harmonization fitted model.
+        Structure: [ path(model_file) ]
+      pattern: "*.model.csv"
+      ontologies:
+        - edam: http://edamontology.org/format_3752 # CSV format
+  - qc_reports:
+      type: file
+      description: |
+        Values that can be reported in QC reports.
+        Structure: [ path(*bhattacharrya.txt) ]
+      pattern: "*bhattacharrya.txt"
+      ontologies:
+        - edam: http://edamontology.org/format_3752 # HTML format
   - versions:
       type: file
       description: |
