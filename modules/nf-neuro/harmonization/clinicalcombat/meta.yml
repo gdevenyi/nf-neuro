@@ -118,12 +118,12 @@ output:
         ontologies:
           - edam: http://edamontology.org/format_3752 # CSV
   bdqc:
-    - qc_reports:
+    - "qc_reports/*":
         type: directory
         description: BDQC reports for harmonized data.
         pattern: "qc_reports/"
   figures:
-    - figures:
+    - "figures/*":
         type: directory
         description: Figures generated to visualize harmonization results.
         pattern: "figures/"

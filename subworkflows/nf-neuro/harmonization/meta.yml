@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "harmonization"
+description: |
+  This harmonization subworkflow essentially is a convenience wrapper around the
+  the harmonization modules (e.g. harmonization/clinicalcombat). Some harmonization
+  modules require specific input formats for the tabular stats files. This
+  subworkflow automatically handles the conversion from TSV to CSV format (including
+  pivoting/unpivoting of the metrics) before and after harmonization, using the
+  `harmonization/formatstats` module.
+
+  The harmonization modules currently expect a CSV file with the following columns:
+  "sid,site,bundle,metric,mean,age,sex,handedness,disease".
+  AND a separate CSV file PER metric.
+
+  However, in other nf-neuro modules (e.g. stats/metricsinroi or bundle/stats), the
+  output stats files are in TSV format with the following columns:
+  "sid,roi,<covariates>,metric1,metric2,...".
+
+  You can simply provide the TSV stat files directly coming from bundle/stats or
+  stats/metricsinroi to this subworkflow, and it will take care of formatting them
+  into the CSV format expected by the harmonization modules, and then re-formatting
+  the harmonized CSV outputs back into a TSV format that can be easily read by
+  MultiQC or other downstream tools.
+keywords:
+  - clinical
+  - combat
+  - tsv
+  - csv
+  - format
+  - harmonization
+  - harmonize
+components:
+  - harmonization/formatstats
+  - harmonization/clinicalcombat
+input:
+  - ch_reference_site:
+      type: file
+      description: |
+        The input channel containing the anatomical image.
+        Structure: [ val(meta), path(image) ]
+      pattern: "*.{nii,nii.gz}"
+      mandatory: true
+  - ch_moving_site:
+      type: file
+      description: |
+        The input channel containing the anatomical template for antsBET.
+        Structure: [ val(meta), path(image) ]
+      pattern: "*.{nii,nii.gz}"
+      mandatory: false
+args:
+  - atlas_iit_b0:
+      type: string
+      description: |
+        Path to a Mean B0 map of the IIT Human Brain Atlas.
+        If provided, this input will be used instead of downloading the Mean B0 map.
+        Structure: path(img)
+      mandatory: false
+      default: null
+  - atlas_iit_bundle_masks_dir:
+      type: string
+      description: |
+        Path to a directory containing IIT bundle masks.
+        If provided, these inputs will be used instead of downloading and processing the bundle masks.
+      Structure: path(dir)
+      mandatory: false
+      default: null
+output:
+  - bundle_masks:
+      type: file
+      description: |
+        List of IIT binary bundle masks.
+        Structure: [ path(img), path(img), ... ]
+      pattern: "*.nii.gz"
+      ontologies:
+        - edam: http://edamontology.org/format_4001 # NIFTI format
+  - b0:
+      type: file
+      description: |
+        Mean B0 map of the IIT Human Brain Atlas.
+        Structure: [ path(img) ]
+      pattern: "*_b0.nii.gz"
+      ontologies:
+        - edam: http://edamontology.org/format_4001 # NIFTI format
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@levje"
+maintainers:
+  - "@levje"

@@ -80,7 +80,7 @@ args:
     default: "raw"
 output:
   raw_files:
-    - "*.raw.csv":
+    - "*.csv":
         type: file
         description: |
           Raw stats files in CSV format (Harmonization ready). Output only
@@ -89,7 +89,7 @@ output:
         ontologies:
         - edam: http://edamontology.org/format_3752  # CSV format
   harmonized_files:
-    - "*.harmonized.tsv":
+    - "*.tsv":
         type: file
         description: |
           Harmonized stats files in TSV format (MultiQC ready format). Output only

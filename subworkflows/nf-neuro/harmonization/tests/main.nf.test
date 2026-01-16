@@ -9,9 +9,11 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows_nfneuro"
     tag "subworkflows/harmonization"
+    tag "load_test_data"
 
     tag "harmonization"
     tag "harmonization/formatstats"
+    tag "harmonization/clinicalcombat"
 
     tag "stub"
     options "-stub-run"
