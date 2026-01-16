@@ -25,7 +25,10 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCAN11subs_simple.tsv")
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory ->
+                        file("\${test_data_directory}/CamCAN_11subs_ad_adt.tsv", checkIfExists: true)
+                    }
                 """
             }
         }
@@ -43,10 +46,12 @@ nextflow_process {
             config './inverse.config'
             process {
                 """
-                input[0] = [
-                    file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified.ad.clinic.harmonized.csv.gz', checkIfExists: true),
-                    file('/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified.adt.clinic.harmonized.csv.gz', checkIfExists: true)
-                ]
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory -> [
+                        file("\${test_data_directory}/CamCANmodified.ad.clinic.harmonized.csv.gz"),
+                        file("\${test_data_directory}/CamCANmodified.adt.clinic.harmonized.csv.gz")
+                    ]
+                }
                 """
             }
         }

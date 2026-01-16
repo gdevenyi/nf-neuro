@@ -1,0 +1,17 @@
+{
+    "harmonization - subworkflow": {
+        "content": [
+            [
+                "versions.yml:md5,0bc452ade67f220a77a43ca3a41fcfbc",
+                "versions.yml:md5,47e3adda4a2211c7dc0d7bcf52158c8b",
+                "versions.yml:md5,51fa4dad6894b635c3cef18604099e14",
+                "versions.yml:md5,efc40b5dcb7c17184e90bc63adc5d852"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T13:11:50.443175532"
+    }
+}

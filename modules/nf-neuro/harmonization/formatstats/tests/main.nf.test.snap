@@ -1,0 +1,66 @@
+{
+    "formatstats - format stats output": {
+        "content": [
+            {
+                "0": [
+                    "CamCANmodified.harmonized.tsv:md5,fd2116a1f351d57f5cb384819d88396b"
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    "versions.yml:md5,b99272d840f406f918fd77c0c5f7e4cb"
+                ],
+                "harmonized_files": [
+                    "CamCANmodified.harmonized.tsv:md5,fd2116a1f351d57f5cb384819d88396b"
+                ],
+                "raw_files": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,b99272d840f406f918fd77c0c5f7e4cb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T09:30:32.252750076"
+    },
+    "formatstats - format stats input": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    [
+                        "CamCAN.ad.raw.csv:md5,9ed070394cdc7c19c958435cb3f369f2",
+                        "CamCAN.adt.raw.csv:md5,9216d4c631cb59a07941e1cf3cfdc928"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,b99272d840f406f918fd77c0c5f7e4cb"
+                ],
+                "harmonized_files": [
+                    
+                ],
+                "raw_files": [
+                    [
+                        "CamCAN.ad.raw.csv:md5,9ed070394cdc7c19c958435cb3f369f2",
+                        "CamCAN.adt.raw.csv:md5,9216d4c631cb59a07941e1cf3cfdc928"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,b99272d840f406f918fd77c0c5f7e4cb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-16T09:30:28.768120708"
+    }
+}

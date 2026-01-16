@@ -35,7 +35,7 @@ workflow HARMONIZATION {
         }
 
     HARMONIZATION_CLINICALCOMBAT(ch_grouped_metrics)
-    ch_versions = ch_versions.mix(HARMONIZATION_CLINICALCOMBAT.out.versions)
+    ch_versions = ch_versions.mix(HARMONIZATION_CLINICALCOMBAT.out.versions.first())
 
     // Group by site
     ch_harmonized_files = HARMONIZATION_CLINICALCOMBAT.out.harmonizedsite
@@ -44,11 +44,8 @@ workflow HARMONIZATION {
         .map { _site, files -> files }
 
     // Combine/format the output harmonized metrics into a MultiQC friendly TSV format
-    ch_harmonized_files.view()
     FORMAT_OUTPUT(ch_harmonized_files)
     ch_versions = ch_versions.mix(FORMAT_OUTPUT.out.versions)
-
-    // FORMAT_OUTPUT.out.raw_files.view()
 
     emit:
     harmonized_metrics   = FORMAT_OUTPUT.out.raw_files   // channel: [ harmonizedsite1.harmonized.tsv, harmonizedsite2.harmonized.tsv, ... ]

@@ -9,8 +9,8 @@ process HARMONIZATION_CLINICALCOMBAT {
     output:
     path("*.model.csv")                , emit: model
     path("*.harmonized.csv.gz")        , emit: harmonizedsite
-    path("qc_reports")                 , emit: bdqc
-    path("figures")                    , emit: figures
+    path("qc_reports/*")               , emit: bdqc
+    path("figures/*")                  , emit: figures
     path "versions.yml"                , emit: versions
 
     when:
@@ -48,13 +48,24 @@ process HARMONIZATION_CLINICALCOMBAT {
     """
 
     stub:
-    def method = task.ext.method ?: "${task.ext.method}"
+    def method = task.ext.method ?: "clinical"
+
+    // Extract the site and metric name from the input filenames
+    // We do this to avoid having file collisions when stubbing
+    def stub_ref_site = ref_site.getName().split("\\.")[0]
+    def stub_mov_site = move_site.getName().split("\\.")[0]
+    def stub_metric = ref_site.getName().split("\\.")[1]
+
     """
     combat_quick -h
 
     mkdir -p figures qc_reports
-    touch ref_mov.metric.${method}.model.csv
-    touch ref_mov.metric.${method}.harmonized.csv.gz
+    touch figures/dummy_figure_1.png
+    touch figures/dummy_figure_2.png
+    touch qc_reports/${stub_ref_site}_${stub_mov_site}.${stub_metric}_report_1.txt
+    touch qc_reports/${stub_ref_site}_${stub_mov_site}.${stub_metric}_report_2.txt
+    touch ${stub_ref_site}_${stub_mov_site}.${stub_metric}.${method}.model.csv
+    touch ${stub_ref_site}_${stub_mov_site}.${stub_metric}.${method}.harmonized.csv.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

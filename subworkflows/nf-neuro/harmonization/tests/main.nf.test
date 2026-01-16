@@ -29,34 +29,26 @@ nextflow_workflow {
     }
 
     test("harmonization - subworkflow") {
+        tag "here"
+        config './stubs.config'
         when {
+            // The workflow should be able to process files coming from the bundle/stats or stats/metricsinroi
+            // which are structured differently.
             workflow {
                 """
-                input[0] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCAN11subs_simple.tsv")
-                input[1] = Channel.fromPath("/home/local/USHERBROOKE/levj1404/Documents/clinical-ComBAT/11subs/CamCANmodified11subs_simple.tsv")
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory ->
+                        file("\${test_data_directory}/CamCAN_11subs_ad_adt.tsv", checkIfExists: true)
+
+                }
+                input[1] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory ->
+                        file("\${test_data_directory}/CamCANmodified_11subs_ad_adt.tsv", checkIfExists: true)
+
+                }
                 """
             }
         }
-        // when {
-        //     // The workflow should be able to process files coming from the bundle/stats or stats/metricsinroi
-        //     // which are structured differently.
-        //     workflow {
-        //         """
-        //         input[0] = LOAD_DATA.out.test_data_directory.map{
-        //             test_data_directory -> [
-        //                 file("\${test_data_directory}/CamCAN11subs_simple.tsv", checkIfExists: true)
-        //             ]
-        //         }
-        //         input[1] = LOAD_DATA.out.test_data_directory.map{
-        //             test_data_directory -> [
-        //                 file("\${test_data_directory}/CamCANmodified11subs_simple.tsv", checkIfExists: true)
-        //             ]
-        //         }
-        //         input[1] = Channel.empty()
-        //         input[2] = Channel.empty()
-        //         """
-        //     }
-        // }
 
         then {
             assertAll(
