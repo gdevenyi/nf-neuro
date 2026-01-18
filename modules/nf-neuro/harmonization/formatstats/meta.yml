@@ -41,43 +41,43 @@ input:
       ontologies:
         - edam: http://edamontology.org/format_3464 # JSON format
 args:
-  covariates:
-    type: file
-    description: |
-      List of columns that are not considered metrics in the input tabular files.
-      These columns will be kept unchanged (except for renaming the columns) while
-      the other columns (i.e. the metrics and their values) will be pivotted or
-      unpivotted.
-      Default: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
-    pattern: "*.{nii,nii.gz}"
-    ontologies:
-      - edam: http://edamontology.org/format_4001 # NIFTI format
-  inverse:
-    type: boolean
-    description: |
-      If false (the default), format the input TSV files into the CSV format expected by the harmonization modules.
-      If true, format the input CSV files (coming from harmonization) into a TSV format
-      that can be easily read by MultiQC or other downstream tools.
-    default: false
-  value_col_name:
-    type: string
-    description: |
-      Name of the column containing the metric values in the CSV files.
-      Default: "mean"
-    default: "mean"
-  metric_col_name:
-    type: string
-    description: |
-      Name of the column containing the metric names in the CSV files.
-      Default: "metric"
-    default: "metric"
-  suffix:
-    type: string
-    description: |
-      Suffix to use for the output files based on the operation performed.
-      The output files will be named as "site.metric.<suffix>.csv" or "site.<suffix>.tsv" (inverse).
-      Default: "raw" (inverse = false) or "harmonized" (inverse = true).
-    default: "raw"
+  - covariates:
+      type: file
+      description: |
+        List of columns that are not considered metrics in the input tabular files.
+        These columns will be kept unchanged (except for renaming the columns) while
+        the other columns (i.e. the metrics and their values) will be pivotted or
+        unpivotted.
+        Default: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
+      pattern: "*.{nii,nii.gz}"
+      ontologies:
+        - edam: http://edamontology.org/format_4001 # NIFTI format
+  - inverse:
+      type: boolean
+      description: |
+        If false (the default), format the input TSV files into the CSV format expected by the harmonization modules.
+        If true, format the input CSV files (coming from harmonization) into a TSV format
+        that can be easily read by MultiQC or other downstream tools.
+      default: false
+  - value_col_name:
+      type: string
+      description: |
+        Name of the column containing the metric values in the CSV files.
+        Default: "mean"
+      default: "mean"
+  - metric_col_name:
+      type: string
+      description: |
+        Name of the column containing the metric names in the CSV files.
+        Default: "metric"
+      default: "metric"
+  - suffix:
+      type: string
+      description: |
+        Suffix to use for the output files based on the operation performed.
+        The output files will be named as "site.metric.<suffix>.csv" or "site.<suffix>.tsv" (inverse).
+        Default: "raw" (inverse = false) or "harmonized" (inverse = true).
+      default: "raw"
 output:
   raw_files:
     - "*.csv":
