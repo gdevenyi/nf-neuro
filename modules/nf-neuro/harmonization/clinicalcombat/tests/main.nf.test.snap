@@ -1,16 +1,24 @@
 {
     "harmonization - clinicalcombat_pairwise": {
         "content": [
-            "ShamCamCAN-CamCAN.md.pairwise.model.csv",
-            "ShamCamCAN.md.pairwise.harmonized.csv.gz",
             [
-                "ShamCamCAN.md.pairwise.harmonized.bhattacharrya.txt",
-                "ShamCamCAN.md.raw.bhattacharrya.txt"
+                "ShamCamCAN-CamCAN.md.pairwise.model.csv:md5,7bafe4e6da456a54f9c4e851ed8af675"
             ],
             [
-                "AgeCurve_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png",
-                "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png",
-                "DataModels_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png"
+                "ShamCamCAN.md.pairwise.harmonized.csv.gz:md5,115d8e5954f6213373a758f47bcd812e"
+            ],
+            [
+                [
+                    "ShamCamCAN.md.pairwise.harmonized.bhattacharrya.txt:md5,25388c4f6da3f98b15844ba424b31f0b",
+                    "ShamCamCAN.md.raw.bhattacharrya.txt:md5,2894ae6e5cff7c523143e01a96125ac4"
+                ]
+            ],
+            [
+                [
+                    "AgeCurve_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png:md5,5c698207c2b9e7558761943f76583af4",
+                    "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                    "DataModels_CamCAN-ShamCamCAN_pairwise_harmonized_md_mniAFL.png:md5,f9b183756dab4922edeb4a586b78adad"
+                ]
             ],
             [
                 "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
@@ -18,9 +26,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-12-02T12:57:32.640242755"
+        "timestamp": "2026-01-18T09:54:45.637383718"
     },
     "harmonization - stub-un clinicalcombat": {
         "content": [
@@ -36,16 +44,24 @@
     },
     "harmonization - clinicalcombat_clinic": {
         "content": [
-            "ShamCamCAN-CamCAN.md.clinic.model.csv",
-            "ShamCamCAN.md.clinic.harmonized.csv.gz",
             [
-                "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt",
-                "ShamCamCAN.md.raw.bhattacharrya.txt"
+                "ShamCamCAN-CamCAN.md.clinic.model.csv:md5,159487719fc0ec75b7c5f5c781424c04"
             ],
             [
-                "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png",
-                "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png",
-                "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png"
+                "ShamCamCAN.md.clinic.harmonized.csv.gz:md5,20f90e52de6ee303759549ce0dbe8778"
+            ],
+            [
+                [
+                    "ShamCamCAN.md.clinic.harmonized.bhattacharrya.txt:md5,e5b9fde945ce0a4bb81b1280da6f6067",
+                    "ShamCamCAN.md.raw.bhattacharrya.txt:md5,15fa0b347a35a7270894b0df99b67908"
+                ]
+            ],
+            [
+                [
+                    "AgeCurve_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,1fb8548942950fed5b590be74a0c8195",
+                    "AgeCurve_CamCAN-ShamCamCAN_raw_md_mniAFL.png:md5,c1165a83589c818044f4501e75b99212",
+                    "DataModels_CamCAN-ShamCamCAN_clinic_harmonized_md_mniAFL.png:md5,a57f04cf228003c18a960f475fa37cbc"
+                ]
             ],
             [
                 "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
@@ -53,8 +69,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-12-02T12:58:19.998188644"
+        "timestamp": "2026-01-18T09:57:26.733676212"
     }
 }
