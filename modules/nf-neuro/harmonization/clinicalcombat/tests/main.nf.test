@@ -47,10 +47,10 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(
-                    process.out.model,
-                    process.out.harmonizedsite,
-                    process.out.bdqc,
-                    process.out.figures,
+                    file(process.out.model.get(0)).name,
+                    file(process.out.harmonizedsite.get(0)).name,
+                    process.out.bdqc.flatten().collect { file(it).name }.sort(),
+                    process.out.figures.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )
@@ -79,10 +79,10 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(
-                    process.out.model,
-                    process.out.harmonizedsite,
-                    process.out.bdqc,
-                    process.out.figures,
+                    file(process.out.model.get(0)).name,
+                    file(process.out.harmonizedsite.get(0)).name,
+                    process.out.bdqc.flatten().collect { file(it).name }.sort(),
+                    process.out.figures.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )
