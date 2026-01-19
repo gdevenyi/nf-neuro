@@ -46,7 +46,7 @@ process REGISTRATION_TRACTOGRAM {
 
     for transform in ${transformations}; do
         if [[ "\$transform" == *.nii.gz ]]; then
-            in_deformation="--deformation \$transform"
+            in_deformation="--in_deformation \$transform"
         elif [[ "\$transform" == *.mat ]] || [[ "\$transform" == *.txt ]]; then
             affine="\$transform"
         fi
