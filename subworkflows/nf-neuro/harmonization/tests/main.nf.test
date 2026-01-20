@@ -56,6 +56,10 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    workflow.out.harmonized_metrics,
+                    workflow.out.figures,
+                    workflow.out.model,
+                    workflow.out.qc_reports,
                     workflow.out.versions
                 ).match() }
             )

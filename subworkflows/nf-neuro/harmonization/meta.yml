@@ -53,11 +53,11 @@ output:
   - harmonized_metrics:
       type: file
       description: |
-        Harmonized stats files in TSV format (MultiQC ready format).
+        Harmonized stats file in TSV format (MultiQC ready format).
         Structure: [ path(*.tsv) ]
-      pattern: "*.nii.gz"
+      pattern: "*.tsv"
       ontologies:
-        - edam: http://edamontology.org/format_4001 # NIFTI format
+        - edam: http://edamontology.org/format_3475 # TSV format
   - figures:
       type: file
       description: |
@@ -65,7 +65,7 @@ output:
         Structure: [ path(img) ]
       pattern: "*.png"
       ontologies:
-        - edam: http://edamontology.org/format_4001 # NIFTI format
+        - edam: http://edamontology.org/format_3603 # PNG
   - model:
       type: file
       description: |
@@ -81,7 +81,7 @@ output:
         Structure: [ path(*bhattacharrya.txt) ]
       pattern: "*bhattacharrya.txt"
       ontologies:
-        - edam: http://edamontology.org/format_3752 # HTML format
+        - edam: http://edamontology.org/format_2330 # Plain text format
   - versions:
       type: file
       description: |

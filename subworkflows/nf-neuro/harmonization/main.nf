@@ -21,16 +21,25 @@ workflow HARMONIZATION {
     ch_versions = ch_versions.mix(FORMAT_INPUT_REFERENCE.out.versions)
     ch_reference_metrics = FORMAT_INPUT_REFERENCE.out.raw_files
         .flatten()
-        .map{ file -> extract_metric_from_filename(file) }
+        .map{ file ->
+            // Extract the metric name from the filename which
+            // is in the format: <site>.<metric>.*
+            [[metric: file.getName().split("\\.")[1]], file]
+        }
 
     FORMAT_INPUT_MOVING(ch_moving_site)
     ch_versions = ch_versions.mix(FORMAT_INPUT_MOVING.out.versions)
     ch_moving_metrics = FORMAT_INPUT_MOVING.out.raw_files
         .flatten()
-        .map{ file -> extract_metric_from_filename(file) }
+        .map{ file ->
+            // Extract the metric name from the filename which
+            // is in the format: <site>.<metric>.*
+            [[metric: file.getName().split("\\.")[1]], file]
+        }
 
     // Group moving and reference metrics by metric name
-    ch_grouped_metrics = ch_moving_metrics.join(ch_reference_metrics)
+    ch_grouped_metrics = ch_moving_metrics
+        .join(ch_reference_metrics)
         .map{ _meta, moving_entry, reference_entry ->
             [ reference_entry, moving_entry ]
         }
@@ -41,7 +50,11 @@ workflow HARMONIZATION {
 
     // Group by site
     ch_harmonized_files = HARMONIZATION_CLINICALCOMBAT.out.harmonizedsite
-        .map{ file -> extract_site_from_filename(file) }
+        .map{ file ->
+            // Extract the metric name from the filename which
+            // is in the format: <site>.<metric>.*
+            [[site: file.getName().split("\\.")[0]], file]
+        }
         .groupTuple()
         .map { _site, files -> files }
 
@@ -56,34 +69,4 @@ workflow HARMONIZATION {
     qc_reports           = HARMONIZATION_CLINICALCOMBAT.out.bdqc
 
     versions = ch_versions                     // channel: [ versions.yml ]
-}
-
-def extract_metric_from_filename(file) {
-    // The file will be called something like:
-    // site.metric.raw.csv
-    def filename = file.getName()
-    def parts = filename.split("\\.")
-
-    if (parts.length < 4) {
-        throw new IllegalArgumentException(
-            "Filename does not conform to expected pattern (site.metric.*.csv): " + filename)
-    }
-    def metric = parts[1]
-
-    return [[metric: metric], file]
-}
-
-def extract_site_from_filename(file) {
-    // The file will be called something like:
-    // site.metric.raw.csv
-    def filename = file.getName()
-    def parts = filename.split("\\.")
-
-    if (parts.length < 4) {
-        throw new IllegalArgumentException(
-            "Filename does not conform to expected pattern (site.metric.*.csv): " + filename)
-    }
-    def site = parts[0]
-
-    return [[site: site], file]
 }

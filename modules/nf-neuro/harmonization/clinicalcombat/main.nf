@@ -52,9 +52,9 @@ process HARMONIZATION_CLINICALCOMBAT {
 
     // Extract the site and metric name from the input filenames
     // We do this to avoid having file collisions when stubbing
-    def stub_ref_site = ref_site.getName().split("\\.")[0]
-    def stub_mov_site = move_site.getName().split("\\.")[0]
-    def stub_metric = ref_site.getName().split("\\.")[1]
+    def ref_site_name = ref_site.getName().split("\\.")[0]
+    def mov_site_name = move_site.getName().split("\\.")[0]
+    def metric_name = ref_site.getName().split("\\.")[1]
 
     """
     combat_quick -h
@@ -62,10 +62,10 @@ process HARMONIZATION_CLINICALCOMBAT {
     mkdir -p figures qc_reports
     touch figures/dummy_figure_1.png
     touch figures/dummy_figure_2.png
-    touch qc_reports/${stub_ref_site}_${stub_mov_site}.${stub_metric}_report_1.txt
-    touch qc_reports/${stub_ref_site}_${stub_mov_site}.${stub_metric}_report_2.txt
-    touch ${stub_ref_site}_${stub_mov_site}.${stub_metric}.${method}.model.csv
-    touch ${stub_ref_site}_${stub_mov_site}.${stub_metric}.${method}.harmonized.csv.gz
+    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_1.txt
+    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_2.txt
+    touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.model.csv
+    touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.harmonized.csv.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

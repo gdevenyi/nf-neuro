@@ -4,12 +4,12 @@ process HARMONIZATION_FORMATSTATS {
     container "scilus/scilpy:2.2.0_cpu"
 
     input:
-    path tabular_files
+    path(tabular_files, arity: '1..*')
 
     output:
-    path "*.tsv",               emit: harmonized_files, optional: true
-    path "*.csv",               emit: raw_files, optional: true
-    path "versions.yml",        emit: versions
+    path("*.tsv"),               emit: harmonized_files, optional: true
+    path("*.csv"),               emit: raw_files, optional: true
+    path("versions.yml"),        emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -54,8 +54,6 @@ process HARMONIZATION_FORMATSTATS {
     # Concat all dataframes
     full_df = pd.concat(dataframes, ignore_index=True)
 
-    print(full_df)
-
     if ${inversepy}:
         # Pivot back to wide format
         full_df = full_df.pivot_table(index=non_metric_cols, columns="${metric_col_name}", values="${value_col_name}").reset_index()
@@ -98,9 +96,9 @@ process HARMONIZATION_FORMATSTATS {
     def inversepy = inverse ? "True" : "False"
     def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
 
-    // Extract the stub_sitename from the input files
+    // Extract the sitename from the input files
     // this is to avoid file name collisions when stubbing
-    def stub_sitename = tabular_files[0].getName().split("\\.")[0]
+    def sitename = tabular_files[0].getName().split("\\.")[0]
 
     """
     #!/usr/bin/env python
@@ -109,12 +107,12 @@ process HARMONIZATION_FORMATSTATS {
     import platform
 
     if ${inversepy}:
-        with open("${stub_sitename}.harmonized.tsv", "w") as f:
+        with open("${sitename}.harmonized.tsv", "w") as f:
             pass
     else:
-        with open("${stub_sitename}.metric1.raw.csv", "w") as f:
+        with open("${sitename}.metric1.raw.csv", "w") as f:
             pass
-        with open("${stub_sitename}.metric2.raw.csv", "w") as f:
+        with open("${sitename}.metric2.raw.csv", "w") as f:
             pass
 
     # Write versions file (this is in python)
