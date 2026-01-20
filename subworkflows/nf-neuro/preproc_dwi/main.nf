@@ -119,7 +119,7 @@ workflow PREPROC_DWI {
             ch_pwd_avg = IMAGE_POWDERAVERAGE.out.pwd_avg
 
             // Assess if weights were provided per meta or not
-            ch_weights = ch_synthstrip_weights.ifEmpty( channel.from( [] ) )
+            ch_weights = ch_synthstrip_weights.ifEmpty( [] )
                 .branch { it ->
                     subject: (it instanceof List && it.size() == 2)
                         return it
