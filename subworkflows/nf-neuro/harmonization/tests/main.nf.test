@@ -12,7 +12,8 @@ nextflow_workflow {
     tag "load_test_data"
 
     tag "harmonization"
-    tag "harmonization/formatstats"
+    tag "harmonization/stats2combat"
+    tag "harmonization/combat2stats"
     tag "harmonization/clinicalcombat"
 
     tag "stub"

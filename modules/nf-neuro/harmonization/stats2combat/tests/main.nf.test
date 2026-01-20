@@ -9,5 +9,35 @@ nextflow_process {
     tag "harmonization"
     tag "harmonization/stats2combat"
 
+    setup {
+        run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
+            script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
+            process {
+                """
+                input[0] = Channel.from( [ "harmonization.zip" ] )
+                input[1] = "test.load-test-data"
+                """
+            }
+        }
+    }
 
+    test("stats2combat - normal input") {
+        when {
+            process {
+                """
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory ->
+                        file("\${test_data_directory}/CamCAN_11subs_ad_adt.tsv", checkIfExists: true)
+                    }
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
 }
