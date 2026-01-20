@@ -31,8 +31,6 @@ nextflow_workflow {
     }
 
     test("harmonization - subworkflow") {
-        tag "here"
-        config './stubs.config'
         when {
             // The workflow should be able to process files coming from the bundle/stats or stats/metricsinroi
             // which are structured differently.
@@ -56,7 +54,7 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    workflow.out.harmonized_metrics,
+                    workflow.out.harmonized_stats,
                     workflow.out.figures,
                     workflow.out.model,
                     workflow.out.qc_reports,

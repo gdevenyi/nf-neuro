@@ -1,0 +1,11 @@
+nextflow_process {
+
+    name "Test Process HARMONIZATION_COMBAT2STATS"
+    script "../main.nf"
+    process "HARMONIZATION_COMBAT2STATS"
+
+    tag "modules"
+    tag "modules_nfneuro"
+    tag "harmonization"
+    tag "harmonization/combat2stats"
+}

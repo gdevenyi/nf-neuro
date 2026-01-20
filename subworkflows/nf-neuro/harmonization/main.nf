@@ -1,7 +1,7 @@
-include { HARMONIZATION_CLINICALCOMBAT } from '../../../modules/nf-neuro/harmonization/clinicalcombat/main'
-include { HARMONIZATION_FORMATSTATS as FORMAT_INPUT_MOVING } from '../../../modules/nf-neuro/harmonization/formatstats/main'
-include { HARMONIZATION_FORMATSTATS as FORMAT_INPUT_REFERENCE } from '../../../modules/nf-neuro/harmonization/formatstats/main'
-include { HARMONIZATION_FORMATSTATS as FORMAT_OUTPUT } from '../../../modules/nf-neuro/harmonization/formatstats/main'
+include { HARMONIZATION_CLINICALCOMBAT  as CLINICALCOMBAT } from '../../../modules/nf-neuro/harmonization/clinicalcombat/main'
+include { HARMONIZATION_STATS2COMBAT    as STATS2COMBAT_MOVING } from '../../../modules/nf-neuro/harmonization/stats2combat/main'
+include { HARMONIZATION_STATS2COMBAT    as STATS2COMBAT_REFERENCE } from '../../../modules/nf-neuro/harmonization/stats2combat/main'
+include { HARMONIZATION_COMBAT2STATS    as COMBAT2STATS } from '../../../modules/nf-neuro/harmonization/combat2stats/main'
 
 workflow HARMONIZATION {
 
@@ -17,9 +17,9 @@ workflow HARMONIZATION {
     }
 
     // Format the input stats files
-    FORMAT_INPUT_REFERENCE(ch_reference_site)
-    ch_versions = ch_versions.mix(FORMAT_INPUT_REFERENCE.out.versions)
-    ch_reference_metrics = FORMAT_INPUT_REFERENCE.out.raw_files
+    STATS2COMBAT_REFERENCE(ch_reference_site)
+    ch_versions = ch_versions.mix(STATS2COMBAT_REFERENCE.out.versions)
+    ch_reference_metrics = STATS2COMBAT_REFERENCE.out.stats_for_combat
         .flatten()
         .map{ file ->
             // Extract the metric name from the filename which
@@ -27,9 +27,9 @@ workflow HARMONIZATION {
             [[metric: file.getName().split("\\.")[1]], file]
         }
 
-    FORMAT_INPUT_MOVING(ch_moving_site)
-    ch_versions = ch_versions.mix(FORMAT_INPUT_MOVING.out.versions)
-    ch_moving_metrics = FORMAT_INPUT_MOVING.out.raw_files
+    STATS2COMBAT_MOVING(ch_moving_site)
+    ch_versions = ch_versions.mix(STATS2COMBAT_MOVING.out.versions)
+    ch_moving_metrics = STATS2COMBAT_MOVING.out.stats_for_combat
         .flatten()
         .map{ file ->
             // Extract the metric name from the filename which
@@ -45,11 +45,11 @@ workflow HARMONIZATION {
         }
 
     // Run the harmonization
-    HARMONIZATION_CLINICALCOMBAT(ch_grouped_metrics)
-    ch_versions = ch_versions.mix(HARMONIZATION_CLINICALCOMBAT.out.versions.first())
+    CLINICALCOMBAT(ch_grouped_metrics)
+    ch_versions = ch_versions.mix(CLINICALCOMBAT.out.versions.first())
 
     // Group by site
-    ch_harmonized_files = HARMONIZATION_CLINICALCOMBAT.out.harmonizedsite
+    ch_harmonized_files = CLINICALCOMBAT.out.harmonizedsite
         .map{ file ->
             // Extract the metric name from the filename which
             // is in the format: <site>.<metric>.*
@@ -59,14 +59,13 @@ workflow HARMONIZATION {
         .map { _site, files -> files }
 
     // Combine/format the output harmonized metrics into a MultiQC friendly TSV format
-    FORMAT_OUTPUT(ch_harmonized_files)
-    ch_versions = ch_versions.mix(FORMAT_OUTPUT.out.versions)
+    COMBAT2STATS(ch_harmonized_files)
+    ch_versions = ch_versions.mix(COMBAT2STATS.out.versions)
 
     emit:
-    harmonized_metrics   = FORMAT_OUTPUT.out.harmonized_files
-    figures              = HARMONIZATION_CLINICALCOMBAT.out.figures
-    model                = HARMONIZATION_CLINICALCOMBAT.out.model
-    qc_reports           = HARMONIZATION_CLINICALCOMBAT.out.bdqc
-
-    versions = ch_versions                     // channel: [ versions.yml ]
+    harmonized_stats    = COMBAT2STATS.out.stats_for_mqc
+    figures             = CLINICALCOMBAT.out.figures
+    model               = CLINICALCOMBAT.out.model
+    qc_reports          = CLINICALCOMBAT.out.bdqc
+    versions            = ch_versions
 }
