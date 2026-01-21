@@ -1,12 +1,12 @@
 name: "harmonization_stats2combat"
 description: |
-  This module converts from the TSV stats file to the CSV format expected
-  by the harmonization modules. This input TSV stats file might come from
+  This module converts the TSV stats file to the CSV format expected
+  by the Clinical-Combat module. This input TSV stats file might come from
   the output of modules such as the stats/metricsinroi or bundle/stats
   modules.
 
-  For context, the harmonization modules (e.g. Clinical-Combat) currently
-  expect a CSV file with the following columns:
+  For context, the Clinical-Combat module currently
+  expects a CSV file with the following columns:
   "sid,site,bundle,metric,mean,age,sex,handedness,disease".
   And a separate CSV file PER metric.
 

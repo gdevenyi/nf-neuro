@@ -1,9 +1,9 @@
 name: "harmonization_combat2stats"
 description: |
-  Format the CSV stats files (coming from the harmonization modules) into a TSV format
-  that can be easily consumed by MultiQC or other downstream tools. The harmonization
-  modules currently output a CSV file with the following columns:
-  "sid,site,bundle,metric,mean,age,sex,handedness,disease".
+  Format the CSV stats files (coming from combat) into a TSV format
+  that can be easily consumed by MultiQC or other downstream tools.
+  The combat module currently output a CSV file with the following
+  columns: "sid,site,bundle,metric,mean,age,sex,handedness,disease".
   And a separate CSV file PER metric.
 
   This module reformats these CSV files into TSV files with the following columns:

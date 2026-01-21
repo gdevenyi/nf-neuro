@@ -2,13 +2,13 @@
 name: "harmonization"
 description: |
   This harmonization subworkflow essentially is a convenience wrapper around the
-  the harmonization modules (e.g. harmonization/clinicalcombat). Some harmonization
-  modules require specific input formats for the tabular stats files. This
+  the harmonization module (e.g. harmonization/clinicalcombat). The combat
+  module requires specific input formats for the tabular stats files. This
   subworkflow automatically handles the conversion from TSV to CSV format (including
   pivoting/unpivoting of the metrics) before and after harmonization, using the
-  `harmonization/formatstats` module.
+  `harmonization/stats2combat` and `harmonization/combat2stats` modules.
 
-  The harmonization modules currently expect a CSV file with the following columns:
+  Combat currently expects a CSV file with the following columns:
   "sid,site,bundle,metric,mean,age,sex,handedness,disease".
   AND a separate CSV file PER metric.
 
@@ -18,9 +18,9 @@ description: |
 
   You can simply provide the TSV stat files directly coming from bundle/stats or
   stats/metricsinroi to this subworkflow, and it will take care of formatting them
-  into the CSV format expected by the harmonization modules, and then re-formatting
-  the harmonized CSV outputs back into a TSV format that can be easily read by
-  MultiQC or other downstream tools.
+  into the CSV format expected by combat, and then re-formatting the harmonized CSV
+  outputs back into a TSV format that can be easily read by MultiQC or other
+  downstream tools.
 keywords:
   - clinical
   - combat

@@ -46,7 +46,6 @@ nextflow_process {
     test("harmonization - stats2combat - stub-run") {
         tag "stub"
         options "-stub-run"
-        tag "here"
 
         when {
             process {
