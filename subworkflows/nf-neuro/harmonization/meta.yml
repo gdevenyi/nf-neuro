@@ -30,7 +30,8 @@ keywords:
   - harmonization
   - harmonize
 components:
-  - harmonization/formatstats
+  - harmonization/stats2combat
+  - harmonization/combat2stats
   - harmonization/clinicalcombat
 input:
   - ch_reference_site:

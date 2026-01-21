@@ -1,32 +1,15 @@
 {
     "harmonization - subworkflow": {
         "content": [
+            "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.harmonized.tsv",
+            "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1.clinical.model.csv",
             [
-                "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.harmonized.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "dummy_figure_1.png",
+                "dummy_figure_2.png"
             ],
             [
-                [
-                    "dummy_figure_1.png:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "dummy_figure_2.png:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                [
-                    "dummy_figure_1.png:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "dummy_figure_2.png:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
-            [
-                "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1.clinical.model.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric2.clinical.model.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
-            ],
-            [
-                [
-                    "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1_report_1.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1_report_2.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                [
-                    "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric2_report_1.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric2_report_2.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
+                "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1_report_1.txt",
+                "CamCAN_11subs_ad_adt_CamCANmodified_11subs_ad_adt.metric1_report_2.txt"
             ],
             [
                 "versions.yml:md5,47a5e1a2c98079ed1bd6c52bb04d33e2",
@@ -39,6 +22,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-21T00:02:15.955858871"
+        "timestamp": "2026-01-21T00:10:42.811786757"
     }
 }

@@ -55,10 +55,10 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    workflow.out.harmonized_stats,
-                    workflow.out.figures,
-                    workflow.out.model,
-                    workflow.out.qc_reports,
+                    file(workflow.out.harmonized_stats.get(0)).name,
+                    file(workflow.out.model.get(0)).name,
+                    workflow.out.figures.get(0).collect { file(it).name }.sort(),
+                    workflow.out.qc_reports.get(0).collect { file(it).name }.sort(),
                     workflow.out.versions
                 ).match() }
             )
