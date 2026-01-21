@@ -3,7 +3,6 @@ nextflow_process {
     name "Test Process HARMONIZATION_COMBAT2STATS"
     script "../main.nf"
     process "HARMONIZATION_COMBAT2STATS"
-
     tag "modules"
     tag "modules_nfneuro"
     tag "harmonization"
@@ -23,7 +22,7 @@ nextflow_process {
         }
     }
 
-    test("combat2stats - normal input") {
+    test("harmonization - combat2stats - normal input") {
         when {
             process {
                 """
@@ -41,6 +40,32 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("harmonization - combat2stats - stub-run") {
+        tag "stub"
+        options "-stub-run"
+        when {
+            process {
+                """
+                input[0] = LOAD_DATA.out.test_data_directory.map{
+                    test_data_directory -> [
+                        file("\${test_data_directory}/CamCANmodified.ad.clinic.harmonized.csv.gz"),
+                        file("\${test_data_directory}/CamCANmodified.adt.clinic.harmonized.csv.gz")
+                    ]
+                }
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    file(process.out.stats_for_mqc.get(0)).name,
+                    process.out.versions).match() }
             )
         }
     }

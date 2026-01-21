@@ -89,7 +89,7 @@ nextflow_process {
         }
     }
 
-    test("harmonization - stub-un clinicalcombat") {
+    test("harmonization - stub-run clinicalcombat") {
         tag "stub"
         options "-stub-run"
         when {

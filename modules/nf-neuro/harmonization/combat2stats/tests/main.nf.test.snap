@@ -1,5 +1,5 @@
 {
-    "combat2stats - normal input": {
+    "harmonization - combat2stats - normal input": {
         "content": [
             {
                 "0": [
@@ -20,6 +20,19 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T17:08:20.440541305"
+        "timestamp": "2026-01-21T00:01:59.807766858"
+    },
+    "harmonization - combat2stats - stub-run": {
+        "content": [
+            "CamCANmodified.harmonized.tsv",
+            [
+                "versions.yml:md5,9d2508f98b033de9c3b31ca0c0eb6f86"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T00:02:03.255176256"
     }
 }

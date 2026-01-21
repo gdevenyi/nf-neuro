@@ -20,9 +20,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T14:52:51.752676202"
+        "timestamp": "2026-01-21T00:01:28.446140238"
     },
-    "harmonization - stub-un clinicalcombat": {
+    "harmonization - stub-run clinicalcombat": {
         "content": [
             [
                 "versions.yml:md5,cbfeb7dd29c3ed4d900aeb0cff66b8c0"
@@ -30,9 +30,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-12-02T12:58:25.85838548"
+        "timestamp": "2026-01-21T00:01:56.422351634"
     },
     "harmonization - clinicalcombat_clinic": {
         "content": [
@@ -55,6 +55,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-19T14:53:16.227563118"
+        "timestamp": "2026-01-21T00:01:52.864455383"
     }
 }
