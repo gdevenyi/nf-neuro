@@ -4,10 +4,10 @@ process HARMONIZATION_COMBAT2STATS {
     container "scilus/scilpy:2.2.0_cpu"
 
     input:
-    path(tabular_files, arity: '1..*')
+    path(harmonized_stats, arity: '1..*')
 
     output:
-    path("*.tsv"),               emit: stats_for_mqc, optional: true
+    path("*.tsv"),               emit: stats_for_mqc
     path("versions.yml"),        emit: versions
 
     when:
@@ -16,7 +16,7 @@ process HARMONIZATION_COMBAT2STATS {
     script:
     def covariates = task.ext.covariates ?: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
     def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
-    def file_list = tabular_files.collect { "\"${it}\"" }.join(", ")
+    def file_list = harmonized_stats.collect { "\"${it}\"" }.join(", ")
     def value_col_name = task.ext.value_col_name ?: "mean"
     def metric_col_name = task.ext.metric_col_name ?: "metric"
     def suffix = task.ext.suffix ?: "harmonized"
@@ -65,12 +65,12 @@ process HARMONIZATION_COMBAT2STATS {
 
     stub:
     def covariates = task.ext.covariates ?: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
-    def file_list = tabular_files.collect { "\"${it}\"" }.join(", ")
+    def file_list = harmonized_stats.collect { "\"${it}\"" }.join(", ")
     def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
 
     // Extract the sitename from the input files
     // this is to avoid file name collisions when stubbing
-    def sitename = tabular_files[0].getName().split("\\.")[0]
+    def sitename = harmonized_stats[0].getName().split("\\.")[0]
 
     """
     #!/usr/bin/env python
