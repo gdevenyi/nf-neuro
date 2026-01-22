@@ -26,10 +26,10 @@ Usage: $(basename "$0") -p PIPELINE [OPTIONS]
 Pre-download Nextflow pipeline and Apptainer/Singularity containers for offline use.
 
 In order to download the containers, this script requires:
- - nextflow
- - apptainer or singularity
- - jq
- - GNU parallel (optional, for parallel downloads)
+    - nextflow
+    - apptainer or singularity
+    - jq
+    - GNU parallel (optional, for parallel downloads)
 
 Required arguments:
     -p PIPELINE         Pipeline name (e.g., scilus/sf-pediatric or nf-core/rnaseq)
