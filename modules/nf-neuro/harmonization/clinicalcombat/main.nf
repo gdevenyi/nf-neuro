@@ -9,8 +9,8 @@ process HARMONIZATION_CLINICALCOMBAT {
     output:
     path("*.model.csv")                , emit: model
     path("*.harmonized.csv.gz")        , emit: harmonizedsite
-    path("qc_reports")                 , emit: bdqc
-    path("figures")                    , emit: figures
+    path("qc_reports/*")               , emit: bdqc
+    path("figures/*")                  , emit: figures
     path "versions.yml"                , emit: versions
 
     when:
@@ -18,7 +18,7 @@ process HARMONIZATION_CLINICALCOMBAT {
 
     script:
     def method = task.ext.method ? "--method " + task.ext.method : ""
-    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : ""
+    def bundles_list = task.ext.bundles ? "--bundles " + task.ext.bundles : "--bundles all"
     def regul_ref = task.ext.regul_ref ? "--regul_ref " + task.ext.regul_ref : ""
     def regul_mov = task.ext.regul_mov ? "--regul_mov " + task.ext.regul_mov : ""
     def degree = task.ext.degree ? "--degree " + task.ext.degree : ""
@@ -48,13 +48,24 @@ process HARMONIZATION_CLINICALCOMBAT {
     """
 
     stub:
-    def method = task.ext.method ?: "${task.ext.method}"
+    def method = task.ext.method ?: "clinical"
+
+    // Extract the site and metric name from the input filenames
+    // We do this to avoid having file collisions when stubbing
+    def ref_site_name = ref_site.getName().split("\\.")[0]
+    def mov_site_name = move_site.getName().split("\\.")[0]
+    def metric_name = ref_site.getName().split("\\.")[1]
+
     """
     combat_quick -h
 
     mkdir -p figures qc_reports
-    touch ref_mov.metric.${method}.model.csv
-    touch ref_mov.metric.${method}.harmonized.csv.gz
+    touch figures/dummy_figure_1.png
+    touch figures/dummy_figure_2.png
+    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_1.txt
+    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_2.txt
+    touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.model.csv
+    touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.harmonized.csv.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

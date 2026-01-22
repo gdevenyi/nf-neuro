@@ -14,16 +14,16 @@ nextflow_process {
     tag "subworkflows/load_test_data"
 
     setup {
-            run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
-                script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
-                process {
-                    """
-                    input[0] = channel.from( [ "harmonization.zip" ] )
-                    input[1] = "test.load-test-data"
-                    """
-                }
+        run("LOAD_TEST_DATA", alias: "LOAD_DATA") {
+            script "../../../../../subworkflows/nf-neuro/load_test_data/main.nf"
+            process {
+                """
+                input[0] = channel.from( [ "harmonization.zip" ] )
+                input[1] = "test.load-test-data"
+                """
             }
         }
+    }
 
     test("harmonization - clinicalcombat_pairwise") {
         config "./nextflow_pairwise.config"
@@ -49,8 +49,8 @@ nextflow_process {
                 { assert snapshot(
                     file(process.out.model.get(0)).name,
                     file(process.out.harmonizedsite.get(0)).name,
-                    file(process.out.bdqc.get(0)).listFiles().collect { it.name }.sort(),
-                    file(process.out.figures.get(0)).listFiles().collect { it.name }.sort(),
+                    process.out.bdqc.flatten().collect { file(it).name }.sort(),
+                    process.out.figures.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )
@@ -81,15 +81,15 @@ nextflow_process {
                 { assert snapshot(
                     file(process.out.model.get(0)).name,
                     file(process.out.harmonizedsite.get(0)).name,
-                    file(process.out.bdqc.get(0)).listFiles().collect { it.name }.sort(),
-                    file(process.out.figures.get(0)).listFiles().collect { it.name }.sort(),
+                    process.out.bdqc.flatten().collect { file(it).name }.sort(),
+                    process.out.figures.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )
         }
     }
 
-    test("harmonization - stub-un clinicalcombat") {
+    test("harmonization - stub-run clinicalcombat") {
         tag "stub"
         options "-stub-run"
         when {
