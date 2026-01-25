@@ -16,7 +16,7 @@ process REGISTRATION_TRACTOGRAM {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ? "_${task.ext.suffix}" : ""
+    def suffix = "_${task.ext.suffix ?: "warped"}"
     trk_reference = "$trk_reference" ? "--reference $trk_reference" : ""
     def inverse = task.ext.inverse ? "--inverse" : ""
     def reverse_operation = task.ext.reverse_operation ? "--reverse_operation" : ""
@@ -111,7 +111,7 @@ process REGISTRATION_TRACTOGRAM {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ? "_${task.ext.suffix}" : ""
+    def suffix = "_${task.ext.suffix ?: "warped"}"
     """
     scil_tractogram_apply_transform -h
     scil_tractogram_remove_invalid -h
