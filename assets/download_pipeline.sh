@@ -1,9 +1,18 @@
-#!/bin/bash
+#/usr/bin/env bash
 
 # Script to pre-download Nextflow pipeline and Apptainer/Singularity containers
 # for offline execution
 
 set -euo pipefail
+
+# Cleanup function
+cleanup() {
+    rm -f "$INSPECT_JSON" "$CONTAINER_LIST" 2>/dev/null || true
+    rm -rf null/ work/ .nextflow* 2>/dev/null || true
+}
+
+# Set trap to cleanup on exit
+trap cleanup EXIT
 
 # Default values
 REVISION="main"
@@ -29,7 +38,6 @@ In order to download the containers, this script requires:
     - nextflow
     - apptainer or singularity
     - jq
-    - GNU parallel (optional, for parallel downloads)
 
 Required arguments:
     -p PIPELINE         Pipeline name (e.g., scilus/sf-pediatric or nf-core/rnaseq)
@@ -42,7 +50,7 @@ Optional arguments:
     -h                  Show this help message
 
 Example:
-    $(basename "$0") -p scilus/sf-pediatric -r 0.2.1 -d 8 -o /path/to/containers -c /path/to/cache
+    $(basename "$0") -p scilus/sf-pediatric -r 0.2.1 -d 4 -o /path/to/containers -c /path/to/cache
 
 EOF
     exit 1
@@ -217,55 +225,25 @@ download_container() {
     fi
 }
 
-export -f download_container
-
 # Create a temporary file with container list
 CONTAINER_LIST=$(mktemp)
 echo "$CONTAINERS" > "$CONTAINER_LIST"
 
-# Download containers in parallel using GNU parallel or xargs
+# Download containers in parallel if -d > 1
 TOTAL_CONTAINERS=$(cat "$CONTAINER_LIST" | grep -v "^$" | wc -l)
 DOWNLOAD_FAILED=0
 
-if command -v parallel &> /dev/null; then
-    # Use GNU parallel if available
-    cat "$CONTAINER_LIST" | grep -v "^$" | nl | parallel -j "$PARALLEL_DOWNLOADS" --will-cite --colsep '\t' \
-        download_container {2} "$CONTAINER_DIR" {1} "$TOTAL_CONTAINERS" || DOWNLOAD_FAILED=1
-else
-    # Fall back to sequential download with background processes
-    echo "Note: GNU parallel not found, using fallback parallel download method"
-    index=0
-    pids=()
+echo "Processing $TOTAL_CONTAINERS container(s) with $PARALLEL_DOWNLOADS parallel download(s)..."
+echo ""
 
-    while IFS= read -r container; do
-        [ -z "$container" ] && continue
-        ((index++))
+# Export function and variables for xargs
+export -f download_container
+export CONTAINER_DIR
+export TOTAL_CONTAINERS
 
-        # Wait if we've reached max parallel downloads
-        while [ ${#pids[@]} -ge $PARALLEL_DOWNLOADS ]; do
-            for i in "${!pids[@]}"; do
-                if ! kill -0 "${pids[$i]}" 2>/dev/null; then
-                    wait "${pids[$i]}" || DOWNLOAD_FAILED=1
-                    unset 'pids[i]'
-                fi
-            done
-            pids=("${pids[@]}") # Reindex array
-            sleep 0.5
-        done
-
-        # Start download in background
-        download_container "$container" "$CONTAINER_DIR" "$index" "$TOTAL_CONTAINERS" &
-        pids+=($!)
-    done < "$CONTAINER_LIST"
-
-    # Wait for remaining downloads
-    for pid in "${pids[@]}"; do
-        wait "$pid" || DOWNLOAD_FAILED=1
-    done
-fi
-
-# Cleanup
-rm -f "$INSPECT_JSON" "$CONTAINER_LIST"
+# Number the containers and download in parallel using xargs
+cat "$CONTAINER_LIST" | grep -v "^$" | nl -w1 -s' ' | \
+    xargs -P "$PARALLEL_DOWNLOADS" -L 1 bash -c 'download_container "$2" "$CONTAINER_DIR" "$1" "$TOTAL_CONTAINERS" || exit 255' _ || DOWNLOAD_FAILED=1
 
 echo ""
 if [ $DOWNLOAD_FAILED -eq 0 ]; then
