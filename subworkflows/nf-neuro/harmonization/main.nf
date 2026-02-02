@@ -67,5 +67,6 @@ workflow HARMONIZATION {
     figures             = CLINICALCOMBAT.out.figures
     model               = CLINICALCOMBAT.out.model
     qc_reports          = CLINICALCOMBAT.out.bdqc
+    qc_plot_data_json   = CLINICALCOMBAT.out.plot_data_json
     versions            = ch_versions
 }

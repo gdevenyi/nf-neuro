@@ -58,8 +58,8 @@ nextflow_process {
         }
     }
 
-    test("harmonization - clinicalcombat_clinic") {
-        config "./nextflow_clinic.config"
+    test("harmonization - clinicalcombat_clinical") {
+        config "./nextflow_clinical.config"
         when {
             process {
                 """

@@ -9,8 +9,8 @@ process HARMONIZATION_CLINICALCOMBAT {
     output:
     path("*.model.csv")                , emit: model
     path("*.harmonized.csv.gz")        , emit: harmonizedsite
-    path("qc_reports/*")               , emit: bdqc
-    path("figures/*")                  , emit: figures
+    path("*bhattacharrya.txt")         , emit: bdqc
+    path("*.png")                      , emit: figures
     path("*.json")                     , emit: plot_data_json
     path "versions.yml"                , emit: versions
 
@@ -33,17 +33,11 @@ process HARMONIZATION_CLINICALCOMBAT {
     def no_eb = task.ext.no_empiral_bayes ? "--no_empiral_bayes " : ""
 
     """
-    combat_quick $ref_site $move_site $method $bundles_list \
+    combat_pipeline $ref_site $move_site $method $bundles_list \
         $limit_age $ignore_sex $ignore_handedness \
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
         $no_eb \
-        --save_curves_json # Required parameter to output the json files used to properly plot
-                           # the harmonization results in the downstream MultiQC report.
-
-
-    mkdir -p qc_reports figures
-    mv *bhattacharrya.txt qc_reports
-    mv *.png figures
+        --save_curves_json
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -61,15 +55,16 @@ process HARMONIZATION_CLINICALCOMBAT {
     def metric_name = ref_site.getName().split("\\.")[1]
 
     """
-    combat_quick -h
+    combat_pipeline -h
 
-    mkdir -p figures qc_reports
-    touch figures/dummy_figure_1.png
-    touch figures/dummy_figure_2.png
-    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_1.txt
-    touch qc_reports/${ref_site_name}_${mov_site_name}.${metric_name}_report_2.txt
+    touch dummy_figure_1.png
+    touch dummy_figure_2.png
+    touch ${mov_site_name}.${metric_name}.raw.bhattacharrya.txt
+    touch ${mov_site_name}.${metric_name}.${method}.harmonized.bhattacharrya.txt
     touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.model.csv
     touch ${ref_site_name}_${mov_site_name}.${metric_name}.${method}.harmonized.csv.gz
+    touch DataModels_${ref_site_name}-${mov_site_name}_${method}_${metric_name}.json
+    touch AgeCurve_${ref_site_name}-${mov_site_name}_${method}_${metric_name}.json
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
