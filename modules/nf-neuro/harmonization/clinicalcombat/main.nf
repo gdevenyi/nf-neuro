@@ -1,7 +1,7 @@
 process HARMONIZATION_CLINICALCOMBAT {
     label 'process_medium'
 
-    container "scilus/clinical_combat:1.0.1"
+    container "mrzarfir/clinicalcombat:latest"
 
     input:
     tuple path(ref_site), path(move_site)
@@ -11,6 +11,7 @@ process HARMONIZATION_CLINICALCOMBAT {
     path("*.harmonized.csv.gz")        , emit: harmonizedsite
     path("qc_reports/*")               , emit: bdqc
     path("figures/*")                  , emit: figures
+    path("*.json")                     , emit: plot_data_json
     path "versions.yml"                , emit: versions
 
     when:
@@ -35,7 +36,10 @@ process HARMONIZATION_CLINICALCOMBAT {
     combat_quick $ref_site $move_site $method $bundles_list \
         $limit_age $ignore_sex $ignore_handedness \
         $regul_ref $regul_mov $degree $nu $tau $degree_qc \
-        $no_eb
+        $no_eb \
+        --save_curves_json # Required parameter to output the json files used to properly plot
+                           # the harmonization results in the downstream MultiQC report.
+
 
     mkdir -p qc_reports figures
     mv *bhattacharrya.txt qc_reports
