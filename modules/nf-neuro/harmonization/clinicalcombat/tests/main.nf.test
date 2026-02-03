@@ -51,14 +51,15 @@ nextflow_process {
                     file(process.out.harmonizedsite.get(0)).name,
                     process.out.bdqc.flatten().collect { file(it).name }.sort(),
                     process.out.figures.flatten().collect { file(it).name }.sort(),
+                    process.out.plot_data_json.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )
         }
     }
 
-    test("harmonization - clinicalcombat_clinic") {
-        config "./nextflow_clinic.config"
+    test("harmonization - clinicalcombat_clinical") {
+        config "./nextflow_clinical.config"
         when {
             process {
                 """
@@ -83,6 +84,7 @@ nextflow_process {
                     file(process.out.harmonizedsite.get(0)).name,
                     process.out.bdqc.flatten().collect { file(it).name }.sort(),
                     process.out.figures.flatten().collect { file(it).name }.sort(),
+                    process.out.plot_data_json.flatten().collect { file(it).name }.sort(),
                     process.out.versions
                 ).match() }
             )

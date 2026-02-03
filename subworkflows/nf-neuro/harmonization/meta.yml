@@ -83,6 +83,28 @@ output:
       pattern: "*bhattacharrya.txt"
       ontologies:
         - edam: http://edamontology.org/format_2330 # Plain text format
+  - qc_plot_data_json:
+      type: file
+      description: |
+        JSON files used to properly plot the harmonization results in a downstream MultiQC report.
+          These files contain the regression curves and the percentiles computed before and after
+          harmonization for all bundles of a given metric. The files have the following structure:
+          {
+            "bundle_name_1": {
+              "metric1": {
+                "plot_1": { ... },
+                "plot_2": { ... },
+              },
+            "bundle_name_2": {
+              "metric1": {
+                "plot_1": { ... },
+                "plot_2": { ... },
+              }
+          }
+        Structure: [ path(*.json) ]
+      pattern: "*.json"
+      ontologies:
+        - edam: http://edamontology.org/format_3464 # JSON format
   - versions:
       type: file
       description: |
