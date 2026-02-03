@@ -119,17 +119,25 @@ output:
           - edam: http://edamontology.org/format_3752 # CSV
   bdqc:
     - "*bhattacharrya.txt":
-        type: directory
-        description: BDQC reports for harmonized data.
+        type: file
+        description: |
+          Bhattacharrya distance QC reports for harmonized data.
+          This file contains the Bhattacharrya distance between the reference
+          and moving site distributions (one file for pre-harmonization and one for
+          post-harmonization). Lower values indicate better alignment between the
+          two distributions. The first column indicates the number of HC subjects
+          used to compute the distance. Other columns correspond to the bundles.
+          The first row contains the bundle names and the second row contains
+          the count (of HC subjects) or the Bhattacharrya distances.
         pattern: "*bhattacharrya.txt"
   figures:
     - "*.png":
-        type: directory
+        type: file
         description: Figures generated to visualize harmonization results.
         pattern: "*.png"
   plot_data_json:
     - "*.json":
-        type: directory
+        type: file
         description: |
           JSON files used to properly plot the harmonization results in a downstream MultiQC report.
           These files contain the regression curves and the percentiles computed before and after
