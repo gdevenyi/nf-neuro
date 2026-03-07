@@ -9,8 +9,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -21,8 +21,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-AP_epi.nii.gz"
                     ]
@@ -34,8 +34,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-AP_dwi.nii.gz",
                         "sub-01_ses-001_dir-AP_dwi.bval",
@@ -49,8 +49,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-PA_epi.nii.gz"
                     ]
@@ -62,8 +62,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -74,8 +74,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_T1w.nii.gz"
                     ]
@@ -87,8 +87,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -101,7 +101,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-03-06T17:13:37.427259259"
+        "timestamp": "2026-03-06T22:20:59.774339244"
     },
     "Read BIDS directory - without .bidsignore": {
         "content": [
@@ -113,8 +113,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -125,8 +125,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-AP_epi.nii.gz"
                     ]
@@ -138,8 +138,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-AP_dwi.nii.gz",
                         "sub-01_ses-001_dir-AP_dwi.bval",
@@ -153,8 +153,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_dir-PA_epi.nii.gz"
                     ]
@@ -166,8 +166,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -178,8 +178,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         },
                         "sub-01_ses-001_T1w.nii.gz"
                     ]
@@ -191,8 +191,8 @@
                             "session": "ses-001",
                             "run": "",
                             "dwi_tr": 0.062,
-                            "dwi_phase": "",
-                            "dwi_revphase": ""
+                            "dwi_phase": "y",
+                            "dwi_revphase": "y-"
                         }
                     ]
                 ],
@@ -205,6 +205,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-03-06T17:13:26.916827555"
+        "timestamp": "2026-03-06T22:20:51.506827628"
     }
 }

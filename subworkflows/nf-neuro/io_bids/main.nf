@@ -42,8 +42,8 @@ workflow IO_BIDS {
 
                 // ** Collecting TotalReadoutTime, PhaseEncodingDirection ** //
                 def dwi_tr = item.TotalReadoutTime ?: ""
-                def dwi_phase = item.DWIPhaseEncodingDirection ?: ""
-                def dwi_revphase = item.rev_DWIPhaseEncodingDirection ?: ""
+                def dwi_phase = item.DWIPhaseEncodingDir ?: ""
+                def dwi_revphase = item.rev_DWIPhaseEncodingDir ?: ""
 
                 // ** Validating there is not missing data ** //
                 item.each { _key, value ->
