@@ -306,9 +306,9 @@ workflow TRACTOFLOW {
         //
         ch_pft_tracking = channel.empty()
         if ( options.run_pft_tracking ) {
-            ch_input_pft_tracking = ANATOMICAL_SEGMENTATION.out.wm_mask
-                .join(ANATOMICAL_SEGMENTATION.out.gm_mask)
-                .join(ANATOMICAL_SEGMENTATION.out.csf_mask)
+            ch_input_pft_tracking = ANATOMICAL_SEGMENTATION.out.wm_map
+                .join(ANATOMICAL_SEGMENTATION.out.gm_map)
+                .join(ANATOMICAL_SEGMENTATION.out.csf_map)
                 .join(ch_diffusion_model)
                 .join(RECONST_DTIMETRICS.out.fa)
             TRACKING_PFTTRACKING( ch_input_pft_tracking )
