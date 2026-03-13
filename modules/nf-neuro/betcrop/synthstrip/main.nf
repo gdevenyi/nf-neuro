@@ -30,6 +30,7 @@ process BETCROP_SYNTHSTRIP {
     def model = "$weights" ? "--model $weights" : ""
 
     """
+    unset PYTHONNOUSERSITE
     mri_synthstrip -i $image --out ${prefix}__bet_image.nii.gz --mask ${prefix}__brain_mask.nii.gz $gpu $cpu $border $nocsf $model
 
     cat <<-END_VERSIONS > versions.yml
