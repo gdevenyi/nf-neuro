@@ -39,8 +39,14 @@ process BUNDLE_RECOGNIZE {
     for bundle_file in recobundles/*.trk; do
         bname=\$(basename \${bundle_file} .trk | sed 's/${prefix}_\\+//')
         out_cleaned=${prefix}_\${bname}_cleaned.trk
-        scil_bundle_reject_outliers \${bundle_file} "\${out_cleaned}" ${outlier_alpha}
+        echo "scil_bundle_reject_outliers \${bundle_file} \${out_cleaned} ${outlier_alpha}" >> commands.txt
     done
+
+    if command -v parallel > /dev/null 2>&1; then
+        parallel -j ${task.cpus} --no-notice < commands.txt
+    else
+        xargs -P ${task.cpus} -L 1 -I {} sh -c "{}" < commands.txt
+    fi
 
     if $run_qc; then
         # Add commands to run QC here
