@@ -24,7 +24,7 @@ process CONNECTIVITY_VISUALIZE {
     def axis_text_size = task.ext.axis_text_size ? "--axis_text_size $task.ext.axis_text_size $task.ext.axis_text_size" : "--axis_text_size 5 5"
     def args = ""
     if (atlas_labels) args += " --lookup_table $atlas_labels "
-    if (labels_list) args += " --name_axis "
+    if (labels_list) args += " --labels_list $labels_list "
 
     """
     for matrix in $matrices_list; do
