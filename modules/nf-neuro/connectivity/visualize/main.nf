@@ -23,8 +23,8 @@ process CONNECTIVITY_VISUALIZE {
     def nb_bins = task.ext.nb_bins ? "--nb_bins " + task.ext.nb_bins : "--nb_bins 50"
     def axis_text_size = task.ext.axis_text_size ? "--axis_text_size $task.ext.axis_text_size $task.ext.axis_text_size" : "--axis_text_size 5 5"
     def args = ""
-    if (atlas_labels) args += [" --lookup_table $atlas_labels "]
-    if (labels_list) args += [" --name_axis "]
+    if (atlas_labels) args += " --lookup_table $atlas_labels "
+    if (labels_list) args += " --name_axis "
 
     """
     for matrix in $matrices_list; do
