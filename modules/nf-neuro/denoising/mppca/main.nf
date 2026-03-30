@@ -18,14 +18,15 @@ process DENOISING_MPPCA {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def extent = task.ext.extent ? "-extent " + task.ext.extent : ""
-    def args = ["-nthreads ${task.cpus - 1}"]
+    def args = [ task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}" ]
     if (mask) args += ["-mask $mask"]
+    def rng_seed = task.ext.mrtrix_rng_seed ?: "112524"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
     export OMP_NUM_THREADS=1
     export OPENBLAS_NUM_THREADS=1
-    export MRTRIX_RNG_SEED=112524
+    export MRTRIX_RNG_SEED=${rng_seed}
 
     dwidenoise $dwi ${prefix}_dwi_denoised.nii.gz $extent ${args.join(" ")}
     mrcalc ${prefix}_dwi_denoised.nii.gz 0 -gt ${prefix}_dwi_denoised.nii.gz 0 \
