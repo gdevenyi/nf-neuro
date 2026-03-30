@@ -20,7 +20,7 @@ process DENOISING_MPPCA {
     def extent = task.ext.extent ? "-extent " + task.ext.extent : ""
     def args = [ task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}" ]
     if (mask) args += ["-mask $mask"]
-    def rng_seed = task.ext.mrtrix_rng_seed ?: "112524"
+    def rng_seed = task.ext.mrtrix_rng_seed ? task.ext.mrtrix_rng_seed : "112524"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
