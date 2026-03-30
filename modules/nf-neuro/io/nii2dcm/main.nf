@@ -15,17 +15,16 @@ process IO_NII2DCM {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
     String nifti_list = niftis.join(", ").replace(',', '')
-    String series_description =  niftis.join(" ").replace(".nii.gz", "").replace(prefix + "__", "")
 
     if ( task.ext.study_description ) args += " --study_description " + task.ext.study_description
     if ( task.ext.reference_dicom ) args += " -r ${dicom}"
+
     """
     for n in ${nifti_list};
     do
-        mrconvert \${n} \${n} -stride -2,-1,3 -force
+        mrconvert \${n} \${n} -stride -2,-1,3 -force ${nthreads}
     done
     convert_nii2dcm.py *.nii.gz DICOM/ -d MR --series_description ${nifti_list} ${args}
 
@@ -37,8 +36,6 @@ process IO_NII2DCM {
     """
 
     stub:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     convert_nii2dcm.py -h
     mkdir DICOM

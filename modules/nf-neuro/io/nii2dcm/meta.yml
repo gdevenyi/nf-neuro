@@ -32,6 +32,19 @@ input:
         description: Reference DICOM file (optional)
         pattern: "*.dcm"
         ontologies: []
+args:
+  - study_description:
+      type: string
+      description: Study description to be added to the DICOM metadata (optional)
+  - reference_dicom:
+      type: file
+      description: Reference DICOM file to copy metadata from (optional)
+      pattern: "*.dcm"
+      ontologies: http://edamontology.org/format_3548
+  - single_thread:
+      type: boolean
+      description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
+      default: false
 output:
   dicom_directory:
     - - meta:

@@ -82,6 +82,10 @@ args:
       description: Ratio of stages for which the number of iterations is fixed to the
         maximum iterations defined.
       default: 0.6
+  - single_thread:
+      type: boolean
+      description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
+      default: false
 input:
   - - meta:
         type: map

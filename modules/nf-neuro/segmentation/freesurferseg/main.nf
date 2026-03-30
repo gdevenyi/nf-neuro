@@ -18,6 +18,7 @@ process SEGMENTATION_FREESURFERSEG {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
@@ -28,8 +29,8 @@ process SEGMENTATION_FREESURFERSEG {
     mkdir wmparc_subcortical/
     mkdir aparc+aseg_subcortical/
 
-    mrconvert -datatype int16 $aparc_aseg aparc+aseg_int16.nii.gz -force -nthreads 1
-    mrconvert -datatype int16 $wmparc wmparc_int16.nii.gz -force -nthreads 1
+    mrconvert -datatype int16 $aparc_aseg aparc+aseg_int16.nii.gz -force ${nthreads}
+    mrconvert -datatype int16 $wmparc wmparc_int16.nii.gz -force ${nthreads}
 
     scil_labels_split_volume_from_lut wmparc_int16.nii.gz --scilpy_lut freesurfer_desikan_killiany --out_dir wmparc_desikan
     scil_labels_split_volume_from_lut wmparc_int16.nii.gz --scilpy_lut freesurfer_subcortical --out_dir wmparc_subcortical
