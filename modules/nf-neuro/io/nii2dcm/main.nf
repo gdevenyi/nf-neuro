@@ -22,11 +22,13 @@ process IO_NII2DCM {
     if ( task.ext.reference_dicom ) args += " -r ${dicom}"
 
     """
+    export MRTRIX_RNG_SEED=${task.ext.mrtrix_rng_seed ? task.ext.mrtrix_rng_seed : "1234"}
+
     for n in ${nifti_list};
     do
         mrconvert \${n} \${n} -stride -2,-1,3 -force ${nthreads}
     done
-    convert_nii2dcm.py *.nii.gz DICOM/ -d MR --series_description ${nifti_list} ${args}
+    convert_nii2dcm.py *.nii.gz DICOM/ -d MR --series_description ${nifti_list}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

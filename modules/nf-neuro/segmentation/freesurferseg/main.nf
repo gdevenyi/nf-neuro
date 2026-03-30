@@ -24,6 +24,7 @@ process SEGMENTATION_FREESURFERSEG {
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
     export OMP_NUM_THREADS=1
     export OPENBLAS_NUM_THREADS=1
+    export MRTRIX_RNG_SEED=${task.ext.mrtrix_rng_seed ? task.ext.mrtrix_rng_seed : "1234"}
 
     mkdir wmparc_desikan/
     mkdir wmparc_subcortical/
