@@ -24,7 +24,7 @@ process RECONST_QBALL {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def b0_threshold = task.ext.b0_threshold ? " --b0_threshold " + task.ext.b0_threshold : ""
     def sh_order =  task.ext.sh_order ? " --sh_order " + task.ext.sh_order : ""
-    def processes = task.cpu ? " --processes " + task.cpu : "--processes 1"
+    def nthreads = task.ext.single_thread ? 1 : task.cpus
 
     if ( mask ) args += " --mask $mask"
     if ( task.ext.gfa ) args += " --gfa ${prefix}__gfa.nii.gz"
@@ -34,11 +34,9 @@ process RECONST_QBALL {
     if ( task.ext.nufo) args += " --nufo ${prefix}__nufo.nii.gz"
     if ( task.ext.a_power) args += " --a_power ${prefix}__a_power.nii.gz"
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$task.cpus
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
-    scil_qball_metrics $dwi $bval $bvec --not_all $args $b0_threshold $sh_order $processes
+    scil_qball_metrics $dwi $bval $bvec --not_all $args $b0_threshold $sh_order --process $nthreads
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

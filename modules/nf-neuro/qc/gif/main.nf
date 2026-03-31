@@ -19,7 +19,7 @@ process QC_GIF {
     def title_image1 = task.ext.title_image1 ? task.ext.title_image1 : "image1"
     def title_image2 = task.ext.title_image2 ? task.ext.title_image2 : "image2"
     def suffix_qc = task.ext.suffix_qc ? "${task.ext.suffix_qc}" : ""
-    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
 
     """
     if [[ -f "$image2" ]]; then

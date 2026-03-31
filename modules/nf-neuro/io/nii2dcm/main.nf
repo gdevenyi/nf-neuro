@@ -15,7 +15,7 @@ process IO_NII2DCM {
     task.ext.when == null || task.ext.when
 
     script:
-    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
     String nifti_list = niftis.join(", ").replace(',', '')
 
     if ( task.ext.study_description ) args += " --study_description " + task.ext.study_description

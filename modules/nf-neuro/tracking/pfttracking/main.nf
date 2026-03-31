@@ -44,7 +44,6 @@ process TRACKING_PFTTRACKING {
     def pft_back = task.ext.pft_back ? "--back "  + task.ext.pft_back : ""
     def pft_front = task.ext.pft_front ? "--forward "  + task.ext.pft_front : ""
     def basis = task.ext.basis ? "--sh_basis "  + task.ext.basis : ""
-
     def run_qc = task.ext.run_qc ? task.ext.run_qc : false
 
     if (pft_step && pft_step_pct) {
@@ -52,9 +51,7 @@ process TRACKING_PFTTRACKING {
     }
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     scil_tracking_pft_maps $wm $gm $csf \
         --include ${prefix}__map_include.nii.gz \

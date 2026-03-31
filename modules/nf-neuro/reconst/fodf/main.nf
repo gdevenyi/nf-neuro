@@ -68,9 +68,7 @@ process RECONST_FODF {
     ].any()
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     scil_dwi_extract_shell $dwi $bval $bvec $fodf_shells \
         dwi_fodf_shells.nii.gz bval_fodf_shells bvec_fodf_shells \

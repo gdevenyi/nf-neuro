@@ -25,12 +25,13 @@ process BETCROP_FSLBETCROP {
     def size_dil = task.ext.size_dil ? task.ext.size_dil : ""
     def crop = task.ext.crop == null ?: task.ext.crop as Boolean
     def dilate = task.ext.dilate == null ?: task.ext.dilate as Boolean
-    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+    export MRTRIX_RNG_SEED=${task.ext.mrtrix_rng_seed ?: "1234"}
+    export ANTS_RANDOM_SEED=${task.ext.ants_random_seed ?: "1234"}
 
     if [[ -f "$bval" ]]
     then

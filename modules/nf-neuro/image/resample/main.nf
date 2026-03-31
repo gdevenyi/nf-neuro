@@ -27,9 +27,7 @@ process IMAGE_RESAMPLE {
     def enforce_dimensions = task.ext.enforce_dimensions ? "--enforce_dimensions" : ""
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     scil_volume_resample $image ${prefix}_${suffix}.nii.gz \
         $voxel_size $volume_size $reference $iso_min \

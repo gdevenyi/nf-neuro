@@ -34,8 +34,9 @@ process REGISTRATION_ANTS {
     def transform = task.ext.transform ?: "s"
     def seed = " -e ${task.ext.random_seed ?: 1234}"
     def run_qc = task.ext.run_qc as Boolean || false
-
-    args += " -n $task.cpus"
+    def nthreads = task.ext.single_thread ? 1 : task.cpus
+    
+    args += " -n $nthreads"
     if ( mask ) args += " -x $mask"
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
     if ( task.ext.histogram_bins ) args += " -r $task.ext.histogram_bins"
@@ -47,9 +48,8 @@ process REGISTRATION_ANTS {
     if ( task.ext.collapse_output ) args += " -z $task.ext.collapse_output"
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$task.cpus
-    export OMP_NUM_THREADS=1
-    export OPENBLAS_NUM_THREADS=1
+    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     $ants $dimension -f $fixed_image -m $moving_image -o output -t $transform $args $seed
 
