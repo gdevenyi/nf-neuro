@@ -35,7 +35,6 @@ process REGISTRATION_CONVERT {
     def out_extension = transform_types[transform_type][output_type]
     def output_name = "${prefix}_out_${transform_type}.${out_extension}"
     def command = transform_type == "affine" ? "lta_convert" : "mri_warp_convert"
-    def nthreads = task.ext.single_thread ? 1 : task.cpus
 
     if ( transform_type == "affine" ) {
         // Affine transformations are defined on the target space
@@ -62,8 +61,6 @@ process REGISTRATION_CONVERT {
 
         if ( task.ext.downsample ) args += " --downsample"
     }
-
-    args += " --thr ${nthreads}"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
