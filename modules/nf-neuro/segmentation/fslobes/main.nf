@@ -16,14 +16,15 @@ process SEGMENTATION_FSLOBES {
         task.ext.when == null || task.ext.when
 
     script:
-
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def nthreads = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
+
     """
     export MPLCONFIGDIR=./
 
-    mrconvert ${fs_folder}/mri/rawavg.mgz rawavg.nii.gz
-    mrconvert ${fs_folder}/mri/wmparc.mgz wmparc.nii.gz
-    mrconvert ${fs_folder}/mri/brainmask.mgz brain_mask.nii.gz
+    mrconvert ${fs_folder}/mri/rawavg.mgz rawavg.nii.gz ${nthreads}
+    mrconvert ${fs_folder}/mri/wmparc.mgz wmparc.nii.gz ${nthreads}
+    mrconvert ${fs_folder}/mri/brainmask.mgz brain_mask.nii.gz ${nthreads}
 
     scil_volume_reslice_to_reference wmparc.nii.gz rawavg.nii.gz \
         wmparc.nii.gz --interpolation nearest -f
@@ -52,10 +53,10 @@ process SEGMENTATION_FSLOBES {
         --volume_ids wmparc.nii.gz 49 50 51 52 53 54 58 60 \
         --volume_ids wmparc.nii.gz 47 \
         --volume_ids wmparc.nii.gz 16 --merge
+
     scil_labels_dilate ${prefix}__atlas_lobes.nii.gz ${prefix}__atlas_lobes_dilate.nii.gz \
         --distance 2 --labels_to_dilate 1 2 3 4 5 6 8 9 10 11 12 14 15 \
         --mask brain_mask.nii.gz
-
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
