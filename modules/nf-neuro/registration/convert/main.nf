@@ -62,7 +62,7 @@ process REGISTRATION_CONVERT {
 
         if ( task.ext.downsample ) args += " --downsample"
     }
-    
+
     args += " --thr ${nthreads}"
 
     """

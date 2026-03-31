@@ -35,8 +35,8 @@ process REGISTRATION_ANTS {
     def seed = " -e ${task.ext.random_seed ?: 1234}"
     def run_qc = task.ext.run_qc as Boolean || false
     def nthreads = task.ext.single_thread ? 1 : task.cpus
-    
     args += " -n $nthreads"
+
     if ( mask ) args += " -x $mask"
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
     if ( task.ext.histogram_bins ) args += " -r $task.ext.histogram_bins"

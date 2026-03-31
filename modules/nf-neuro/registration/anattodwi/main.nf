@@ -26,7 +26,7 @@ process REGISTRATION_ANATTODWI {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def run_qc = task.ext.run_qc as Boolean || false
-    
+
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}

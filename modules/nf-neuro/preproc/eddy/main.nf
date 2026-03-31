@@ -38,7 +38,8 @@ process PREPROC_EDDY {
     if (eddy_cmd == "eddy_cpu") {
         extra_args += " --nthr=${nthreads} "
     }
-    """ 
+
+    """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
     export ANTS_RANDOM_SEED=${task.ext.ants_rng_seed ? task.ext.ants_rng_seed : "1234"}
