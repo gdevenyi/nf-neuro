@@ -25,7 +25,7 @@ process DENOISING_NLMEANS {
     def ncoils = task.ext.number_of_coils ? "--number_coils $task.ext.number_of_coils" : ""
     def sigma_from_all_voxels = task.ext.sigma_from_all_voxels ? "--sigma_from_all_voxels" : ""
     def save_piesno_mask = task.ext.save_piesno_mask ? "--save_piesno_mask ${prefix}__piesno_mask.nii.gz" : ""
-    def nthreads = task.ext.single_thread ? "--processes 1" : "--processes ${task.cpus}"
+    def nthreads = task.ext.single_thread ? 1 : task.cpus
     def args = ["--processes $nthreads"]
     if (mask) args += ["--mask_denoise $mask"]
     if (mask_sigma) args += ["--mask_sigma $mask_sigma"]

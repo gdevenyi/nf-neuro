@@ -32,7 +32,7 @@ process PREPROC_EDDY {
     def eddy_cmd = task.ext.eddy_cmd ? task.ext.eddy_cmd : "eddy_cpu"
     def bet_prelim_f = task.ext.bet_prelim_f ? task.ext.bet_prelim_f : ""
     def run_qc = task.ext.run_qc ? task.ext.run_qc : false
-    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
     def nthreads = task.ext.single_thread ? 1 : task.cpus
     def extra_args = task.ext.extra_args ?: ""
     if (eddy_cmd == "eddy_cpu") {

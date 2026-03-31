@@ -17,13 +17,13 @@ process BETCROP_DWI2MASK {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
 
     """
     export MRTRIX_RNG_SEED=${task.ext.mrtrix_rng_seed ? task.ext.mrtrix_rng_seed : "1234"}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
-    dwi2mask $dwi ${prefix}_dwi_mask.nii.gz -fslgrad ${bvec} ${bval} ${nthreads}
+    dwi2mask $dwi ${prefix}_dwi_mask.nii.gz -fslgrad ${bvec} ${bval} ${nthreads_mrtrix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

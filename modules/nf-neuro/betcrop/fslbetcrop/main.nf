@@ -25,7 +25,7 @@ process BETCROP_FSLBETCROP {
     def size_dil = task.ext.size_dil ? task.ext.size_dil : ""
     def crop = task.ext.crop == null ?: task.ext.crop as Boolean
     def dilate = task.ext.dilate == null ?: task.ext.dilate as Boolean
-    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
 
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
@@ -40,7 +40,7 @@ process BETCROP_FSLBETCROP {
 
         bet ${prefix}__b0.nii.gz ${prefix}__image_bet.nii.gz -m -R $bet_f
         scil_volume_math convert ${prefix}__image_bet_mask.nii.gz ${prefix}__image_bet_mask.nii.gz --data_type uint8 -f
-        mrcalc $image ${prefix}__image_bet_mask.nii.gz -mult ${prefix}__image_bet.nii.gz -quiet ${nthreads} -force
+        mrcalc $image ${prefix}__image_bet_mask.nii.gz -mult ${prefix}__image_bet.nii.gz -quiet ${nthreads_mrtrix} -force
     else
         bet $image ${prefix}__image_bet.nii.gz -m -R $bet_f
         scil_volume_math convert ${prefix}__image_bet_mask.nii.gz ${prefix}__image_bet_mask.nii.gz --data_type uint8 -f

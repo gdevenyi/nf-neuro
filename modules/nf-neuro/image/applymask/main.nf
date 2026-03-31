@@ -16,12 +16,12 @@ process IMAGE_APPLYMASK {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads_mrtrix 0" : "-nthreads_mrtrix ${task.cpus}"
+    def nthreads_mrtrix = task.ext.single_thread ? "-nthreads 0" : "-nthreads ${task.cpus}"
 
     """
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
-    mrcalc $image $mask -mult ${prefix}_masked.nii.gz -force -quiet ${nthreads}
+    mrcalc $image $mask -mult ${prefix}_masked.nii.gz -force -quiet ${nthreads_mrtrix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
