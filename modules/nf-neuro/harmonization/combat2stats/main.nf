@@ -15,8 +15,8 @@ process HARMONIZATION_COMBAT2STATS {
 
     script:
     def covariates = task.ext.covariates ?: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
-    def covariatespy = "[" + covariates.collect { it -> "\"${it}\"" }.join(", ") + "]"
-    def file_list = harmonized_stats.collect { it ->  "\"${it}\"" }.join(", ")
+    def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
+    def file_list = harmonized_stats.collect { "\"${it}\"" }.join(", ")
     def value_col_name = task.ext.value_col_name ?: "mean"
     def metric_col_name = task.ext.metric_col_name ?: "metric"
     def suffix = task.ext.suffix ?: "harmonized"
