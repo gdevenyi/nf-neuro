@@ -35,6 +35,9 @@ process BETCROP_DWI2MASK {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
+    export MRTRIX_RNG_SEED=${task.ext.mrtrix_rng_seed ? task.ext.mrtrix_rng_seed : "1234"}
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+
     dwi2mask -h
 
     touch ${prefix}_dwi_mask.nii.gz

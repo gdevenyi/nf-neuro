@@ -44,7 +44,6 @@ process RECONST_SHMETRICS {
     if ( task.ext.ventricles_mask ) vent_mask = "--out_mask ${prefix}__ventricles_mask.nii.gz" else vent_mask = ""
 
     """
-    export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     scil_fodf_max_in_ventricles $sh $fa $md \
@@ -71,7 +70,7 @@ process RECONST_SHMETRICS {
         $afd_max $afd_total \
         $afd_sum $nufo \
         $relative_threshold --not_all --at \${a_threshold} \
-        --process $nthreads
+        --processes $nthreads
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

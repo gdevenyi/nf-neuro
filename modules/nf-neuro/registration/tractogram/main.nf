@@ -32,14 +32,16 @@ process REGISTRATION_TRACTOGRAM {
 
     // Validate transformations when size is 2
     if (transformations.size() == 2) {
-        def has_nii = transformations.any { it.toString().endsWith('.nii.gz') }
-        def has_affine = transformations.any { it.toString().endsWith('.txt') || it.toString().endsWith('.mat') }
+        def has_nii = transformations.any { it -> it.toString().endsWith('.nii.gz') }
+        def has_affine = transformations.any { it -> it.toString().endsWith('.txt') || it.toString().endsWith('.mat') }
         if (!has_nii || !has_affine) {
             error "When providing 2 transformations, one must be .nii.gz and the other must be .txt or .mat"
         }
     }
 
     """
+    export OMP_NUM_THREADS={task.ext.single_thread ? 1 : task.cpus}
+
     # Identify deformation and affine from transformations
     in_deformation=""
     affine=""

@@ -33,10 +33,11 @@ process RECONST_QBALL {
     if ( task.ext.qball) args += " --sh ${prefix}__qball.nii.gz"
     if ( task.ext.nufo) args += " --nufo ${prefix}__nufo.nii.gz"
     if ( task.ext.a_power) args += " --a_power ${prefix}__a_power.nii.gz"
+
     """
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
-    scil_qball_metrics $dwi $bval $bvec --not_all $args $b0_threshold $sh_order --process $nthreads
+    scil_qball_metrics $dwi $bval $bvec --not_all $args $b0_threshold $sh_order --processes $nthreads
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -46,6 +47,7 @@ process RECONST_QBALL {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
+
     """
     scil_qball_metrics -h
 

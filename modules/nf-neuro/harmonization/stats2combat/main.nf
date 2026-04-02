@@ -15,8 +15,8 @@ process HARMONIZATION_STATS2COMBAT {
 
     script:
     def covariates = task.ext.covariates ?: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
-    def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
-    def file_list = stats_files.collect { "\"${it}\"" }.join(", ")
+    def covariatespy = "[" + covariates.collect { it -> "\"${it}\"" }.join(", ") + "]"
+    def file_list = stats_files.collect { it -> "\"${it}\"" }.join(", ")
     def value_col_name = task.ext.value_col_name ?: "mean"
     def metric_col_name = task.ext.metric_col_name ?: "metric"
     def suffix = task.ext.suffix ?: "raw"
@@ -69,9 +69,6 @@ process HARMONIZATION_STATS2COMBAT {
     """
 
     stub:
-    def covariates = task.ext.covariates ?: ["sample", "roi", "site", "age", "sex", "handedness", "disease"]
-    def covariatespy = "[" + covariates.collect { "\"${it}\"" }.join(", ") + "]"
-    def file_list = stats_files.collect { "\"${it}\"" }.join(", ")
     def suffix = task.ext.suffix ?: "raw"
 
     // Extract the sitename from the input files

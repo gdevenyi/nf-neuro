@@ -37,7 +37,7 @@ process REGISTRATION_EASYREG {
         --fwd_field ${prefix}_forward0_warp.nii.gz \
         --bak_field ${prefix}_backward0_warp.nii.gz \
         $fixed_segmentation $moving_segmentation \
-        --threads ${nthreads} $affine_only
+        --threads $nthreads $affine_only
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
