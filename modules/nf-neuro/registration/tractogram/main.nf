@@ -40,7 +40,7 @@ process REGISTRATION_TRACTOGRAM {
     }
 
     """
-    export OMP_NUM_THREADS={task.ext.single_thread ? 1 : task.cpus}
+    export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     # Identify deformation and affine from transformations
     in_deformation=""
