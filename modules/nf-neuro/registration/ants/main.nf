@@ -35,7 +35,6 @@ process REGISTRATION_ANTS {
     def run_qc = task.ext.run_qc as Boolean || false
     def nthreads = task.ext.single_thread ? 1 : task.cpus
     args += " -n $nthreads"
-    def seed = " -e $nthreads"
 
     if ( mask ) args += " -x $mask"
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
@@ -52,7 +51,7 @@ process REGISTRATION_ANTS {
     export ANTS_RANDOM_SEED=${task.ext.random_seed ?: 1234}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
-    $ants $dimension -f $fixed_image -m $moving_image -o output -t $transform $args $seed
+    $ants $dimension -f $fixed_image -m $moving_image -o output -t $transform $args -e \$ANTS_RANDOM_SEED
 
     moving_id=\$(basename $moving_image .nii.gz)
     moving_id=\${moving_id#${meta.id}_*}
