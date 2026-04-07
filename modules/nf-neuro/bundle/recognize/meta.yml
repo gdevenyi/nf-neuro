@@ -48,7 +48,7 @@ args:
         The ratio is a value between 0 and 1.
         Ex: If you have 5 input model directories and a minimal_vote_ratio of 0.5, you will need at least 3 votes.
       default: 0.5
-  - seed:
+  - scilpy_rng_seed:
       type: int
       description: Seed for random number generator
       default: 0
