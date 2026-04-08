@@ -22,7 +22,7 @@ process BUNDLE_RECOGNIZE {
     // additional script arguments
     def minimal_vote_ratio = task.ext.minimal_vote_ratio ? "--minimal_vote_ratio " + task.ext.minimal_vote_ratio : ""
     def seed = task.ext.scilpy_rng_seed ? "--seed " + task.ext.scilpy_rng_seed : "--seed 1234"
-    def nthreads = task.single_thread ? 1 : task.cpus
+    def nthreads = task.ext.single_thread ? 1 : task.cpus
     def outlier_alpha = task.ext.outlier_alpha ? "--alpha " + task.ext.outlier_alpha : ""
     def run_qc = task.ext.run_qc ?: false
     """

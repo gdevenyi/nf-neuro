@@ -32,6 +32,52 @@ input:
         pattern: "*.nii.gz"
         ontologies:
           - edam: http://edamontology.org/format_3989 # GZIP format
+args:
+  - no_pruning:
+      type: boolean
+      description: If true, the command will not perform pruning of the connections. By default, the command will perform pruning to remove spurious connections.
+      default: false
+  - no_remove_loops:
+      type: boolean
+      description: If true, the command will not remove loops in the connections. By default, the command will remove loops to ensure that each connection is represented as a simple path between two regions.
+      default: false
+  - no_remove_outliers:
+      type: boolean
+      description: If true, the command will not remove outliers in the connections. By default, the command will remove outliers to improve the quality of the resulting connectivity matrix.
+      default: false
+  - no_remove_duplicates:
+      type: boolean
+      description: If true, the command will not remove duplicate streamlines in the connections. By  
+        default, the command will remove duplicate streamlines to reduce redundancy in the resulting connectivity matrix.
+      default: false
+  - no_remove_curv:
+      type: boolean
+      description: If true, the command will not remove streamlines with high curvature in the connections. By default, the command will remove streamlines with high curvature to improve the quality of the resulting connectivity matrix.
+      default: false
+  - min_len:
+      type: integer
+      description: Minimum length of streamlines to keep in the connections. By default, streamlines shorter than 10 mm will be removed to improve the quality of the resulting connectivity matrix.
+      default: 20.0
+  - max_len:
+      type: integer
+      description: Maximum length of streamlines to keep in the connections. By default, streamlines longer than 250 mm will be removed to improve the quality of the resulting connectivity matrix.
+      default: 200.0
+  - outlier_threshold:
+      type: number
+      description: Threshold for outlier removal in the connections. By default, streamlines that are more than 3 standard deviations away from the mean will be considered outliers and removed to improve the quality of the resulting connectivity matrix.
+      default: 0.6
+  - max_angle:
+      type: number
+      description: Maximum angle between consecutive segments of a streamline to keep in the connections. By default, streamlines with angles greater than 45 degrees will be removed to improve the quality of the resulting connectivity matrix.
+      default: 330
+  - max_curv:
+      type: number
+      description: Maximum curvature of streamlines to keep in the connections. By default, streamlines with curvature greater than 1 mm^-1 will be removed to improve the quality of the resulting connectivity matrix.
+      default: 10
+  - single_thread:
+      type: boolean
+      description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
+      default: false
 output:
   hdf5:
     - - meta:

@@ -35,7 +35,7 @@ process PREPROC_TOPUP {
     """
     export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=${task.ext.single_thread ? 1 : task.cpus}
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
-    export ANTS_RANDOM_SEED=${task.ext.ants_random_seed ?: 1234}
+    export ANTS_RANDOM_SEED=${task.ext.ants_rng_seed ?: 1234}
 
     if [[ -f "$b0" ]];
     then
