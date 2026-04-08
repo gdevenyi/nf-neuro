@@ -20,7 +20,7 @@ process IMAGE_CONVERT {
     def suffix = task.ext.first_suffix ? "${task.ext.first_suffix}_${task.ext.datatype}_converted" : "${task.ext.datatype}_converted"
 
     """
-    mrconvert $image ${prefix}_${suffix}.nii.gz $datatype
+    mrconvert $image ${prefix}_${suffix}.nii.gz $datatype -nthreads 0
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

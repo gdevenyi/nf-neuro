@@ -81,6 +81,10 @@ args:
       type: integer
       description: Random seed for MRtrix3. Setting a fixed seed can help with reproducibility of results.
       default: 1234
+  - ants_rng_seed:
+      type: integer
+      description: Random seed for ANTs registration. Setting a fixed seed can help with reproducibility of results.
+      default: 1234
 output:
   image:
     - - meta:
