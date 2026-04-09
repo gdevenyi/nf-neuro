@@ -32,6 +32,51 @@ input:
         pattern: "*.nii.gz"
         ontologies:
           - edam: http://edamontology.org/format_3989 # GZIP format
+args:
+  - no_pruning:
+      type: boolean
+      description: If set, will NOT prune on length.
+        Length criteria in min_len, max_len.
+      default: false
+  - no_remove_loops:
+      type: boolean
+      description: If set, will NOT remove streamlines making loops.
+        Angle criteria based on max_angle
+      default: false
+  - no_remove_outliers:
+      type: boolean
+      description: If set, will NOT remove outliers using QuickBundle.
+        Criteria based on --outlier_threshold.
+      default: false
+  - no_remove_curv:
+      type: boolean
+      description: If set, will NOT remove streamlines that deviate from the mean curvature.
+        Threshold based on max_curv.
+      default: false
+  - min_len:
+      type: number
+      description: Pruning minimal segment length.
+      default: 20.0
+  - max_len:
+      type: number
+      description: Pruning maximal segment length.
+      default: 200.0
+  - outlier_threshold:
+      type: number
+      description: Outlier removal threshold when using hierarchical QuickBundle.
+      default: 0.6
+  - max_angle:
+      type: number
+      description: Maximal winding angle over which a streamline is considered as looping.
+      default: 330
+  - max_curv:
+      type: number
+      description: Clustering threshold for centroids curvature filtering with QuickBundle.
+      default: 10
+  - single_thread:
+      type: boolean
+      description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
+      default: false
 output:
   hdf5:
     - - meta:
