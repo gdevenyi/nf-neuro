@@ -34,14 +34,10 @@ args:
       description:
         Data type to convert the image to. This should be a valid data type supported by MRtrix3, such as "float32", "int16", etc.
         If not specified, the module will fail.
-  - single_thread:
-      type: boolean
-      description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
-      default: false
-  - mrtrix_rng_seed:
-      type: integer
-      description: Random seed for MRtrix3. Setting a fixed seed can help with reproducibility of results.
-      default: 1234
+  - first_suffix:
+      type: string
+      description: Optional suffix to add to the output filename before the datatype.
+        If not specified, the output filename will only include the datatype as a suffix.
 output:
   image:
     - - meta:
