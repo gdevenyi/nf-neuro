@@ -37,6 +37,7 @@ process RECONST_FREEWATER {
 
     """
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+    export OPENBLAS_NUM_THREADS=1
     # Set home directory. This is problematic if the container is run
     # with non-root user which does not create a home directory, whilst
     # AMICO attempts to write in the home directory, raising an error.
