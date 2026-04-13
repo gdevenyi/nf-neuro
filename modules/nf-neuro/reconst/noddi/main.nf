@@ -34,6 +34,7 @@ process RECONST_NODDI {
 
     """
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
+    export OPENBLAS_NUM_THREADS=1
 
     # Check if data are multi-shell based on b-values and set number of clusters accordingly
     # Set tolerance threshold (default 40 if not specified)
