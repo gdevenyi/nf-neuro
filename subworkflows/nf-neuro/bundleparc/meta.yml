@@ -31,12 +31,6 @@ output:
         Channel containing all the parcellated bundle files.
         Structure: [ val(meta), path(bundles) ]
       pattern: "*.nii.gz"
-  - mqc:
-      type: file
-      description: |
-        Channel containing mosaics of a subset of bundles for QC purposes.
-        Structure: [ val(meta), path(mqc) ]
-      pattern: "*mqc.png"
   - versions:
       type: file
       description: |
