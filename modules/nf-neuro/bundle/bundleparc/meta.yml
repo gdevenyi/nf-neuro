@@ -75,7 +75,7 @@ args:
       type: string
       default: ""
       description: |
-        "Bundles to predict. Default is every bundle (71 bundles). Check the scilpy API."
+        "Bundles to predict, space separated. Default is every bundle (71 bundles). Check the scilpy API."
         "https://scilpy.readthedocs.io/en/latest/scripts/scil_fodf_bundleparc.html"
   - half:
       type: bool
