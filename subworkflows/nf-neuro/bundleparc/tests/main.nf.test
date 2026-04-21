@@ -9,6 +9,8 @@ nextflow_workflow {
     tag "subworkflows_nfneuro"
     tag "subworkflows/bundleparc"
 
+    tag "bundle/bundleparc"
+
     tag "load_test_data"
 
     tag "stub"
