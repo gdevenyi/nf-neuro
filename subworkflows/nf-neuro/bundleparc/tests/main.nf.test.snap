@@ -1,0 +1,24 @@
+{
+    "bundleparc - download checkpoint - stubrun": {
+        "content": [
+            {
+                "bundles": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test__AF_left.nii.gz"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,7c39bcb579691be505eaae4b11789a92"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-04-21T14:42:07.224623088"
+    }
+}

@@ -2,13 +2,13 @@ process BUNDLE_BUNDLEPARC {
     tag "$meta.id"
     label 'process_single'
 
-    container "scilpy/scilpy:dev"
+    container "scilus/scilpy:dev"
 
     input:
     tuple val(meta), path(fodf), path(checkpoint)
 
     output:
-    tuple val(meta), path("*.nii.gz"), emit: labels
+    tuple val(meta), path("*__*_*.nii.gz"), emit: labels
     path "versions.yml"              , emit: versions
 
     when:
@@ -30,8 +30,8 @@ process BUNDLE_BUNDLEPARC {
     export OMP_NUM_THREADS=${task.ext.single_thread ? 1 : task.cpus}
 
     scil_fodf_bundleparc $fodf --out_prefix ${prefix}__ \
-         ${args.join(' ')} \
-         --out_dir tmp --checkpoint $checkpoint -v DEBUG
+        ${args.join(' ')} \
+        --out_dir tmp --checkpoint $checkpoint -v DEBUG
     mv tmp/*gz .
     rm -r tmp
 

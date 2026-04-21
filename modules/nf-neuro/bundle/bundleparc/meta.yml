@@ -74,4 +74,10 @@ args:
   - bundles:
       type: string
       default: ""
-      description: "Bundles to predict. Default is every bundle (71 bundles)."
+      description: |
+        "Bundles to predict. Default is every bundle (71 bundles). Check the scilpy API."
+        "https://scilpy.readthedocs.io/en/latest/scripts/scil_fodf_bundleparc.html"
+  - half:
+      type: bool
+      default: false
+      description: "Use half precision (float16) for inference. This reduces memory usage but may lead to reduced accuracy."
