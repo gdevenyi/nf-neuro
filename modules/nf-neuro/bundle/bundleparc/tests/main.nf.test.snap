@@ -1,0 +1,26 @@
+{
+    "bundleparc - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,f51bf9d33d58c59c112774d2c8f993f3"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-04-20T17:24:13.514332127"
+    },
+    "bundleparc": {
+        "content": [
+            [
+                "versions.yml:md5,f51bf9d33d58c59c112774d2c8f993f3"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-04-20T17:29:33.872078981"
+    }
+}
