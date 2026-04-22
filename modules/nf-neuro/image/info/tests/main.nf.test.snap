@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-datatype_property.txt:md5,7397a534184b0c787313100e84c5c60d"
+                        "Float32LE\n"
                     ]
                 ],
                 "1": [
@@ -20,7 +20,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-datatype_property.txt:md5,7397a534184b0c787313100e84c5c60d"
+                        "Float32LE\n"
                     ]
                 ],
                 "versions": [
@@ -32,7 +32,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-04-21T18:36:23.650355128"
+        "timestamp": "2026-04-21T20:40:12.024299548"
     },
     "Image property - strides": {
         "content": [
@@ -43,7 +43,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-strides_property.txt:md5,2dbf7fb8c3d88156279af7919a8d0580"
+                        "-1 2 3\n"
                     ]
                 ],
                 "1": [
@@ -55,7 +55,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-strides_property.txt:md5,2dbf7fb8c3d88156279af7919a8d0580"
+                        "-1 2 3\n"
                     ]
                 ],
                 "versions": [
@@ -67,7 +67,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-04-21T18:36:14.005037778"
+        "timestamp": "2026-04-21T20:39:57.9131707"
     },
     "Image property - all": {
         "content": [
@@ -78,7 +78,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-all_property.txt:md5,857f07e171a17135e5aa9993a286b20a"
+                        "************************************************\nImage name:          \"T1w.nii.gz\"\n************************************************\n  Dimensions:        124 x 162 x 20\n  Voxel size:        1 x 1 x 1\n  Data strides:      [ -1 2 3 ]\n  Format:            NIfTI-1.1 (GZip compressed)\n  Data type:         32 bit float (little endian)\n  Intensity scaling: offset = 0, multiplier = 1\n  Transform:               0.9951    -0.09821     0.01148      -53.51\n                          0.09885      0.9907    -0.09338      -100.1\n                        -0.002201     0.09406      0.9956       16.81\n"
                     ]
                 ],
                 "1": [
@@ -90,7 +90,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__-all_property.txt:md5,857f07e171a17135e5aa9993a286b20a"
+                        "************************************************\nImage name:          \"T1w.nii.gz\"\n************************************************\n  Dimensions:        124 x 162 x 20\n  Voxel size:        1 x 1 x 1\n  Data strides:      [ -1 2 3 ]\n  Format:            NIfTI-1.1 (GZip compressed)\n  Data type:         32 bit float (little endian)\n  Intensity scaling: offset = 0, multiplier = 1\n  Transform:               0.9951    -0.09821     0.01148      -53.51\n                          0.09885      0.9907    -0.09338      -100.1\n                        -0.002201     0.09406      0.9956       16.81\n"
                     ]
                 ],
                 "versions": [
@@ -102,7 +102,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-04-21T18:34:26.584689102"
+        "timestamp": "2026-04-21T20:40:05.377536406"
     },
     "Image property - stub": {
         "content": [

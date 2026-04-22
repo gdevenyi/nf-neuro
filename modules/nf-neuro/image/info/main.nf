@@ -8,18 +8,17 @@ process IMAGE_INFO {
     tuple val(meta), path(image)
 
     output:
-    tuple val(meta), path("*__*_property.txt") , emit: property
+    tuple val(meta), stdout , emit: property
     path "versions.yml"                        , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def prefix = task.ext.prefix ?: "${meta.id}"
     def property = task.ext.property ? "-${task.ext.property}" : '-all' // REQUIRED.
 
     """
-    mrinfo ${image} ${property} > ${prefix}__${property}_property.txt
+    mrinfo ${image} ${property}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -28,10 +27,9 @@ process IMAGE_INFO {
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
     def property = task.ext.property ? "-${task.ext.property}" : '-all' // REQUIRED.
     """
-    touch ${prefix}__${property}_property.txt
+    echo "Some property values for ${image} with ${property}"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

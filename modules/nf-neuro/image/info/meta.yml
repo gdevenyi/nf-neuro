@@ -47,24 +47,18 @@ args:
       description: Key to extract from the image.
 output:
   property:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
-      - "*__*_property.txt":
-          type: file
-          description: Image property file.
-          pattern: "*__*_property.txt"
-          ontologies:
-            - edam: http://edamontology.org/format_ # txt format
+    - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`# txt format
   versions:
     - versions.yml:
         type: file
         description: File containing software versions
         pattern: versions.yml
         ontologies:
-          - edam: http://edamontology.org/format_3750 # YAML
+          - edam: http://edamontology.org/format_3750
 authors:
   - "@arnaudbore"
 maintainers:
