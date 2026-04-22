@@ -20,7 +20,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.nii.gz:md5,478a4c899c86bd4a9839ee9fe30250f4"
+                        "test_converted.nii.gz:md5,478a4c899c86bd4a9839ee9fe30250f4"
                     ]
                 ],
                 "1": [
@@ -29,7 +29,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.bval:md5,170bfc9c94b4328d0a64525e48c268c0"
+                        "test_converted.bval:md5,170bfc9c94b4328d0a64525e48c268c0"
                     ]
                 ],
                 "2": [
@@ -38,7 +38,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.bvec:md5,7bfcccaa736485dbebd44d498709e8fb"
+                        "test_converted.bvec:md5,7bfcccaa736485dbebd44d498709e8fb"
                     ]
                 ],
                 "3": [
@@ -50,7 +50,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.bval:md5,170bfc9c94b4328d0a64525e48c268c0"
+                        "test_converted.bval:md5,170bfc9c94b4328d0a64525e48c268c0"
                     ]
                 ],
                 "bvec": [
@@ -59,7 +59,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.bvec:md5,7bfcccaa736485dbebd44d498709e8fb"
+                        "test_converted.bvec:md5,7bfcccaa736485dbebd44d498709e8fb"
                     ]
                 ],
                 "image": [
@@ -68,7 +68,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test__converted.nii.gz:md5,478a4c899c86bd4a9839ee9fe30250f4"
+                        "test_converted.nii.gz:md5,478a4c899c86bd4a9839ee9fe30250f4"
                     ]
                 ],
                 "versions": [
@@ -80,6 +80,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-04-21T19:58:01.643282059"
+        "timestamp": "2026-04-21T20:50:40.369430177"
     }
 }

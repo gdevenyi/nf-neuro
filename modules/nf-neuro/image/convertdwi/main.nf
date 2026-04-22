@@ -8,10 +8,10 @@ process IMAGE_CONVERTDWI {
     tuple val(meta), path(image), path(bval), path(bvec)
 
     output:
-    tuple val(meta), path("*_converted.nii.gz") , emit: image
-    tuple val(meta), path("*_converted.bval")   , emit: bval
-    tuple val(meta), path("*_converted.bvec")   , emit: bvec
-    path "versions.yml"                         , emit: versions
+    tuple val(meta), path("*.nii.gz") , emit: image
+    tuple val(meta), path("*.bval")   , emit: bval
+    tuple val(meta), path("*.bvec")   , emit: bvec
+    path "versions.yml"               , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -19,7 +19,7 @@ process IMAGE_CONVERTDWI {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def datatype = task.ext.datatype ? "-datatype ${task.ext.datatype}" : ''
-    def suffix = task.ext.suffix ? "${task.ext.suffix}" : (task.ext.datatype ? "${task.ext.datatype}_converted" : "_converted")
+    def suffix = task.ext.suffix ? "${task.ext.suffix}" : (task.ext.datatype ? "${task.ext.datatype}_converted" : "converted")
     def strides = task.ext.strides ? "-strides ${task.ext.strides}" : ''
 
     """
@@ -35,7 +35,7 @@ process IMAGE_CONVERTDWI {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ? "${task.ext.suffix}" : (task.ext.datatype ? "${task.ext.datatype}_converted" : "_converted")
+    def suffix = task.ext.suffix ? "${task.ext.suffix}" : (task.ext.datatype ? "${task.ext.datatype}_converted" : "converted")
 
     """
     touch ${prefix}_${suffix}.nii.gz

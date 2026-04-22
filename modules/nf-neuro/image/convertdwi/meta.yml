@@ -1,10 +1,11 @@
 name: image_convertdwi
 description: |
-  Small utility module to perform data type conversion on images. The new
-  datatype has to be specified using the task.ext.datatype parameter, otherwise,
-  the module will fail.
+  Small utility module to perform data type conversion on dwi images. The new
+  datatype can be specified using the task.ext.datatype parameter. Using strides parameters,
+  it will convert the dwi as well as the bval and bvec files to ensure they remain consistent with the converted image.
 keywords:
   - image
+  - dwi
   - convert
   - datatype
 tools:
@@ -59,10 +60,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_converted.nii.gz":
+      - "*.nii.gz":
           type: file
           description: Image converted into the specified datatype.
-          pattern: "*_converted.nii.gz"
+          pattern: "*.nii.gz"
           ontologies:
             - edam: http://edamontology.org/format_3989 # GZIP format
   bval:
@@ -71,10 +72,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'test', single_end:false ]`
-      - "*_converted.bval":
+      - "*.bval":
           type: file
           description: B-values corrected in FSL format
-          pattern: "*_converted.bval"
+          pattern: "*.bval"
           ontologies: []
   bvec:
     - - meta:
@@ -82,10 +83,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'test', single_end:false ]`
-      - "*_converted.bvec":
+      - "*.bvec":
           type: file
           description: B-vectors corrected in FSL format
-          pattern: "*_converted.bvec"
+          pattern: "*.bvec"
           ontologies: []
   versions:
     - versions.yml:
@@ -95,6 +96,6 @@ output:
         ontologies:
           - edam: http://edamontology.org/format_3750 # YAML
 authors:
-  - "@gagnonanthony"
+  - "@arnaudbore"
 maintainers:
-  - "@gagnonanthony"
+  - "@arnaudbore"
