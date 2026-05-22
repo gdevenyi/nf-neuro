@@ -67,7 +67,7 @@ workflow RECONST_FW_NODDI {
                     def has_iso = (iso_s > 0 || iso_g > 0)
                     if ( has_para != has_iso ) {
                         error "For NODDI reconstruction, both para_diff and iso_diff must be provided together, " +
-                              "either as per-subject values or as global values."
+                            "either as per-subject values or as global values."
                     }
                 }
 
@@ -79,15 +79,15 @@ workflow RECONST_FW_NODDI {
                     def has_perp_max = (perp_max_s > 0 || perp_max_g > 0)
                     if ( has_para && (has_para != has_iso || has_para != has_perp_min || has_para != has_perp_max) ) {
                         error "For Freewater Elimination reconstruction, para_diff, iso_diff, perp_diff_min and " +
-                              "perp_diff_max must be provided together, either as per-subject values or as global values."
+                            "perp_diff_max must be provided together, either as per-subject values or as global values."
                     }
                 }
 
                 // Warn if per-subject priors are provided alongside average_diff_priors
                 if ( options.average_diff_priors && (para_s > 0 || iso_s > 0 || perp_min_s > 0 || perp_max_s > 0) ) {
                     log.warn "Options.average_diff_priors is set to true, but per-subject diffusivity priors " +
-                             "were provided. The per-subject diffusivity priors will be ignored and the computed " +
-                             "diffusivity priors will be averaged across subjects."
+                            "were provided. The per-subject diffusivity priors will be ignored and the computed " +
+                            "diffusivity priors will be averaged across subjects."
                 }
 
                 return true
