@@ -6,7 +6,7 @@ process REGISTRATION_ANTS {
     container "scilus/scilus:2.2.2"
 
     input:
-        tuple val(meta), path(fixed_image), path(moving_image), path(mask) //** optional, input = [] **//
+        tuple val(meta), path(fixed_image), path(moving_image), path(fixed_mask), path(moving_mask) //** optional, input = [] **//
 
     output:
         tuple val(meta), path("*_warped.nii.gz")                            , emit: image_warped
@@ -36,7 +36,12 @@ process REGISTRATION_ANTS {
     def nthreads = task.ext.single_thread ? 1 : task.cpus
     args += " -n $nthreads"
 
-    if ( mask ) args += " -x $mask"
+    if ( fixed_mask && moving_mask ) {
+        args += " -x [$fixed_mask,$moving_mask]"
+    }
+    if ( fixed_mask && !moving_mask ) {
+        args += " -x $fixed_mask"
+    }
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
     if ( task.ext.histogram_bins ) args += " -r $task.ext.histogram_bins"
     if ( task.ext.spline_distance ) args += " -s $task.ext.spline_distance"

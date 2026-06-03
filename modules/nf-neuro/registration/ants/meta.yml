@@ -145,7 +145,14 @@ input:
         mandatory: true
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
-    - mask:
+    - fixed_mask:
+        type: file
+        description: Mask(s) for the fixed image space
+        pattern: "*.{nii,nii.gz}"
+        mandatory: false
+        ontologies:
+          - edam: http://edamontology.org/format_4001 # NIFTI format
+    - moving_mask:
         type: file
         description: Mask(s) for the fixed image space
         pattern: "*.{nii,nii.gz}"

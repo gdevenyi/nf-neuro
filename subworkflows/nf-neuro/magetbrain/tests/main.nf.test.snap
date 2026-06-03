@@ -12,9 +12,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "24.10.5"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-06T17:32:19.050050964"
+        "timestamp": "2026-06-02T20:48:28.650150306"
     },
     "magetbrain - stub-run": {
         "content": [
@@ -43,9 +43,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "24.10.5"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-07T21:33:34.114501714"
+        "timestamp": "2026-06-02T20:48:28.757351448"
     },
     "resample_combinations": {
         "content": [
@@ -66,9 +66,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "24.10.5"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-06T17:32:19.059003028"
+        "timestamp": "2026-06-02T20:48:28.688757756"
     },
     "majorityvote_groups": {
         "content": [
@@ -79,9 +79,9 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "24.10.5"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-06T17:32:19.064971529"
+        "timestamp": "2026-06-02T20:48:28.722881379"
     },
     "atlas_template_pairs": {
         "content": [
@@ -96,8 +96,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "24.10.5"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-06T17:32:19.037194905"
+        "timestamp": "2026-06-02T20:48:28.622718904"
     }
 }

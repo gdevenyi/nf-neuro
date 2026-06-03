@@ -40,7 +40,7 @@ workflow MAGETBRAIN {
                     moving_id: meta_atlas.id,
                     fixed_id: meta_template.id
                 ]
-                [meta, template_img, atlas_img, []]
+                [meta, template_img, atlas_img, [], []]
             }
 
         REGISTER_ATLAS_TEMPLATE(ch_atlas_template_pairs)
@@ -57,7 +57,7 @@ workflow MAGETBRAIN {
                     moving_id: meta_template.id,
                     fixed_id: meta_subject.id
                 ]
-                [meta, subject_img, template_img, []]
+                [meta, subject_img, template_img, [], []]
             }
 
         REGISTER_TEMPLATE_SUBJECT(ch_template_subject_pairs)
