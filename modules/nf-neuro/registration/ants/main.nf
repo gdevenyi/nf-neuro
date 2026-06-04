@@ -36,14 +36,8 @@ process REGISTRATION_ANTS {
     def nthreads = task.ext.single_thread ? 1 : task.cpus
     args += " -n $nthreads"
 
-    if ( fixed_mask && moving_mask ) {
-        args += " -x [$fixed_mask,$moving_mask]"
-    }
-    else if ( fixed_mask && !moving_mask ) {
-        args += " -x $fixed_mask"
-    }
-    else if ( !fixed_mask && moving_mask ) {
-        args += " -x [NOMASK, $moving_mask]"
+    if ( fixed_mask || moving_mask ) {
+        args += " -x [" + $fixed_mask ?: "NOMASK" + "," + $moving_mask ?: "NOMASK" + "]"
     }
 
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
