@@ -37,7 +37,7 @@ process REGISTRATION_ANTS {
     args += " -n $nthreads"
 
     if ( fixed_mask || moving_mask ) {
-        args += " -x [" + $fixed_mask ?: "NOMASK" + "," + $moving_mask ?: "NOMASK" + "]"
+        args += " -x \"${fixed_mask ?: 'NULL'},${moving_mask ?: 'NULL'}\""
     }
 
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"

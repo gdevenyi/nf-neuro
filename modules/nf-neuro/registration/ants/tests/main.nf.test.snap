@@ -210,7 +210,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-06-02T21:38:43.316489643"
+        "timestamp": "2026-06-03T22:41:08.268383497"
     },
     "registration - ants - SyN": {
         "content": [
@@ -401,7 +401,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-06-02T21:37:13.129926324"
+        "timestamp": "2026-06-04T09:14:11.394213705"
     },
     "registration - ants - no warps": {
         "content": [
@@ -564,6 +564,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-06-02T21:39:03.321538752"
+        "timestamp": "2026-06-03T22:41:19.541042931"
     }
 }
