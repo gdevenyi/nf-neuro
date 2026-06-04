@@ -42,13 +42,18 @@ process UTILS_EXTRACTB0 {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def extract_bval_bvec = task.ext.extract_bval_bvec ?: ""
 
     """
     scil_dwi_extract_b0 -h
 
     touch ${prefix}_b0.nii.gz
-    touch ${prefix}_copy_dwi.bval
-    touch ${prefix}_copy_dwi.bvec
+
+    if [[ "$extract_bval_bvec" ]];
+    then
+        touch ${prefix}_copy_dwi.bval
+        touch ${prefix}_copy_dwi.bvec
+    fi
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
