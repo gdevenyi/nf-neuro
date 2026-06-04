@@ -70,12 +70,34 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'test', single_end:false ]`
-      - "*_b0*.nii.gz":
+      - "*_b0.nii.gz":
           type: file
           description: b0 image(s) extracted from the DWI
           pattern: "*_b0*.{nii,nii.gz}"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
+  bval:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*_copy_dwi.bval":
+          type: file
+          description: B-values corrected in FSL format
+          pattern: "*_copy_dwi.bval"
+          ontologies: []
+  bvec:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*_copy_dwi.bvec":
+          type: file
+          description: B-vectors corrected in FSL format
+          pattern: "*_copy_dwi.bvec"
+          ontologies: []
   versions:
     - versions.yml:
         type: file

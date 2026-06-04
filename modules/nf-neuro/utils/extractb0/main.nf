@@ -8,7 +8,7 @@ process UTILS_EXTRACTB0 {
     tuple val(meta), path(dwi), path(bval), path(bvec)
 
     output:
-    tuple val(meta), path("*_b0*.nii.gz"), emit: b0
+    tuple val(meta), path("*_b0.nii.gz"), emit: b0
     tuple val(meta), path("*_copy_dwi.bval"), emit: bval, optional: true
     tuple val(meta), path("*_copy_dwi.bvec"), emit: bvec, optional: true
     path "versions.yml", emit: versions
