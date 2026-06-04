@@ -39,9 +39,13 @@ process REGISTRATION_ANTS {
     if ( fixed_mask && moving_mask ) {
         args += " -x [$fixed_mask,$moving_mask]"
     }
-    if ( fixed_mask && !moving_mask ) {
+    else if ( fixed_mask && !moving_mask ) {
         args += " -x $fixed_mask"
     }
+    else if ( !fixed_mask && moving_mask ) {
+        args += " -x [NOMASK, $moving_mask]"
+    }
+
     if ( task.ext.initial_transform ) args += " -i [$fixed_image,$moving_image,${initialization_types[task.ext.initial_transform]}]"
     if ( task.ext.histogram_bins ) args += " -r $task.ext.histogram_bins"
     if ( task.ext.spline_distance ) args += " -s $task.ext.spline_distance"
