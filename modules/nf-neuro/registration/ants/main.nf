@@ -9,7 +9,7 @@ process REGISTRATION_ANTS {
         tuple val(meta), path(fixed_image), path(moving_image), path(fixed_mask), path(moving_mask) //** optional, input = [] **//
 
     output:
-        tuple val(meta), path("*_warped.nii.gz")                            , emit: image_warped
+        tuple val(meta), path("*_warped.nii.gz")                           , emit: image_warped
         tuple val(meta), path("*_forward1_affine.mat")                     , emit: forward_affine, optional: true
         tuple val(meta), path("*_forward0_warp.nii.gz")                    , emit: forward_warp, optional: true
         tuple val(meta), path("*_backward1_warp.nii.gz")                   , emit: backward_warp, optional: true
@@ -28,7 +28,7 @@ process REGISTRATION_ANTS {
     def initialization_types = ["geometric center": 0, "intensities": 1, "origin": 2]
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ?: "warped"
+    def suffix = task.ext.suffix ? "${task.ext.suffix}_warped" : "warped"
     def suffix_qc = task.ext.suffix_qc ?: ""
     def ants = task.ext.quick ? "antsRegistrationSyNQuick.sh" : "antsRegistrationSyN.sh"
     def dimension = "-d ${task.ext.dimension ?: 3}"
@@ -138,7 +138,7 @@ process REGISTRATION_ANTS {
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def suffix = task.ext.suffix ?: "warped"
+    def suffix = task.ext.suffix ? "${task.ext.suffix}_warped" : "warped"
     def suffix_qc = task.ext.suffix_qc ?: ""
     def run_qc = task.ext.run_qc as Boolean || false
 
