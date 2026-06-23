@@ -28,6 +28,7 @@ process REGISTRATION_ANTS {
     def initialization_types = ["geometric center": 0, "intensities": 1, "origin": 2]
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def suffix = task.ext.suffix ?: "warped"
     def suffix_qc = task.ext.suffix_qc ?: ""
     def ants = task.ext.quick ? "antsRegistrationSyNQuick.sh" : "antsRegistrationSyN.sh"
     def dimension = "-d ${task.ext.dimension ?: 3}"
@@ -61,7 +62,7 @@ process REGISTRATION_ANTS {
     moving_id=\${moving_base%.\${ext}}
     moving_id=\${moving_id#${prefix}_*}
 
-    mv outputWarped.nii.gz ${prefix}_\${moving_id}_warped.nii.gz
+    mv outputWarped.nii.gz ${prefix}_\${moving_id}_${suffix}.nii.gz
 
     if [ $transform != "bo" ] && [ $transform != "so" ]; then
         mv output0GenericAffine.mat ${prefix}_forward1_affine.mat
@@ -158,7 +159,7 @@ process REGISTRATION_ANTS {
     convert -help .
     scil_viz_volume_screenshot -h
 
-    touch ${prefix}_t1_warped.nii.gz
+    touch ${prefix}_t1_${suffix}.nii.gz
     touch ${prefix}_forward1_affine.mat
     touch ${prefix}_forward0_warp.nii.gz
     touch ${prefix}_backward1_warp.nii.gz
