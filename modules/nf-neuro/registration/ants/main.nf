@@ -160,7 +160,12 @@ process REGISTRATION_ANTS {
     convert -help .
     scil_viz_volume_screenshot -h
 
-    touch ${prefix}_t1_${suffix}.nii.gz
+    moving_base=\$(basename "${moving_image}")
+    ext=\${moving_base#*.}
+    moving_id=\${moving_base%.\${ext}}
+    moving_id=\${moving_id#${prefix}_*}
+
+    touch ${prefix}_\${moving_id}_${suffix}.nii.gz
     touch ${prefix}_forward1_affine.mat
     touch ${prefix}_forward0_warp.nii.gz
     touch ${prefix}_backward1_warp.nii.gz
