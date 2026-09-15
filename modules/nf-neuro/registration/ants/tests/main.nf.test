@@ -132,8 +132,8 @@ nextflow_process {
         }
     }
 
-    test("registration - ants - both - moving mask") {
-        config "./nextflow_both_moving_mask.config"
+    test("registration - ants - moving mask") {
+        config "./nextflow_quick.config"
         when {
             process {
                 """
@@ -175,8 +175,8 @@ nextflow_process {
         }
     }
 
-    test("registration - ants - both - fixed mask") {
-        config "./nextflow_both_moving_mask.config"
+    test("registration - ants - fixed mask") {
+        config "./nextflow_quick.config"
         when {
             process {
                 """

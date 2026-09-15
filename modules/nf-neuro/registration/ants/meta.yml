@@ -186,7 +186,7 @@ output:
             e.g. `[ id:'test', single_end:false ]`
       - "*_warped_reference.nii.gz":
           type: file
-          description: Reference warped to moving space.
+          description: Fixed image warped to moving space.
           pattern: "*_warped_reference.nii.gz"
           ontologies:
             - edam: http://edamontology.org/format_3989 # GZIP format
