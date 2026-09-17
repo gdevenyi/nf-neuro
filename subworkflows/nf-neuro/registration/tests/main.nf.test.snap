@@ -345,6 +345,14 @@
                         "test_T1w_warped.nii.gz"
                     ]
                 ],
+                "mqc": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test__registration_anattodwi_mqc.gif"
+                    ]
+                ],
                 "versions": [
                     "versions.yml:md5,e387017f3bb8f7bc50efb907d9e8e73f"
                 ]
@@ -354,6 +362,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-17T10:11:00.801541364"
+        "timestamp": "2026-09-17T10:53:04.685067943"
     }
 }
