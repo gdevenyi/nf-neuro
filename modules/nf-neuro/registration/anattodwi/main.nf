@@ -157,7 +157,7 @@ process REGISTRATION_ANATTODWI {
     touch ${prefix}_backward0_affine.mat
 
     if $run_qc; then
-        touch ${prefix}_${suffix_qc}_registration_ants_mqc.gif
+        touch ${prefix}_${suffix_qc}_registration_anattodwi_mqc.gif
     fi
 
     cat <<-END_VERSIONS > versions.yml
