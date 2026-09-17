@@ -71,7 +71,7 @@ nextflow_process {
         }
     }
 
-    test("registration - anattodwi - fixed mask") {
+    test("registration - anattodwi - moving mask") {
         config "./nextflow.config"
         when {
             process {
@@ -88,7 +88,7 @@ nextflow_process {
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
-                ch_fixed_mask = ch_split_test_data.t1w.map{
+                ch_moving_mask = ch_split_test_data.t1w.map{
                     test_data_directory -> [
                         [ id:'test' ],
                         file("\${test_data_directory}/T1w_mask.nii.gz")
@@ -109,9 +109,9 @@ nextflow_process {
                 input[0] = ch_b0
                     .join(ch_t1w)
                     .join(ch_fa)
-                    .join(ch_fixed_mask)
-                    .map{ meta, fixed_image, moving_image, metric, fixed_mask ->
-                        [ meta, fixed_image, moving_image, metric, fixed_mask, []]
+                    .join(ch_moving_mask)
+                    .map{ meta, fixed_image, moving_image, metric, moving_mask ->
+                        [ meta, fixed_image, moving_image, metric, [], moving_mask]
                     }
                 """
             }
@@ -124,7 +124,7 @@ nextflow_process {
         }
     }
 
-    test("registration - anattodwi - moving mask") {
+    test("registration - anattodwi - fixed mask") {
         config "./nextflow.config"
         when {
             process {
@@ -147,7 +147,7 @@ nextflow_process {
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
-                ch_moving_mask = ch_split_test_data.b0.map{
+                ch_fixed_mask = ch_split_test_data.b0.map{
                     test_data_directory -> [
                         [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
@@ -162,9 +162,9 @@ nextflow_process {
                 input[0] = ch_b0
                     .join(ch_t1w)
                     .join(ch_fa)
-                    .join(ch_moving_mask)
-                    .map{ meta, fixed_image, moving_image, metric, moving_mask ->
-                        [ meta, fixed_image, moving_image, metric, [], moving_mask]
+                    .join(ch_fixed_mask)
+                    .map{ meta, fixed_image, moving_image, metric, fixed_mask ->
+                        [ meta, fixed_image, moving_image, metric, fixed_mask, []]
                     }
                 """
             }
