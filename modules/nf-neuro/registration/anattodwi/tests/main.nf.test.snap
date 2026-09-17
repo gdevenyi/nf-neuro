@@ -17,11 +17,20 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
+                        "test_warped_reference.nii.gz:md5,f6969de8c75d8e4a5a6d264c3ac50ab1"
                     ]
                 ],
                 "10": [
-                    "versions.yml:md5,37249bcc3b9ecbaf310960d876fd802d"
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test__registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
+                    ]
+                ],
+                "11": [
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ],
                 "2": [
                     [
@@ -29,7 +38,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693"
+                        "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
                     ]
                 ],
                 "3": [
@@ -38,7 +47,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
+                        "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693"
                     ]
                 ],
                 "4": [
@@ -47,7 +56,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9"
+                        "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
                     ]
                 ],
                 "5": [
@@ -56,10 +65,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        [
-                            "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
-                            "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
-                        ]
+                        "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9"
                     ]
                 ],
                 "6": [
@@ -69,8 +75,8 @@
                             "single_end": false
                         },
                         [
-                            "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
-                            "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
+                            "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
+                            "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
                         ]
                     ]
                 ],
@@ -93,8 +99,8 @@
                             "single_end": false
                         },
                         [
-                            "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
-                            "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
+                            "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
+                            "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
                         ]
                     ]
                 ],
@@ -104,7 +110,10 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
+                        [
+                            "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
+                            "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
+                        ]
                     ]
                 ],
                 "anat_warped": [
@@ -158,6 +167,15 @@
                         "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
                     ]
                 ],
+                "fixed_warped": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_warped_reference.nii.gz:md5,f6969de8c75d8e4a5a6d264c3ac50ab1"
+                    ]
+                ],
                 "forward_affine": [
                     [
                         {
@@ -206,11 +224,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
+                        "test__registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,37249bcc3b9ecbaf310960d876fd802d"
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ]
             }
         ],
@@ -218,18 +236,184 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-05-02T12:00:04.565708322"
+        "timestamp": "2026-09-17T08:54:11.615053729"
     },
     "registration - anattodwi -stub-run": {
         "content": [
             [
-                "versions.yml:md5,37249bcc3b9ecbaf310960d876fd802d"
+                "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-26T22:30:03.859914189"
+        "timestamp": "2026-09-17T09:08:21.773504832"
+    },
+    "registration - anattodwi - fixed mask": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "10": [
+                    
+                ],
+                "11": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    
+                ],
+                "7": [
+                    
+                ],
+                "8": [
+                    
+                ],
+                "9": [
+                    
+                ],
+                "anat_warped": [
+                    
+                ],
+                "backward_affine": [
+                    
+                ],
+                "backward_image_transform": [
+                    
+                ],
+                "backward_tractogram_transform": [
+                    
+                ],
+                "backward_warp": [
+                    
+                ],
+                "fixed_warped": [
+                    
+                ],
+                "forward_affine": [
+                    
+                ],
+                "forward_image_transform": [
+                    
+                ],
+                "forward_tractogram_transform": [
+                    
+                ],
+                "forward_warp": [
+                    
+                ],
+                "mqc": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-09-17T08:54:20.506701915"
+    },
+    "registration - anattodwi - moving mask": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "10": [
+                    
+                ],
+                "11": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    
+                ],
+                "7": [
+                    
+                ],
+                "8": [
+                    
+                ],
+                "9": [
+                    
+                ],
+                "anat_warped": [
+                    
+                ],
+                "backward_affine": [
+                    
+                ],
+                "backward_image_transform": [
+                    
+                ],
+                "backward_tractogram_transform": [
+                    
+                ],
+                "backward_warp": [
+                    
+                ],
+                "fixed_warped": [
+                    
+                ],
+                "forward_affine": [
+                    
+                ],
+                "forward_image_transform": [
+                    
+                ],
+                "forward_tractogram_transform": [
+                    
+                ],
+                "forward_warp": [
+                    
+                ],
+                "mqc": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-09-17T09:22:02.281760745"
     }
 }

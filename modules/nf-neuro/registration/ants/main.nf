@@ -165,11 +165,11 @@ process REGISTRATION_ANTS {
     moving_id=\${moving_id#${prefix}_*}
 
     touch ${prefix}_\${moving_id}_${suffix}.nii.gz
+    touch ${prefix}_warped_reference.nii.gz
     touch ${prefix}_forward1_affine.mat
     touch ${prefix}_forward0_warp.nii.gz
     touch ${prefix}_backward1_warp.nii.gz
     touch ${prefix}_backward0_affine.mat
-    touch ${prefix}_warped_reference.nii.gz
 
     if $run_qc; then
         touch ${prefix}_${suffix_qc}_registration_ants_mqc.gif

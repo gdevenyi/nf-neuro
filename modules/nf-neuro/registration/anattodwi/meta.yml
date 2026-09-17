@@ -49,16 +49,16 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'test', single_end:false ]`
-    - fixed_reference:
+    - fixed_image:
         type: file
-        description: Nifti image file - fixed DWI reference (usually b0)
+        description: Nifti image file - fixed DWI image (usually b0)
         pattern: "*.{nii,nii.gz}"
         mandatory: true
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
-    - moving_anat:
+    - moving_image:
         type: file
-        description: Nifti image file - moving anat to register (usually T1w)
+        description: Nifti image file - moving image to register (usually T1w)
         pattern: "*.{nii,nii.gz}"
         mandatory: true
         ontologies:
@@ -68,6 +68,20 @@ input:
         description: Nifti image file - additional fixed metric (usually FA)
         pattern: "*.{nii,nii.gz}"
         mandatory: true
+        ontologies:
+          - edam: http://edamontology.org/format_4001 # NIFTI format
+    - fixed_mask:
+        type: file
+        description: Fixed image mask
+        pattern: "*.{nii,nii.gz}"
+        mandatory: false
+        ontologies:
+          - edam: http://edamontology.org/format_4001 # NIFTI format
+    - moving_mask:
+        type: file
+        description: Moving image mask
+        pattern: "*.{nii,nii.gz}"
+        mandatory: false
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
 output:
@@ -83,6 +97,18 @@ output:
           pattern: "*_warped.nii.gz"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
+  fixed_warped:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test', single_end:false ]`
+      - "*_warped_reference.nii.gz":
+          type: file
+          description: Fixed image warped to moving space.
+          pattern: "*_warped_reference.nii.gz"
+          ontologies:
+            - edam: http://edamontology.org/format_3989 # GZIP format            
   forward_affine:
     - - meta:
           type: map

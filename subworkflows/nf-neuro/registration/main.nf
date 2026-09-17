@@ -169,7 +169,7 @@ workflow REGISTRATION {
             ch_register = ch_fixed_image
                 .join(ch_moving_image)
                 .join(ch_metric, remainder: true)
-                .map{ it[0..2] + [it[3] ?: []] }
+                .map{ it[0..2] + [it[3] ?: [], [], []] }
                 .branch{
                     anat_to_dwi : it[3]
                     ants_syn: true
