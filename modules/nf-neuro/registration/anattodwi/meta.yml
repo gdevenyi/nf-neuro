@@ -108,7 +108,7 @@ output:
           description: Fixed image warped to moving space.
           pattern: "*_warped_reference.nii.gz"
           ontologies:
-            - edam: http://edamontology.org/format_3989 # GZIP format            
+            - edam: http://edamontology.org/format_3989 # GZIP format
   forward_affine:
     - - meta:
           type: map
