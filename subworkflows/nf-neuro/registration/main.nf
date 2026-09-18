@@ -169,7 +169,9 @@ workflow REGISTRATION {
             ch_register = ch_fixed_image
                 .join(ch_moving_image)
                 .join(ch_metric, remainder: true)
-                .map{ it[0..2] + [it[3] ?: [], [], []] }
+                .join(ch_fixed_mask, remainder: true)
+                .join(ch_moving_mask, remainder: true)
+                .map{ it[0..2] + [it[3] ?: []] + [it[4] ?: []] + [it[5] ?: []] }
                 .branch{
                     anat_to_dwi : it[3]
                     ants_syn: true
@@ -199,8 +201,6 @@ workflow REGISTRATION {
             //   - join [ meta, image, metric | [], mask | null ]
             //   - map  [ meta, image, mask | [] ]
             ch_register = ch_register.ants_syn
-                .join(ch_fixed_mask, remainder: true)
-                .join(ch_moving_mask, remainder: true)
                 .map{ it[0..2] + [it[4] ?: []] + [it[5] ?: []] }
 
             REGISTRATION_ANTS ( ch_register )
