@@ -5,8 +5,7 @@
                 "0": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_T1w_warped.nii.gz:md5,9f2eda1485017da83b5fcd6871cdcb74"
                     ]
@@ -14,8 +13,7 @@
                 "1": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_warped_reference.nii.gz:md5,f6969de8c75d8e4a5a6d264c3ac50ab1"
                     ]
@@ -23,8 +21,7 @@
                 "10": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
                     ]
@@ -35,8 +32,7 @@
                 "2": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
                     ]
@@ -44,8 +40,7 @@
                 "3": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693"
                     ]
@@ -53,8 +48,7 @@
                 "4": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
                     ]
@@ -62,8 +56,7 @@
                 "5": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9"
                     ]
@@ -71,8 +64,7 @@
                 "6": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
@@ -83,8 +75,7 @@
                 "7": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
@@ -95,8 +86,7 @@
                 "8": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
@@ -107,8 +97,7 @@
                 "9": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
@@ -119,8 +108,7 @@
                 "anat_warped": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_T1w_warped.nii.gz:md5,9f2eda1485017da83b5fcd6871cdcb74"
                     ]
@@ -128,8 +116,7 @@
                 "backward_affine": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9"
                     ]
@@ -137,8 +124,7 @@
                 "backward_image_transform": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
@@ -149,8 +135,7 @@
                 "backward_tractogram_transform": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
@@ -161,8 +146,7 @@
                 "backward_warp": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_backward1_warp.nii.gz:md5,4ea6f41a8246f3cb0b1ad39c94028c1f"
                     ]
@@ -170,8 +154,7 @@
                 "fixed_warped": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_warped_reference.nii.gz:md5,f6969de8c75d8e4a5a6d264c3ac50ab1"
                     ]
@@ -179,8 +162,7 @@
                 "forward_affine": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_forward1_affine.mat:md5,984ac5023aca49f513af811d0f1e3e89"
                     ]
@@ -188,8 +170,7 @@
                 "forward_image_transform": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693",
@@ -200,8 +181,7 @@
                 "forward_tractogram_transform": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         [
                             "test_backward0_affine.mat:md5,177325d18b5a5fa457bd3a2e052463d9",
@@ -212,8 +192,7 @@
                 "forward_warp": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_forward0_warp.nii.gz:md5,464d7b291ab9c9aaead7ecbfec6a6693"
                     ]
@@ -221,8 +200,7 @@
                 "mqc": [
                     [
                         {
-                            "id": "test",
-                            "single_end": false
+                            "id": "test"
                         },
                         "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,9cbc1ce8755821996dae18080cf0a23c"
                     ]
@@ -236,7 +214,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-17T10:40:20.499458054"
+        "timestamp": "2026-09-18T14:59:02.624054081"
     },
     "registration - anattodwi -stub-run": {
         "content": [
@@ -254,76 +232,210 @@
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,c7c875cd765b97ef3fa3a924e5a29520"
+                    ]
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,26af364bedf6517e0eb5d9d8678c938d"
+                    ]
                 ],
                 "10": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,7ceb546fe68f33351882bcf42c8abf13"
+                    ]
                 ],
                 "11": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ],
                 "2": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                    ]
                 ],
                 "3": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64"
+                    ]
                 ],
                 "4": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                    ]
                 ],
                 "5": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00"
+                    ]
                 ],
                 "6": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64",
+                            "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                        ]
+                    ]
                 ],
                 "7": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00",
+                            "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                        ]
+                    ]
                 ],
                 "8": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00",
+                            "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                        ]
+                    ]
                 ],
                 "9": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64",
+                            "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                        ]
+                    ]
                 ],
                 "anat_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,c7c875cd765b97ef3fa3a924e5a29520"
+                    ]
                 ],
                 "backward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00"
+                    ]
                 ],
                 "backward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00",
+                            "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                        ]
+                    ]
                 ],
                 "backward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64",
+                            "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                        ]
+                    ]
                 ],
                 "backward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                    ]
                 ],
                 "fixed_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,26af364bedf6517e0eb5d9d8678c938d"
+                    ]
                 ],
                 "forward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                    ]
                 ],
                 "forward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64",
+                            "test_forward1_affine.mat:md5,aa2f4343b8a0310e2577477d0c97de34"
+                        ]
+                    ]
                 ],
                 "forward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,0b82fee3663672fa0db0710ca1ee7d00",
+                            "test_backward1_warp.nii.gz:md5,2c66ede5f5a2a24a36ff15c91d7a5d0d"
+                        ]
+                    ]
                 ],
                 "forward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,3424aee2c77153a10570476b0cdc5c64"
+                    ]
                 ],
                 "mqc": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,7ceb546fe68f33351882bcf42c8abf13"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ]
             }
         ],
@@ -331,82 +443,216 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-18T13:45:39.643495751"
+        "timestamp": "2026-09-18T15:07:16.995659791"
     },
     "registration - anattodwi - fixed mask": {
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,a432efa27a2a6d9a2df0251a7f1ee855"
+                    ]
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,137ca23473ac6fcf67a8a2596d542bbc"
+                    ]
                 ],
                 "10": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,6533b4c1e0497b0e6ef0437dee393f45"
+                    ]
                 ],
                 "11": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ],
                 "2": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                    ]
                 ],
                 "3": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362"
+                    ]
                 ],
                 "4": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                    ]
                 ],
                 "5": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb"
+                    ]
                 ],
                 "6": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362",
+                            "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                        ]
+                    ]
                 ],
                 "7": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb",
+                            "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                        ]
+                    ]
                 ],
                 "8": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb",
+                            "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                        ]
+                    ]
                 ],
                 "9": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362",
+                            "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                        ]
+                    ]
                 ],
                 "anat_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,a432efa27a2a6d9a2df0251a7f1ee855"
+                    ]
                 ],
                 "backward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb"
+                    ]
                 ],
                 "backward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb",
+                            "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                        ]
+                    ]
                 ],
                 "backward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362",
+                            "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                        ]
+                    ]
                 ],
                 "backward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                    ]
                 ],
                 "fixed_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,137ca23473ac6fcf67a8a2596d542bbc"
+                    ]
                 ],
                 "forward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                    ]
                 ],
                 "forward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362",
+                            "test_forward1_affine.mat:md5,e710f0c98949426239cbd25402183ab5"
+                        ]
+                    ]
                 ],
                 "forward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e40a79d8118706015fffb733b4a1d5bb",
+                            "test_backward1_warp.nii.gz:md5,0627479273d4db6bb3d8a374aad7b99c"
+                        ]
+                    ]
                 ],
                 "forward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,6629cf03f4759c2fc1d7765430e1b362"
+                    ]
                 ],
                 "mqc": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,6533b4c1e0497b0e6ef0437dee393f45"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ]
             }
         ],
@@ -414,82 +660,216 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-17T08:54:20.506701915"
+        "timestamp": "2026-09-18T15:04:28.23114732"
     },
     "registration - anattodwi - moving mask": {
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,4334976dc38fdfbeccbc9270a84c8140"
+                    ]
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,82551b5651f8583e9649466863d80bcf"
+                    ]
                 ],
                 "10": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,169d48fe0db4b5edba5e2eedbdf44768"
+                    ]
                 ],
                 "11": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ],
                 "2": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                    ]
                 ],
                 "3": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75"
+                    ]
                 ],
                 "4": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                    ]
                 ],
                 "5": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791"
+                    ]
                 ],
                 "6": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75",
+                            "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                        ]
+                    ]
                 ],
                 "7": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791",
+                            "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                        ]
+                    ]
                 ],
                 "8": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791",
+                            "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                        ]
+                    ]
                 ],
                 "9": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75",
+                            "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                        ]
+                    ]
                 ],
                 "anat_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_T1w_warped.nii.gz:md5,4334976dc38fdfbeccbc9270a84c8140"
+                    ]
                 ],
                 "backward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791"
+                    ]
                 ],
                 "backward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791",
+                            "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                        ]
+                    ]
                 ],
                 "backward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75",
+                            "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                        ]
+                    ]
                 ],
                 "backward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                    ]
                 ],
                 "fixed_warped": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz:md5,82551b5651f8583e9649466863d80bcf"
+                    ]
                 ],
                 "forward_affine": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                    ]
                 ],
                 "forward_image_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75",
+                            "test_forward1_affine.mat:md5,aee4b87a3cad6826c14876c193dbd663"
+                        ]
+                    ]
                 ],
                 "forward_tractogram_transform": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_backward0_affine.mat:md5,e0ee04e6e0f1df9d47e9e8417bb86791",
+                            "test_backward1_warp.nii.gz:md5,4c4395385defdadad781c0073b4f1676"
+                        ]
+                    ]
                 ],
                 "forward_warp": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_forward0_warp.nii.gz:md5,7cf3694e834b848fe2a6b98dd29e2f75"
+                    ]
                 ],
                 "mqc": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_t1_to_dwi_registration_anattodwi_mqc.gif:md5,169d48fe0db4b5edba5e2eedbdf44768"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,f957f7aa624e41f5a292326ca6b83fc3"
                 ]
             }
         ],
@@ -497,6 +877,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-17T09:22:02.281760745"
+        "timestamp": "2026-09-18T15:01:45.395211577"
     }
 }
