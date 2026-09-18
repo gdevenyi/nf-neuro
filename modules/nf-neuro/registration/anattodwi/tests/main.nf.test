@@ -211,7 +211,7 @@ nextflow_process {
                         [ id:'test' ],
                         file("\${test_data_directory}/T1w_mask.nii.gz")
                     ]
-                }                
+                }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
                         [ id:'test', single_end:false ],
