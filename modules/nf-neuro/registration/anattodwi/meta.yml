@@ -44,7 +44,7 @@ args:
   - suffix_qc:
       type: string
       description: "Suffix for the QC image file."
-      default: ""      
+      default: ""
   - single_thread:
       type: boolean
       description: If true, the command will be run in single-threaded mode. By default, the command will use multiple threads based on the number of CPUs allocated to the task.
