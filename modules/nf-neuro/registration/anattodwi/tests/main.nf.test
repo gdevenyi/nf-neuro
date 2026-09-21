@@ -37,19 +37,19 @@ nextflow_process {
                     }
                 ch_t1w = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
                 ch_b0 = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/fa.nii.gz")
                     ]
                 }
@@ -84,7 +84,7 @@ nextflow_process {
                     }
                 ch_t1w = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
@@ -96,13 +96,13 @@ nextflow_process {
                 }
                 ch_b0 = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/fa.nii.gz")
                     ]
                 }
@@ -137,26 +137,25 @@ nextflow_process {
                     }
                 ch_t1w = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
                 ch_b0 = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
                 ch_fixed_mask = ch_split_test_data.b0.map{
                     test_data_directory -> [
                         [ id:'test' ],
-                        file("\${test_data_directory}/b0.nii.gz").copyTo(
-                                "\${test_data_directory}/fixed_mask.nii.gz")
+                        file("\${test_data_directory}/brainmask.nii.gz")
                     ]
                 }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/fa.nii.gz")
                     ]
                 }
@@ -191,32 +190,31 @@ nextflow_process {
                     }
                 ch_t1w = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
                 ch_b0 = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
                 ch_fixed_mask = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
-                        file("\${test_data_directory}/b0.nii.gz").copyTo(
-                                "\${test_data_directory}/fixed_mask.nii.gz")
+                        [ id:'test' ],
+                        file("\${test_data_directory}/brainmask.nii.gz")
                     ]
                 }
                 ch_moving_mask = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w_mask.nii.gz")
                     ]
                 }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/fa.nii.gz")
                     ]
                 }
@@ -253,19 +251,19 @@ nextflow_process {
                     }
                 ch_t1w = ch_split_test_data.t1w.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/T1w.nii.gz")
                     ]
                 }
                 ch_b0 = ch_split_test_data.b0.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/b0.nii.gz")
                     ]
                 }
                 ch_fa = ch_split_test_data.dti.map{
                     test_data_directory -> [
-                        [ id:'test'],
+                        [ id:'test' ],
                         file("\${test_data_directory}/fa.nii.gz")
                     ]
                 }

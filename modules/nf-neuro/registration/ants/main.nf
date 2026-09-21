@@ -30,7 +30,7 @@ process REGISTRATION_ANTS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def suffix = task.ext.suffix ? "${task.ext.suffix}_warped" : "warped"
-    def suffix_qc = task.ext.suffix_qc ?: ""
+    def suffix_qc = task.ext.suffix_qc ? "${task.ext.suffix_qc}_" : ""
     def ants = task.ext.quick ? "antsRegistrationSyNQuick.sh" : "antsRegistrationSyN.sh"
     def dimension = "-d ${task.ext.dimension ?: 3}"
     def transform = task.ext.transform ?: "s"
@@ -61,7 +61,7 @@ process REGISTRATION_ANTS {
     moving_id=\${moving_id#${prefix}_*}
 
     mv outputWarped.nii.gz ${prefix}_\${moving_id}_${suffix}.nii.gz
-    mv outputInverseWarped.nii.gz ${prefix}_warped_reference.nii.gz
+    mv outputInverseWarped.nii.gz ${prefix}_${suffix}_warped_reference.nii.gz
 
     if [ $transform != "bo" ] && [ $transform != "so" ]; then
         mv output0GenericAffine.mat ${prefix}_forward1_affine.mat
@@ -120,7 +120,7 @@ process REGISTRATION_ANTS {
         # Create GIF.
         convert -delay 10 -loop 0 -morph 10 \
             warped_mosaic.png fixed_image_mosaic.png warped_mosaic.png \
-            ${prefix}_${suffix_qc}_registration_ants_mqc.gif
+            ${prefix}_${suffix_qc}registration_ants_mqc.gif
 
         # Clean up.
         rm *_mosaic.png
@@ -138,7 +138,7 @@ process REGISTRATION_ANTS {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def suffix = task.ext.suffix ? "${task.ext.suffix}_warped" : "warped"
-    def suffix_qc = task.ext.suffix_qc ?: ""
+    def suffix_qc = task.ext.suffix_qc ? "${task.ext.suffix_qc}_" : ""
     def run_qc = task.ext.run_qc as Boolean || false
 
     """
@@ -165,14 +165,14 @@ process REGISTRATION_ANTS {
     moving_id=\${moving_id#${prefix}_*}
 
     touch ${prefix}_\${moving_id}_${suffix}.nii.gz
-    touch ${prefix}_warped_reference.nii.gz
+    touch ${prefix}_${suffix}_reference.nii.gz
     touch ${prefix}_forward1_affine.mat
     touch ${prefix}_forward0_warp.nii.gz
     touch ${prefix}_backward1_warp.nii.gz
     touch ${prefix}_backward0_affine.mat
 
     if $run_qc; then
-        touch ${prefix}_${suffix_qc}_registration_ants_mqc.gif
+        touch ${prefix}_${suffix_qc}registration_ants_mqc.gif
     fi
 
     cat <<-END_VERSIONS > versions.yml
