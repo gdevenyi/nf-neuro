@@ -61,7 +61,7 @@ process REGISTRATION_ANTS {
     moving_id=\${moving_id#${prefix}_*}
 
     mv outputWarped.nii.gz ${prefix}_\${moving_id}_${suffix}.nii.gz
-    mv outputInverseWarped.nii.gz ${prefix}_${suffix}_warped_reference.nii.gz
+    mv outputInverseWarped.nii.gz ${prefix}_${suffix}_reference.nii.gz
 
     if [ $transform != "bo" ] && [ $transform != "so" ]; then
         mv output0GenericAffine.mat ${prefix}_forward1_affine.mat

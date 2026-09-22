@@ -159,7 +159,7 @@ output:
   - reference_warped:
       type: file
       description: |
-        Channel containing the reference image warped in moving space.
+        Not provided by REGISTRATION_SYNTHMORPH. Channel containing the reference image warped in moving space.
       structure:
         - meta:
             type: map
