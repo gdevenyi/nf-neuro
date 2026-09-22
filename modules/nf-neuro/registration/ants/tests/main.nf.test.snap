@@ -226,7 +226,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-15T15:47:27.594200779"
+        "timestamp": "2026-09-22T09:30:45.962993432"
     },
     "registration - ants - SyN quick": {
         "content": [
@@ -443,7 +443,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-11T14:00:37.948388463"
+        "timestamp": "2026-09-22T09:27:54.973580224"
     },
     "registration - ants - SyN": {
         "content": [
@@ -650,7 +650,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-11T13:59:26.703350838"
+        "timestamp": "2026-09-22T09:26:33.520092519"
     },
     "registration - ants - no warps": {
         "content": [
@@ -829,7 +829,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-11T14:00:52.534734336"
+        "timestamp": "2026-09-22T09:28:09.108547171"
     },
     "registration - ants - fixed mask": {
         "content": [
@@ -1046,6 +1046,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-15T15:48:49.342881958"
+        "timestamp": "2026-09-22T09:32:12.939835678"
     }
 }

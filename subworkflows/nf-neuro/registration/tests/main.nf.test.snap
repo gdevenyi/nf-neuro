@@ -252,7 +252,15 @@
                         {
                             "id": "test"
                         },
-                        "test__registration_ants_mqc.gif"
+                        "test_registration_ants_mqc.gif"
+                    ]
+                ],
+                "reference_warped": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz"
                     ]
                 ],
                 "versions": [
@@ -264,7 +272,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-11T11:42:29.573069385"
+        "timestamp": "2026-09-21T14:18:50.987490019"
     },
     "registration - ANTs - Anat to DWI": {
         "content": [
@@ -353,8 +361,16 @@
                         "test_registration_anattodwi_mqc.gif"
                     ]
                 ],
+                "reference_warped": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_warped_reference.nii.gz"
+                    ]
+                ],
                 "versions": [
-                    "versions.yml:md5,03b958f14a890b541bb76c73f7a72847"
+                    "versions.yml:md5,e387017f3bb8f7bc50efb907d9e8e73f"
                 ]
             }
         ],
@@ -362,6 +378,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-02-26T22:46:42.344818522"
+        "timestamp": "2026-09-21T14:18:38.020455328"
     }
 }
