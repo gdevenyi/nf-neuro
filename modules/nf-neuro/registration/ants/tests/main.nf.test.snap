@@ -27,7 +27,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,aecd2a8b83026219078af73aaa0fdeb7"
+                        "test_warped_reference.nii.gz:md5,aecd2a8b83026219078af73aaa0fdeb7"
                     ]
                 ],
                 "10": [
@@ -160,7 +160,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,aecd2a8b83026219078af73aaa0fdeb7"
+                        "test_warped_reference.nii.gz:md5,aecd2a8b83026219078af73aaa0fdeb7"
                     ]
                 ],
                 "forward_affine": [
@@ -226,7 +226,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-21T14:09:59.318337237"
+        "timestamp": "2026-09-22T09:30:45.962993432"
     },
     "registration - ants - SyN quick": {
         "content": [
@@ -244,7 +244,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,3cbad0d0163e9bd59b3f6b865e464ffb"
+                        "test_warped_reference.nii.gz:md5,3cbad0d0163e9bd59b3f6b865e464ffb"
                     ]
                 ],
                 "10": [
@@ -377,7 +377,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,3cbad0d0163e9bd59b3f6b865e464ffb"
+                        "test_warped_reference.nii.gz:md5,3cbad0d0163e9bd59b3f6b865e464ffb"
                     ]
                 ],
                 "forward_affine": [
@@ -443,7 +443,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-21T14:06:22.396177137"
+        "timestamp": "2026-09-22T09:27:54.973580224"
     },
     "registration - ants - SyN": {
         "content": [
@@ -461,7 +461,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,8d9d3bd39214d9b4fd0cedfc2458d093"
+                        "test_warped_reference.nii.gz:md5,8d9d3bd39214d9b4fd0cedfc2458d093"
                     ]
                 ],
                 "10": [
@@ -589,7 +589,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,8d9d3bd39214d9b4fd0cedfc2458d093"
+                        "test_warped_reference.nii.gz:md5,8d9d3bd39214d9b4fd0cedfc2458d093"
                     ]
                 ],
                 "forward_affine": [
@@ -650,7 +650,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-21T14:05:09.49679221"
+        "timestamp": "2026-09-22T09:26:33.520092519"
     },
     "registration - ants - no warps": {
         "content": [
@@ -668,7 +668,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,0636f939cf940ac053f86286797c0982"
+                        "test_warped_reference.nii.gz:md5,0636f939cf940ac053f86286797c0982"
                     ]
                 ],
                 "10": [
@@ -775,7 +775,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,0636f939cf940ac053f86286797c0982"
+                        "test_warped_reference.nii.gz:md5,0636f939cf940ac053f86286797c0982"
                     ]
                 ],
                 "forward_affine": [
@@ -829,7 +829,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-21T14:06:37.257043943"
+        "timestamp": "2026-09-22T09:28:09.108547171"
     },
     "registration - ants - fixed mask": {
         "content": [
@@ -847,7 +847,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,e29b6d5f67b52afa7ab5b6ae90afd375"
+                        "test_warped_reference.nii.gz:md5,e29b6d5f67b52afa7ab5b6ae90afd375"
                     ]
                 ],
                 "10": [
@@ -980,7 +980,7 @@
                         {
                             "id": "test"
                         },
-                        "test_warped_warped_reference.nii.gz:md5,e29b6d5f67b52afa7ab5b6ae90afd375"
+                        "test_warped_reference.nii.gz:md5,e29b6d5f67b52afa7ab5b6ae90afd375"
                     ]
                 ],
                 "forward_affine": [
@@ -1046,6 +1046,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-09-21T14:11:40.528017633"
+        "timestamp": "2026-09-22T09:32:12.939835678"
     }
 }
