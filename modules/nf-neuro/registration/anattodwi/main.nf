@@ -38,7 +38,7 @@ process REGISTRATION_ANATTODWI {
     export ANTS_RANDOM_SEED=${task.ext.ants_rng_seed ? task.ext.ants_rng_seed : "1234"}
 
     antsRegistration --dimensionality 3 --float 0\
-        --output [forward,warped.nii.gz,InverseWarped.nii.gz]\
+        --output [forward,warped.nii.gz,inverse_warped.nii.gz]\
         --interpolation Linear --use-histogram-matching 0\
         --winsorize-image-intensities [0.005,0.995]\
         --initial-moving-transform [$fixed_image,$moving_image,1]\
@@ -63,7 +63,7 @@ process REGISTRATION_ANATTODWI {
     moving_id=\${moving_id#${prefix}_*}
 
     mv warped.nii.gz ${prefix}_\${moving_id}_${suffix}.nii.gz
-    mv InverseWarped.nii.gz ${prefix}_${suffix}_reference.nii.gz
+    mv inverse_warped.nii.gz ${prefix}_${suffix}_reference.nii.gz
     mv forward0GenericAffine.mat ${prefix}_forward1_affine.mat
     mv forward1Warp.nii.gz ${prefix}_forward0_warp.nii.gz
     mv forward1InverseWarp.nii.gz ${prefix}_backward1_warp.nii.gz
