@@ -55,8 +55,10 @@ RUN curl -fsSL https://get.nextflow.io | NXF_VER=${NEXTFLOW_VERSION} bash \
     && mv nextflow /usr/local/bin/nextflow \
     && chmod u+x /usr/local/bin/nextflow
 
-RUN npm install -g --save-exact prettier \
-    && npm install -g editorconfig editorconfig-checker
+RUN npm install -g --prefix /usr/local --save-exact prettier \
+    && npm install -g --prefix /usr/local editorconfig editorconfig-checker@2 \
+    && chgrp -R nodeusers /usr/local/lib/node_modules \
+    && chmod -R g+w /usr/local/lib/node_modules
 
 COPY --from=ghcr.io/astral-sh/uv:0.12.18 /uv /usr/local/bin/uv
 
