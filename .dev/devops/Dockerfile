@@ -2,7 +2,7 @@ FROM docker.io/ubuntu:24.04
 
 ARG NODE_MAJOR=20
 ARG ACTIONLINT_VERSION=1.7.7
-ARG NEXTFLOW_VERSION=26.04.0
+ARG NEXTFLOW_VERSION=25.10.7
 ARG NFTEST_VERSION=0.9.5
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -77,7 +77,7 @@ RUN mkdir -p .local/bin \
     && curl -fsSL https://code.askimed.com/install/nf-test | bash -s ${NFTEST_VERSION} \
     && mv nf-test /home/ubuntu/.local/bin/nf-test \
     && chmod u+x /home/ubuntu/.local/bin/nf-test \
-    && uv tool install "poetry==2.*"
+    && uv tool install "poetry==1.8.*"
 
 WORKDIR /workspace
 CMD ["bash"]
