@@ -1,0 +1,31 @@
+{
+    "registration - warpconvert - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,57a255e80ad4463c88989c156db0d142"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-10-07T15:00:55.475638388"
+    },
+    "registration - warpconvert": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_displacement_out_warp.nii.gz:md5,085c10492c27502febb935970c9edaa5"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-10-07T15:15:35.182125914"
+    }
+}

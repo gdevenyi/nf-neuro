@@ -1,0 +1,37 @@
+process REGISTRATION_WARPCONVERT {
+    tag "$meta.id"
+    container "mrtrix3/mrtrix3:3.0.5"
+
+    input:
+    tuple val(meta), path(transformation)
+
+    output:
+    tuple val(meta), path("*_out_warp.nii.gz"), emit: transformation
+    path "versions.yml", emit: versions
+
+    script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def suffix = task.ext.suffix ? "${task.ext.suffix}_displacement_out_warp" : "displacement_out_warp"
+
+    """
+    warpconvert $transformation deformation2displacement ${prefix}_${suffix}.nii.gz -force
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        warpconvert: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
+    END_VERSIONS
+    """
+
+    stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def suffix = task.ext.suffix ? "${task.ext.suffix}_displacement_out_warp" : "displacement_out_warp"
+
+    """
+    touch ${prefix}_${suffix}.nii.gz
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        warpconvert: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
+    END_VERSIONS
+    """
+}
