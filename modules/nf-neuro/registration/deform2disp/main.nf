@@ -1,4 +1,4 @@
-process REGISTRATION_WARPCONVERT {
+process REGISTRATION_DEFORM2DISP {
     tag "$meta.id"
     label 'process_single'
 

@@ -1,14 +1,14 @@
 nextflow_process {
 
-    name "Test Process REGISTRATION_WARPCONVERT"
+    name "Test Process REGISTRATION_DEFORM2DISP"
     script "../main.nf"
-    process "REGISTRATION_WARPCONVERT"
+    process "REGISTRATION_DEFORM2DISP"
     config "./nextflow.config"
 
     tag "modules"
     tag "modules_nfneuro"
     tag "registration"
-    tag "registration/warpconvert"
+    tag "registration/deform2disp"
 
     tag "subworkflows"
     tag "subworkflows/load_test_data"

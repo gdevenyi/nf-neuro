@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: registration_warpconvert
+name: registration_deform2disp
 description: Convert a deformation field to a displacement field using MRtrix3.
 keywords:
   - registration
