@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: registration_deform2disp
 description: Convert a deformation field to a displacement field using MRtrix3.
-  The mri_easyref deformation field must be converted using this module before it can be used with the antsapplytransform module (see registration subworkflow).
+  The mri_easyreg deformation field must be converted using this module before it can be used with the antsapplytransforms module (see registration subworkflow).
 keywords:
   - registration
   - deformation
