@@ -1,13 +1,18 @@
 process REGISTRATION_WARPCONVERT {
     tag "$meta.id"
+    label 'process_single'
+
     container "mrtrix3/mrtrix3:3.0.5"
 
     input:
     tuple val(meta), path(transformation)
 
     output:
-    tuple val(meta), path("*_out_warp.nii.gz"), emit: transformation
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*_displacement_out_warp.nii.gz"), emit: transformation
+    path "versions.yml"                                    , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -18,7 +23,7 @@ process REGISTRATION_WARPCONVERT {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        warpconvert: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
+        mrtrix: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
     END_VERSIONS
     """
 
@@ -31,7 +36,7 @@ process REGISTRATION_WARPCONVERT {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        warpconvert: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
+        mrtrix: \$(warpconvert -version 2>&1 | sed -n 's/== warpconvert \\([0-9.]\\+\\).*/\\1/p')
     END_VERSIONS
     """
 }

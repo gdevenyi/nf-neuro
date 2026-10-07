@@ -2,30 +2,46 @@
     "registration - warpconvert - stub-run": {
         "content": [
             [
-                "versions.yml:md5,57a255e80ad4463c88989c156db0d142"
+                "versions.yml:md5,7c6b61855d08219dbaa945949d276af7"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-10-07T15:00:55.475638388"
+        "timestamp": "2026-10-07T15:31:27.35051761"
     },
     "registration - warpconvert": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_displacement_out_warp.nii.gz:md5,085c10492c27502febb935970c9edaa5"
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_displacement_out_warp.nii.gz:md5,085c10492c27502febb935970c9edaa5"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,7c6b61855d08219dbaa945949d276af7"
+                ],
+                "transformation": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_displacement_out_warp.nii.gz:md5,085c10492c27502febb935970c9edaa5"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,7c6b61855d08219dbaa945949d276af7"
                 ]
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-10-07T15:15:35.182125914"
+        "timestamp": "2026-10-07T15:31:09.762272436"
     }
 }

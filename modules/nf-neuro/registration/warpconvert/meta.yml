@@ -34,10 +34,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_out_warp.nii.gz":
+      - "*_displacement_out_warp.nii.gz":
           type: file
           description: Displacement field generated from the input deformation field using deformation2displacement.
-          pattern: "*_out_warp.nii.gz"
+          pattern: "*_displacement_out_warp.nii.gz"
           ontologies:
             - edam: http://edamontology.org/format_4001 # NIFTI format
   versions:
@@ -47,3 +47,6 @@ output:
         pattern: versions.yml
         ontologies:
           - edam: http://edamontology.org/format_3750 # YAML
+authors:
+  - "@scilus"
+  - "@arnaudbore"
