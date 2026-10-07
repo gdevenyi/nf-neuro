@@ -1,5 +1,5 @@
 {
-    "registration - warpconvert - stub-run": {
+    "registration - deform2disp - stub-run": {
         "content": [
             [
                 "versions.yml:md5,f2c2eabe8fe3717cec444288635fab98"
@@ -11,7 +11,7 @@
         },
         "timestamp": "2026-10-07T15:58:55.712495532"
     },
-    "registration - warpconvert": {
+    "registration - deform2disp": {
         "content": [
             {
                 "0": [
