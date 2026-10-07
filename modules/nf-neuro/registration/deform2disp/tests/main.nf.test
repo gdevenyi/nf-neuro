@@ -44,24 +44,6 @@ nextflow_process {
                 { assert snapshot(process.out).match() }
             )
         }
-        when {
-            process {
-                """
-                input[0] = LOAD_DATA.out.test_data_directory.map{
-                    test_data_directory -> [
-                        [ id:'test' ],
-                        file("\${test_data_directory}/mni_152_sym_09c/forward_algo-easyreg_from-t1_to-template_deformation.nii.gz")
-                    ]
-                }
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(process.out).match() }
-            )
-        }
     }
 
     test("registration - deform2disp - stub-run") {

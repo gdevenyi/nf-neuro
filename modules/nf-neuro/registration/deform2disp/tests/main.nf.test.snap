@@ -1,16 +1,4 @@
 {
-    "registration - deform2disp - stub-run": {
-        "content": [
-            [
-                "versions.yml:md5,f2c2eabe8fe3717cec444288635fab98"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-10-07T15:58:55.712495532"
-    },
     "registration - deform2disp": {
         "content": [
             {
@@ -43,5 +31,17 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-10-07T15:58:38.811957142"
+    },
+    "registration - deform2disp - stub-run": {
+        "content": [
+            [
+                "versions.yml:md5,f2c2eabe8fe3717cec444288635fab98"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-10-07T15:58:55.712495532"
     }
 }

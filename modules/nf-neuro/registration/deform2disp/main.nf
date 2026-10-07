@@ -5,7 +5,7 @@ process REGISTRATION_DEFORM2DISP {
     container "mrtrix3/mrtrix3:3.0.5"
 
     input:
-    tuple val(meta), path(transformation)
+    tuple val(meta), path(deformation)
 
     output:
     tuple val(meta), path("*_displacement_out_warp.nii.gz"), emit: transformation
@@ -19,7 +19,7 @@ process REGISTRATION_DEFORM2DISP {
     def suffix = task.ext.suffix ? "${task.ext.suffix}_displacement_out_warp" : "displacement_out_warp"
 
     """
-    warpconvert $transformation deformation2displacement ${prefix}_${suffix}.nii.gz -force
+    warpconvert $deformation deformation2displacement ${prefix}_${suffix}.nii.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

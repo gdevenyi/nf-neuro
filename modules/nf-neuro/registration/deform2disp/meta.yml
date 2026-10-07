@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: registration_deform2disp
 description: Convert a deformation field to a displacement field using MRtrix3.
+  The mri_easyref deformation field must be converted using this module before it can be used with the antsapplytransform module (see registration subworkflow).
 keywords:
   - registration
   - deformation
@@ -20,7 +21,7 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'sample1', single_end:false ]`
-    - transformation:
+    - deformation:
         type: file
         description: Input deformation field.
         pattern: "*.{nii,nii.gz}"
@@ -28,7 +29,7 @@ input:
         ontologies:
           - edam: http://edamontology.org/format_4001 # NIFTI format
 output:
-  transformation:
+  deformation:
     - - meta:
           type: map
           description: |
